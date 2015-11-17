@@ -1,0 +1,19 @@
+name: Hamon 42
+type: theme
+description: Forty Two Sub theme made for Hamon
+base theme: fortytwo
+core: 8.x
+
+libraries:
+  - hamonfortytwo/main
+
+regions:
+  header: 'Header'
+  page_top: 'Page top'
+  highlighted: 'Highlighted area'
+  navigation: 'Navigation'
+  content: 'Content'
+  sidebar_first: 'First sidebar'
+  sidebar_second: 'Second sidebar'
+  page_bottom: 'Page bottom'
+  footer: 'Footer'

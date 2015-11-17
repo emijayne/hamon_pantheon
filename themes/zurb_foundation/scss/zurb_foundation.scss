@@ -1,0 +1,52 @@
+/*
+ * zurb_foundation.scss - Contains all Drupal-specific SASS for this theme.
+ *
+ * @todo Split this into multiple folders/files.
+*/
+
+// A fix for https://www.drupal.org/node/953034 - Themes currently cannot
+// determine if a region is empty
+
+.region-highlighted:empty {
+    display: none;
+}
+
+// This has been an issue since 7.x, Foundation rules about list elements
+// affect Navbar sizing.
+
+.toolbar-tray a {
+    font-size: 13px;
+}
+
+// Remove Foundation's top margin from the toggle orientation button.
+
+.toolbar .toolbar-toggle-orientation .toolbar-icon {
+    margin: 0;
+    // Fix offset problem where half of orientation button is not visible.
+    &:before {
+        min-height: 0;
+    }
+}
+
+// Override styles from /core/modules/system/css/components/menu.theme.css
+
+.top-bar-section ul li {
+    padding-top: 0;
+    a.is-active {
+        color: #FFFFFF;
+    }
+}
+
+// Offset the top bar if the Navbar (toolbar) is present.
+
+body.toolbar-fixed .sticky.fixed .top-bar {
+    margin-top: 39px;
+}
+
+// Removes core arrow image from menu items.
+
+.top-bar {
+    .menu-item--collapsed,.menu-item--expanded {
+        list-style: none;
+    }
+}

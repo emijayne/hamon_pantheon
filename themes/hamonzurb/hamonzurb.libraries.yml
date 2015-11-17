@@ -1,0 +1,10 @@
+global:
+  version: VERSION
+  css:
+    base:
+      css/hamonzurb.css: {}
+  js:
+    js/hamonzurb.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
