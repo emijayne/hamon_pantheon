@@ -131,7 +131,7 @@ function _fortytwo_theme_get_javascript(&$form) {
   $form['ft_js']['libraries']['ft_enquire_js'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable enquire.js'),
-    '#description' => t('Enable the !link javascript plugin. This includes the matchMedia.js library', array('!link' => $link)),
+    '#description' => t('Enable the @link javascript plugin. This includes the matchMedia.js library', array('@link' => $link)),
     '#default_value' => theme_get_setting('ft_enquire_js'),
   );
   $url = Url::fromUri('http://ricostacruz.com/jquery.transit');
@@ -139,7 +139,7 @@ function _fortytwo_theme_get_javascript(&$form) {
   $form['ft_js']['libraries']['ft_transit_js'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable transit.js'),
-    '#description' => t('Enable the !link javascript plugin', array('!link' => $link)),
+    '#description' => t('Enable the @link javascript plugin', array('@link' => $link)),
     '#default_value' => theme_get_setting('ft_transit_js'),
   );
   $form['ft_js']['libraries']['ft_prettify_js'] = array(

@@ -20,8 +20,8 @@ regions:
   footer: 'Footer'
 
 
-# Information added by Drupal.org packaging script on 2015-10-13
-version: '8.x-1.2'
+# Information added by Drupal.org packaging script on 2015-12-01
+version: '8.x-1.4'
 core: '8.x'
 project: 'fortytwo'
-datestamp: 1444743855
+datestamp: 1448996664

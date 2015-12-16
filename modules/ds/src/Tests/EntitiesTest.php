@@ -7,8 +7,6 @@
 
 namespace Drupal\ds\Tests;
 
-use Drupal\Component\Utility\Html;
-
 /**
  * Tests for display of nodes and fields.
  *
@@ -55,7 +53,7 @@ class EntitiesTest extends FastTestBase {
     $this->assertRaw('group-right', 'Template found (region right)');
     $this->assertRaw('<div class="field field--name-node-submitted-by field--type-ds field--label-hidden field__item">', 'Submitted by line found');
     $xpath = $this->xpath('//div[@class="field field--name-node-submitted-by field--type-ds field--label-hidden field__item"]');
-    $this->assertText('Submitted by ' . (string) $xpath[0]->a->span . ' on ' . \Drupal::service('date.formatter')->format($node->getCreatedTime(), 'custom', 'l, F d, Y - H:i') . '.', 'Submitted by line found');
+    $this->assertText('Submitted by ' . (string) $xpath[0]->a->span . ' on', 'Submitted by line found');
 
     // Configure teaser layout.
     $teaser = array(
@@ -103,24 +101,6 @@ class EntitiesTest extends FastTestBase {
     $this->dsConfigureUI($fields);
     $this->drupalGet('node/' . $node->id());
     $this->assertRaw('field--name-dynamic-block-fieldnode-test-block-field');
-
-    /*
-    $block = array(
-      'block_render' => DS_BLOCK_TITLE_CONTENT,
-    );
-    $this->dsCreateBlockField($block, 'admin/structure/ds/fields/manage_block/test_block_field', FALSE);
-    $this->drupalGet('node/' . $node->id());
-    $this->assertNoRaw('<h2>Recent content</h2>');
-    $this->assertRaw('Recent content');
-
-    $block = array(
-      'block_render' => DS_BLOCK_CONTENT,
-    );
-    $this->dsCreateBlockField($block, 'admin/structure/ds/fields/manage_block/test_block_field', FALSE);
-    $this->drupalGet('node/' . $node->id());
-    $this->assertNoRaw('<h2>Recent content</h2>');
-    $this->assertNoRaw('Recent content');
-    */
 
     // Test revisions. Enable the revision view mode
     $edit = array(

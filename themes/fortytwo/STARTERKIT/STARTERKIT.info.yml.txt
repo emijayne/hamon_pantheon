@@ -8,7 +8,7 @@ libraries:
   - STARTERKIT/main
 
 stylesheets-remove:
-  - fortytwo/base
+  - '@fortytwo/static/css/fortytwo.css'
 
 regions:
   header: 'Header'

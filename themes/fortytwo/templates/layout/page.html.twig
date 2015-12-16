@@ -19,26 +19,9 @@
  * Site identity:
  * - front_page: The URL of the front page. Use this instead of base_path when
  *   linking to the front page. This includes the language domain or prefix.
- * - logo: The url of the logo image, as defined in theme settings.
- * - site_name: The name of the site. This is empty when displaying the site
- *   name has been disabled in the theme settings.
- * - site_slogan: The slogan of the site. This is empty when displaying the site
- *   slogan has been disabled in theme settings.
- *
- * Navigation:
- * - breadcrumb: The breadcrumb trail for the current page.
  *
  * Page content (in order of occurrence in the default page.html.twig):
- * - title_prefix: Additional output populated by modules, intended to be
- *   displayed in front of the main title tag that appears in the template.
- * - title: The page title, for use in the actual content.
- * - title_suffix: Additional output populated by modules, intended to be
- *   displayed after the main title tag that appears in the template.
  * - messages: Status and error messages. Should be displayed prominently.
- * - tabs: Tabs linking to any sub-pages beneath the current page (e.g., the
- *   view and edit tabs when displaying a node).
- * - action_links: Actions local to the page, such as "Add menu" on the menu
- *   administration interface.
  * - node: Fully loaded node, if there is an automatically-loaded node
  *   associated with the page and the node ID is the second argument in the
  *   page's path (e.g. node/12345 and node/12345/revisions, but not
@@ -54,6 +37,7 @@
  * - page.sidebar_first: Items for the first sidebar.
  * - page.sidebar_second: Items for the second sidebar.
  * - page.footer: Items for the footer region.
+ * - page.breadcrumb: Items for the breadcrumb region.
  *
  * @see template_preprocess_page()
  * @see html.html.twig
@@ -63,26 +47,6 @@
 #}
 
 <header>
-  {% if logo %}
-    <div class="logo">
-      <a href="{{ front_page }}" title="{{ 'Home'|t }}" rel="home" id="logo">
-        <img src="{{ logo }}" alt="{{ 'Home'|t }}" />
-      </a>
-    </div>
-  {% endif %}
-
-  {% if site or site_slogan %}
-    <div class="name-slogan">
-      {% if site_name %}
-        <a href="{{ front_page }}" title="{{ 'Home'|t }}" class="name">{{ site_name }}</a>
-      {% endif %}
-
-      {% if site_slogan %}
-        <span class="slogan">{{ site_slogan }}</span>
-      {% endif %}
-    </div>
-  {% endif %}
-
   {{ page.header }}
 </header>
 
@@ -108,21 +72,6 @@
     {% endif %}
 
     <a id="main-content"></a>
-    {{ title_prefix }}
-    {% if title %}
-      <h1 class="page-header">{{ title }}</h1>
-    {% endif %}
-    {{ title_suffix }}
-
-    {% if tabs %}
-      <div class="tabs">
-        {{ tabs }}
-      </div>
-    {% endif %}
-
-    {% if action_links %}
-      <ul class="action-links">{{ action_links }}</ul>
-    {% endif %}
 
     {{ page.content }}
   </section>

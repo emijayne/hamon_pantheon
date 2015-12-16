@@ -7,7 +7,7 @@
 
 namespace Drupal\ds\Plugin\DsField;
 
-use Drupal\ds\Plugin\DsField\DsFieldBase;
+use Drupal\Core\Block\BlockPluginInterface;
 
 /**
  * Defines a generic dynamic block field.
@@ -26,6 +26,35 @@ class DynamicBlockField extends BlockBase {
   protected function blockPluginId() {
     $definition = $this->getPluginDefinition();
     return $definition['properties']['block'];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function blockConfig() {
+    $block_config = array();
+    $definition = $this->getPluginDefinition();
+    if (isset($definition['properties']['config'])) {
+      $block_config = $definition['properties']['config'];
+    }
+
+    return $block_config;
+  }
+
+  /**
+   * Returns the title of the block.
+   */
+  public function getTitle() {
+    $field = $this->getFieldConfiguration();
+    $title = $field['title'];
+
+    if (isset($field['properties']['use_block_title']) && $field['properties']['use_block_title'] == TRUE) {
+      /** @var $block BlockPluginInterface */
+      $block = $this->getBlock();
+      $title = $block->label();
+    }
+
+    return $title;
   }
 
 }

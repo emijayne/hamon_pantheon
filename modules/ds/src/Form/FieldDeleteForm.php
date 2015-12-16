@@ -8,9 +8,9 @@
 namespace Drupal\ds\Form;
 
 use Drupal\Core\Cache\CacheTagsInvalidator;
+use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Form\ConfigFormBaseTrait;
 use Drupal\Core\Form\ConfirmFormBase;
-use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -81,8 +81,8 @@ class FieldDeleteForm extends ConfirmFormBase implements ContainerInjectionInter
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, Request $request = NULL, $field = '') {
-    $config = $this->config('ds.field.' . $field);
+  public function buildForm(array $form, FormStateInterface $form_state, Request $request = NULL, $field_key = '') {
+    $config = $this->config('ds.field.' . $field_key);
     $this->field = $config->get();
 
     if (empty($this->field)) {

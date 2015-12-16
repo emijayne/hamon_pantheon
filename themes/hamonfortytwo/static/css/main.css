@@ -334,6 +334,9 @@ table {
   font-weight: normal;
   font-style: normal;
 }
+@import url(https://fonts.googleapis.com/css?family=Marcellus|Open+Sans);
+
+
 /* line 280, ../../../fortytwo/static/sass/theme/lib/_mixins.sass */
 body.show-grid div#svg-grid-background {
   font-family: "{ 'columnWidth' : 48, 'gutterWidth' : 30, 'columns' : 16, 'masterContextWidth': 1218}";
@@ -1717,6 +1720,10 @@ header div#branding {
   width: 612px;
   margin: 0 auto;
   text-align: center;
+}
+header div#branding img {
+  height: 90px;
+  margin: 0 auto;
 }
 /* line 12, ../sass/base/_header.sass */
 header nav#headerleft {

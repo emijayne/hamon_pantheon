@@ -1,5 +1,4 @@
-#BUILDING A THEME WITH FORTY TWO
--------------------------------
+# BUILDING A THEME WITH FORTY TWO
 
 The FortyTwo theme is designed to be extended by a sub-theme. You shouldn't modify the
 any of the CSS or PHP files in the fortytwo/ folder; instead create a
@@ -9,63 +8,84 @@ We tried to make the base theme as clean and simple as possible. It has some
 styling for basic input fields and buttons.
 
 
-1. **Setup the location for your new sub-theme.**  
+## Setup the location for your new sub-theme.  
 
   Copy the STARTERKIT folder out of the fortytwo/ folder and rename it to be your new sub-theme.  
-  **IMPORTANT:** The name of your sub-theme must start with an *alphabetic character* and can only contain *lowercase letters, numbers and underscores*.
+  **IMPORTANT:** The name of your sub-theme must start with an *alphabetic character* and can only
+  contain *lowercase letters, numbers and underscores*.
 
   For example, copy the `sites/all/themes/fortytwo/STARTERKIT` folder and rename it as sites/all/themes/foo.
 
-  Why? Each theme should reside in its own folder. To make it easier to upgrade FortyTwo, sub-themes should reside in a folder separate from the base theme.
+  Why? Each theme should reside in its own folder. To make it easier to upgrade FortyTwo, sub-themes should
+  reside in a folder separate from the base theme.
 
-2. **Setup the basic information for your sub-theme.**
+## Setup the basic information for your sub-theme.
 
-  In your new sub-theme folder, rename the `STARTERKIT.info.txt` file to include
+  In your new sub-theme folder, rename the `STARTERKIT.info.yml.txt` file to include
   the name of your new sub-theme and remove the ".txt" extension. Then edit
-  the .info file by editing the name and description field.
+  the .info.yml file by editing the name and description field.
 
-  For example, rename the `foo/STARTERKIT.info` file to `foo/foo.info`. Edit the
-  foo.info file and change `"name = Forty Two Sub-theme Starter Kit"`. Do the same
+  For example, rename the `foo/STARTERKIT.info.yml` file to `foo/foo.info.yml`. Edit the
+  foo.info.yml file and change `"name = Forty Two Sub-theme Starter Kit"`. Do the same
   with the description property.
 
-3. **Configuration of your subtheme.**
+  Also rename the STARTERKIT.libraries.yml and the STARTERKIT.theme files. For example rename
+  the `foo/STARTERKIT.libraries.yml` file to `foo/foo.libraries.yml` and the `foo/STARTERKIT.theme`
+  file to `foo/foo.theme`. Replace any occurences of STARTERKIT in any of these files.
 
-    A lot of settings can be done on the sub-theme appearance page. CSS/SASS specific
-    settings can be set in `/static/sass/_settings.sass`.
-    It's possible to compile the SASS files with Compass, there's a `config.rb`
-    file included. We have not made use of Compass, but if you want to use it, you can.
+## Configuration of your subtheme.
 
-4. **Responsive**
+  A lot of settings can be done on the sub-theme appearance page. CSS/SASS specific
+  settings can be set in `/static/sass/_settings.sass`.
+  It's possible to compile the SASS files with Compass, there's a `config.rb`
+  file included. We have not made use of Compass, but if you want to use it, you can.
 
-    By default Forty Two theme has 5 separate layouts;
-    desktop, tablet-landscape, tablet-portrait, mobile-landscape, mobile-portrait.
-    The media queries are defined in the `/static/sass/_settings.sass` file.
+## Responsive
 
-    You can enable the responsive layout on the `admin/appearance` page. There are two
-    types of responsive behaviour you can select:  
-    *adaptive* and *fluid*.
+  By default Forty Two theme has 5 separate layouts;
+  desktop, tablet-landscape, tablet-portrait, mobile-landscape, mobile-portrait.
+  The media queries are defined in the `/static/sass/_settings.sass` file.
 
-      - **Adaptive** means that the layout will 'snap' to the next when media queries match. Everything is calculated in pixels.
+  You can enable the responsive layout on the `admin/appearance` page. There are two
+  types of responsive behaviour you can select:  
+  *adaptive* and *fluid*.
 
-      - **Fluid** means that everything is calculated in percentages, every element will be kept in the same spatial weighting, no 'snapping' will occur.
+  * Adaptive means that the layout will 'snap' to the next when media queries match. Everything
+    is calculated in pixels.
 
-    The grid-system used is loosly based on the 978 grid-system (http://978.gs/). The
-    grid-configuration for each layout can be modified in the corresponding sass files
-    which are located in the grid folder: `/static/sass/base/grid/`.
+  * Fluid means that everything is calculated in percentages, every element will be kept in
+    the same spatial weighting, no 'snapping' will occur.
 
-    At the top of each `_grid-[..]` sass file you can define the number of columns and the
-    column and gutter sizes. Only the desktop version (`_grid-1280.sass`) inherits its
-    column configuration from the `/static/sass/_settings.sass` file. You can change it there.
+  The grid-system used is loosly based on the 978 grid-system (http://978.gs/). The
+  grid-configuration for each layout can be modified in the corresponding sass files
+  which are located in the main theme grid folder: `/fortytwo/static/sass/theme/base/grid/`.
+  When you copy this file to your subtheme and include them in the `main.sass` you are
+  able to edit them.
 
-    **IMPORTANT NOTE**  
-    Giving elements the proper width based on column numbers should be done in these files.
+  At the top of each `_[..]` sass file you can define the number of columns and the
+  column and gutter sizes. Only the desktop version (`_desktop.sass`) inherits its
+  column configuration from the `/static/sass/_settings.sass` file. You can change it there.
 
-    There are two ways for column-based calculations, with the mixin `span-columns` or with
-    the function `calc-grid`. The span-columns mixin will satisfy most of the time. When using
-    the fluid grid you need to use `span-fluid-columns` or `calc-fluid-grid`.
-    More info on how these mixins/functions work you can check the comments in the 
-    `/static/sass/lib/_mixins.sass` file.
+### IMPORTANT NOTE  
+  Giving elements the proper width based on column numbers should be done in these files.
 
-5. Javascript
+  There are two ways for column-based calculations, with the mixin `span-columns` or with
+  the function `calc-grid`. The span-columns mixin will satisfy most of the time. When using
+  the fluid grid you need to use `span-fluid-columns` or `calc-fluid-grid`.
+  More info on how these mixins/functions work you can check the comments in the
+  `/static/sass/lib/_mixins.sass` file.
 
-    There are some libraries and polyfills provided that can be turned on/off.
+## Javascript
+
+  There are some libraries and polyfills provided that can be turned on/off.
+
+## Gulp
+
+  You can use Gulp in this starter kit. Just do `npm install` in the theme's folder
+  for installing and use `gulp` for running the watcher. We've added some nice features:
+  * Sass compiling, including source maps and autoprefixer;
+  * JS Hint, and uglify;
+  * Cache clear when you change php, inc or info files in the theme;
+  * BrowserSync is also added, but initially disabled. You can enable it by
+    changing the `enable_bs` value in the gulpfile.js to true and setting the
+    correct `bs_proxy_host` value. This must be the url to your local server.
