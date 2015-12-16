@@ -33,6 +33,9 @@
       </ul>
       <section class="top-bar-section">
         {{ menus.menu_links(items, attributes, 0, 1) }}
+        {% if top_bar_search %}
+          {{ top_bar_search }}
+        {% endif %}
       </section>
     </nav>
   </div>

@@ -124,5 +124,19 @@ function zurb_foundation_preprocess_menu__main(&$variables) {
     }
 
     $variables['site_name'] = \Drupal::l($site_name, $url);
+
+    // Embed the search form inside the Top Bar.
+    if (theme_get_setting('zurb_foundation_top_bar_search')) {
+      if (\Drupal::moduleHandler()->moduleExists('search')) {
+        $search_form = \Drupal::formBuilder()
+          ->getForm('Drupal\search\Form\SearchBlockForm');
+
+        // Wrap the search form in proper Top Bar classes.
+        $search_form['#prefix'] = '<ul class="right"><li class="has-form">';
+        $search_form['#suffix'] = '</ul></li>';
+
+        $variables['top_bar_search'] = $search_form;
+      }
+    }
   }
 }

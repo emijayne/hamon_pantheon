@@ -43,6 +43,10 @@ body.toolbar-fixed .sticky.fixed .top-bar {
     margin-top: 39px;
 }
 
+body.toolbar-fixed.toolbar-horizontal.toolbar-tray-open .sticky.fixed .top-bar {
+    margin-top: 78px;
+}
+
 // Removes core arrow image from menu items.
 
 .top-bar {
@@ -50,3 +54,25 @@ body.toolbar-fixed .sticky.fixed .top-bar {
         list-style: none;
     }
 }
+
+// Style the search form, if embedded in the Top Bar.
+
+.top-bar .search-block-form {
+    .form-item-keys, .form-actions {
+        display: inline-block;
+    }
+}
+
+// Dropdown button styling.
+
+.dropbutton-wrapper {
+    // Sub-themes will have to override this color, unfortunately.
+    background-color: #008CBA;
+    margin: 0 0 1.25rem;
+    .button {
+        margin-bottom: 0;
+        width: 100%;
+        text-align: left;
+    }
+}
+

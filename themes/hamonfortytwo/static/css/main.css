@@ -1813,9 +1813,21 @@ aside.sidebar.second h2 {
 
 body .content.column,
 body .sidebar {
-  /*background-color: rgba(255, 0, 0, 0.2);*/ 
+  background-color: #fff;
+}
+header {
+  padding-top: .5em;
 }
 header div#branding img {
   height: 90px;
   margin: 0 auto;
+}
+div.navigation {
+  margin: 1em 0;
+  padding: .5em 0;
+  background-color: #00AEEF;
+}
+nav#main-menu a {
+  color: #FFF;
+  padding: 0 .5em;
 }

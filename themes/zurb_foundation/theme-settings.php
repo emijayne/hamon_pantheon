@@ -128,6 +128,19 @@ function zurb_foundation_form_system_theme_settings_alter(&$form, &$form_state) 
     '#default_value' => theme_get_setting('zurb_foundation_top_bar_mobile_show_parent_link'),
   );
 
+  // Search settings.
+  $form['topbar']['container']['search'] = array(
+    '#type' => 'details',
+    '#title' => t('Search Menu')
+  );
+
+  $form['topbar']['container']['search']['zurb_foundation_top_bar_search'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Enable Search Menu'),
+    '#description' => t('Displays the Search menu in the Top Bar.'),
+    '#default_value' => theme_get_setting('zurb_foundation_top_bar_search')
+  );
+
   /*
    * Hard-coded page elements.
    */

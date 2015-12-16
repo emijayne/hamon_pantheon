@@ -56,7 +56,9 @@
   <div {{ content_attributes }}>
     {% endif %}
 
-    {{ content }}
+    {% block content %}
+      {{ content }}
+    {% endblock %}
 
     {% if content_attributes|length %}
   </div>
