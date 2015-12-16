@@ -1155,7 +1155,7 @@ label.select.prettify {
   border: none;
   -webkit-appearance: none;
   text-decoration: none;
-  font-family: "Titillium", Helvetica, Arial;
+  font-family: "Open Sans", Helvetica, Arial;
   font-style: normal;
   vertical-align: baseline;
   margin-right: 0.1875em ;
@@ -1227,7 +1227,7 @@ input[type="file"]::-webkit-file-upload-button {
   border: none;
   -webkit-appearance: none;
   text-decoration: none;
-  font-family: "Titillium", Helvetica, Arial;
+  font-family: "Open Sans", Helvetica, Arial;
   font-style: normal;
   vertical-align: baseline;
 }
@@ -1690,7 +1690,7 @@ ol li:before {
 /* line 1, ../sass/base/_layout.sass */
 html, body {
   height: 100%;
-  font-family: "Titillium", Helvetica, Arial;
+  font-family: "Open Sans", Helvetica, Arial;
   line-height: 1.5em ;
 }
 
@@ -1708,7 +1708,7 @@ li.node-readmore a:after {
 /* line 14, ../sass/base/_layout.sass */
 h1, h2, h3, h4, h5, h6 {
   margin: 0 0 5px 0;
-  font-family: "Titillium", Helvetica, Arial;
+  font-family: "Marcellus", Helvetica, Arial;
 }
 
 /* line 2, ../sass/base/_header.sass */
@@ -1807,4 +1807,15 @@ aside.sidebar.second h2 {
 /* line 4, ../sass/pages/_home.sass */
 .front section.content h2 {
   font-weight: 100;
+}
+
+/* stuff added until i can fix ruby installation */
+
+body .content.column,
+body .sidebar {
+  /*background-color: rgba(255, 0, 0, 0.2);*/ 
+}
+header div#branding img {
+  height: 90px;
+  margin: 0 auto;
 }
