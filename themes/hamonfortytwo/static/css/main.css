@@ -1721,10 +1721,6 @@ header div#branding {
   margin: 0 auto;
   text-align: center;
 }
-header div#branding img {
-  height: 90px;
-  margin: 0 auto;
-}
 /* line 12, ../sass/base/_header.sass */
 header nav#headerleft {
   width: 300px;
@@ -1812,3 +1808,4 @@ aside.sidebar.second h2 {
 .front section.content h2 {
   font-weight: 100;
 }
+@import extra.css;
