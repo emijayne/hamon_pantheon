@@ -18,13 +18,9 @@ input, a, button, textarea
 label[for*=disabled]
   color: darken($silver, 15%)
 
-// FORMELEMENTS
-/////////////////////////////////////////
-
 =button
   +bvp(border-radius, pxtoem(3px))
   +bvp(transition, color 0.1s ease-in-out, background-color 0.1s ease-in-out, box-shadow 0.1s ease-in-out)
-  +bvp(box-shadow, inset 0px pxtoem(-2px) rgba(0, 0, 0, 0.3))
   display: inline-block
 
   line-height: pxtoem($default-line-height / 1.5)

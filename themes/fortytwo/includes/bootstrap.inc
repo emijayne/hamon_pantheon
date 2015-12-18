@@ -50,7 +50,7 @@ function fortytwo_preprocess_html(array &$variables) {
 
   // Add the body classes to the attributes array.
   if (isset($variables['attributes']['class']) && is_array($variables['attributes']['class'])) {
-    $variables['attributes']['class'] = array_combine($variables['attributes']['class'], $classes);
+    $variables['attributes']['class'] = array_merge($variables['attributes']['class'], $classes);
   }
   else {
     $variables['attributes']['class'] = $classes;

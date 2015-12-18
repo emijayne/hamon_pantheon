@@ -102,6 +102,13 @@ function drush_fortytwo($name = NULL, $machine_name = NULL) {
   // Replace all occurrences of 'STARTERKIT' with the machine name of sub theme.
   drush_op('fortytwo_file_str_replace', $subtheme_theme_file, 'STARTERKIT', $machine_name);
 
+  // Replace all occurrences of 'STARTERKIT' with the machine name of sub theme.
+  drush_op('fortytwo_file_str_replace', $subtheme_path . '/package.json', 'STARTERKIT', $machine_name);
+  drush_op('fortytwo_file_str_replace', $subtheme_path . '/static/sass/styleguide.md', 'STARTERKIT', $machine_name);
+  drush_op('fortytwo_file_str_replace', $subtheme_path . '/static/sass/styleguide.md', 'STARTERKIT', $machine_name);
+  drush_op('fortytwo_file_str_replace', $subtheme_path . '/static/kss-node-template/template/index.html', 'STARTERKIT', $machine_name);
+
+
   // Notify user of the newly created theme.
   drush_print(dt('Starter kit for "!name" created in: !path', array(
     '!name' => $name,

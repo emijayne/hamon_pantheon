@@ -14,7 +14,7 @@ styling for basic input fields and buttons.
   **IMPORTANT:** The name of your sub-theme must start with an *alphabetic character* and can only
   contain *lowercase letters, numbers and underscores*.
 
-  For example, copy the `sites/all/themes/fortytwo/STARTERKIT` folder and rename it as sites/all/themes/foo.
+  For example, copy the `/themes/fortytwo/STARTERKIT` folder and rename it as `/themes/foo`.
 
   Why? Each theme should reside in its own folder. To make it easier to upgrade FortyTwo, sub-themes should
   reside in a folder separate from the base theme.
@@ -32,6 +32,8 @@ styling for basic input fields and buttons.
   Also rename the STARTERKIT.libraries.yml and the STARTERKIT.theme files. For example rename
   the `foo/STARTERKIT.libraries.yml` file to `foo/foo.libraries.yml` and the `foo/STARTERKIT.theme`
   file to `foo/foo.theme`. Replace any occurences of STARTERKIT in any of these files.
+  
+  Do not forget to rename the file in the config folder as well.
 
 ## Configuration of your subtheme.
 
@@ -87,5 +89,5 @@ styling for basic input fields and buttons.
   * JS Hint, and uglify;
   * Cache clear when you change php, inc or info files in the theme;
   * BrowserSync is also added, but initially disabled. You can enable it by
-    changing the `enable_bs` value in the gulpfile.js to true and setting the
-    correct `bs_proxy_host` value. This must be the url to your local server.
+    changing the `enable_bs` value in the `gulp.config.json` file to true and setting the
+    correct `bs_proxy_host` value. This has to be the url to your local dev environment.

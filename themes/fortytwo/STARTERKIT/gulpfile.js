@@ -1,35 +1,30 @@
-var gulp = require('gulp'),
-  sass = require('gulp-sass'),
-  autoprefixer = require('gulp-autoprefixer'),
-  sourcemaps = require('gulp-sourcemaps'),
-  uglify = require('gulp-uglify'),
-  browserSync = require('browser-sync').create(),
-  jshint = require('gulp-jshint'),
-  del = require('del'),
-  concat = require('gulp-concat'),
-  shell = require('gulp-shell');
+var gulp              = require('gulp'),
+  $                   = require('gulp-load-plugins')(),
 
-// You can change your local url here so you can use browsersync.
-// Also set the use_bs variable to true to enable this.
-var enable_bs = false;
-var bs_proxy_host = 'localhost.dev';
+// Non gulp specific plugins.
+  browserSync         = require('browser-sync').create(),
+  del                 = require('del'),
+  runSequence         = require('run-sequence');
 
 /**
  * @task sass
- * Compile and check sass.
+ * Do sass and reload tasks in sequence.
  */
 gulp.task('sass', function () {
+  runSequence('sass-compile',
+    'reload');
+});
+
+gulp.task('sass-compile', function () {
   return gulp.src('static/sass/**/*.s+(a|c)ss') // Gets all files ending
-    .pipe(sourcemaps.init())
-    .pipe(sass())
+    .pipe($.sass())
     .on('error', function (err) {
       console.log(err);
       this.emit('end');
     })
-    .pipe(autoprefixer({
+    .pipe($.autoprefixer({
       browsers: ['ie 8-9', 'last 2 versions']
     }))
-    .pipe(sourcemaps.write())
     .pipe(gulp.dest('static/css'));
 });
 
@@ -39,10 +34,9 @@ gulp.task('sass', function () {
  */
 gulp.task('js', function () {
   return gulp.src(['static/js/**/*.js', '!static/js/lib/*.js'])
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'))
-    .pipe(uglify());
-
+    .pipe($.jshint())
+    .pipe($.jshint.reporter('default'))
+    .pipe($.uglify());
 });
 
 /**
@@ -58,7 +52,7 @@ gulp.task('clean', function () {
  * Refresh the page after clearing cache.
  */
 gulp.task('reload', function () {
-  if (enable_bs) {
+  if (config.enable_bs) {
     browserSync.reload();
   }
 });
@@ -68,19 +62,19 @@ gulp.task('reload', function () {
  * Watch files and do stuff.
  */
 gulp.task('watch', ['clean', 'sass', 'js'], function () {
-  gulp.watch('static/sass/**/*.+(scss|sass)', ['sass', 'reload']);
-  gulp.watch('static/js/**/*.js', ['js', 'reload']);
+  gulp.watch('static/sass/**/*.+(scss|sass)', ['sass']);
+  gulp.watch('static/js/**/*.js', ['js']);
 
   // Watch php, inc and info file changes to run drush task and reload page.
-  gulp.watch('**/*.{php,inc,info}', ['clearcache', 'reload']);
+  gulp.watch('**/*.{php,inc,info}', ['clearcache'], ['reload']);
 });
 
 /**
  * @task clearcache
  * Run drush to clear the theme registry.
  */
-gulp.task('clearcache', shell.task([
-  'drush cache-clear theme-registry'
+gulp.task('clearcache', $.shell.task([
+  'drush cr'
 ]));
 
 /**
@@ -88,18 +82,28 @@ gulp.task('clearcache', shell.task([
  * Launch the server.
  */
 gulp.task('browser-sync', ['sass', 'js'], function () {
-  if (enable_bs) {
-    process.stdout.write('We are using browsersync. \n');
+  if (config.enable_bs) {
     browserSync.init({
-      proxy: bs_proxy_host,
+      proxy: config.localhost,
       open: false,
       socket: {
         domain: 'localhost:3000'
       }
     });
   }
-  else {
-    process.stdout.write('Browsersync is not enabled. \n');
+});
+
+/**
+ * @task load-config
+ * Load the local configuration.
+ */
+gulp.task('load-config', function() {
+  try {
+    console.log('Loading config.json. Change the values in gulp.config.json to suit your needs.');
+    config = require('./gulp.config.json');
+  } catch (error) {
+    console.log('No local config.json found. Using the defaults.');
+    console.log('Debug info: ' + error.code + ' => ' + error);
   }
 });
 
@@ -107,4 +111,4 @@ gulp.task('browser-sync', ['sass', 'js'], function () {
  * @task default
  * Watch files and do stuff.
  */
-gulp.task('default', ['browser-sync', 'watch']);
+gulp.task('default', ['load-config', 'browser-sync', 'watch']);

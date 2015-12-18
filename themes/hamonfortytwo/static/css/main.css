@@ -103,7 +103,7 @@ html {
 
 /* line 71, ../../../fortytwo/static/sass/theme/lib/_reset.sass */
 body {
-  margin: 0;
+  margin: 0 0 13em 0;
 }
 
 /* line 78, ../../../fortytwo/static/sass/theme/lib/_reset.sass */
@@ -1822,12 +1822,94 @@ header div#branding img {
   height: 90px;
   margin: 0 auto;
 }
-div.navigation {
-  margin: 1em 0;
-  padding: .5em 0;
-  background-color: #00AEEF;
+header div#branding a {
+  padding: 0.5em 0;
+  font-family: Marcellus, sans-serif;
+  font-size: 32px;
+  color: hsla(196, 100%, 27%, 1);
 }
-nav#main-menu a {
-  color: #FFF;
-  padding: 0 .5em;
+div.navigation {
+  height: 2.5em;
+  margin: 1em 0;
+  border: 2px solid hsla(196, 100%, 47%, 1);  
+  padding: .25em 0;
+  clear: both;
+  background-color: hsla(196, 100%, 47%, 1);
+}
+nav#main-menu {
+  padding: .5em 0;
+}
+nav#main-menu ul li {
+  /*display: inline-block;*/
+}
+nav#main-menu ul li a {
+  padding: 0.5em 0.615em;
+  border: 0;
+  background-color: transparent;
+  color: white;
+}
+nav#main-menu ul li a.is-active,
+nav#main-menu ul li a:hover {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  background-color: white;
+  color: hsla(196, 100%, 27%, 1);
+}
+
+/*tabs*/
+div#local-tasks {
+  clear: both;
+}
+div#local-tasks ul li {
+  display: inline-block;
+}
+div#local-tasks ul li a {
+  padding: 0.231em 0.615em;
+  border: 0;
+  margin: 0;
+  background-color: transparent;
+  color: hsla(196, 33%, 47%, 1);
+  text-shadow: #007BC7 0px 0px;
+}
+div#local-tasks a.is-active,
+div#local-tasks a:hover {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    background-color: hsla(196, 33%, 47%, 1);
+    color: white;
+}
+a:hover {
+  text-decoration: none;
+}
+
+/* footer */
+html {
+  position: relative;
+  min-height: 100%;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 1218px;
+  margin: 0 auto;
+  height: 13em;
+  background-color: hsla(196, 33%, 27%, 1);
+}
+footer, footer a {
+  color: white;
+}
+footer nav ul li {
+  display: block;
+  font-size: 80%;
+}
+footer nav {
+  float: left;
+  width: 30%;
+  clear: none;
 }
