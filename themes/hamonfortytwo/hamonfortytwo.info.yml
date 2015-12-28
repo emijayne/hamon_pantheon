@@ -6,7 +6,9 @@ core: 8.x
 
 libraries:
   - hamonfortytwo/main
-
+  
+stylesheets-remove:
+  - themes/fortytwo/static/css/fortytwo.css
 
 regions:
   header: 'Header'
