@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 /* line 2, ../../../fortytwo/static/sass/theme/lib/_mixins.sass */
 .tabs ul:after {
   content: "";
@@ -103,7 +104,7 @@ html {
 
 /* line 71, ../../../fortytwo/static/sass/theme/lib/_reset.sass */
 body {
-  margin: 0 0 13em 0;
+  margin: 0;
 }
 
 /* line 78, ../../../fortytwo/static/sass/theme/lib/_reset.sass */
@@ -286,6 +287,12 @@ table {
 }
 
 @font-face {
+  font-family: "Marcellus";
+  src: url("../fonts/icomoon.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
   font-family: "Titillium";
   src: url("../fonts/titilliumweb-light-webfont.eot");
   src: url("../fonts/titilliumweb-light-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/titilliumweb-light-webfont.woff") format("application/font-woff"), url("../fonts/titilliumweb-light-webfont.ttf") format("truetype"), url("../fonts/titilliumweb-light-webfont.svg#titillium_weblight") format("svg");
@@ -334,9 +341,6 @@ table {
   font-weight: normal;
   font-style: normal;
 }
-@import url(https://fonts.googleapis.com/css?family=Marcellus|Open+Sans);
-
-
 /* line 280, ../../../fortytwo/static/sass/theme/lib/_mixins.sass */
 body.show-grid div#svg-grid-background {
   font-family: "{ 'columnWidth' : 48, 'gutterWidth' : 30, 'columns' : 16, 'masterContextWidth': 1218}";
@@ -1684,44 +1688,68 @@ ol li:before {
   content: counter(olcounter) ".";
   counter-increment: olcounter;
   padding: 0 4px;
-  font-family: "Titillium", Helvetica, Arial;
+  font-family: "Open Sans", Helvetica, Arial;
 }
 
 /* line 1, ../sass/base/_layout.sass */
-html, body {
+body {
+  position: relative;
+  min-height: 100%;
   height: 100%;
+  padding-bottom: 13em;
   font-family: "Open Sans", Helvetica, Arial;
   line-height: 1.5em ;
 }
 
-/* line 6, ../sass/base/_layout.sass */
-a {
-  text-decoration: none;
+/* line 9, ../sass/base/_layout.sass */
+header {
+  position: relative;
+  padding-top: 0.5em;
 }
 
-/* line 9, ../sass/base/_layout.sass */
+/* line 13, ../sass/base/_layout.sass */
+footer {
+  position: absolute;
+  bottom: 0;
+  height: 13em;
+}
+
+/* line 18, ../sass/base/_layout.sass */
 li.node-readmore a:after {
   font-size: 50%;
   vertical-align: 1px;
 }
 
-/* line 14, ../sass/base/_layout.sass */
+/* line 23, ../sass/base/_layout.sass */
 h1, h2, h3, h4, h5, h6 {
   margin: 0 0 5px 0;
-  font-family: "Marcellus", Helvetica, Arial;
+  font-family: "Marcellus", serif;
 }
 
-/* line 2, ../sass/base/_header.sass */
-header {
-  position: relative;
+/* line 27, ../sass/base/_layout.sass */
+body .content.column, body .sidebar {
+  background-color: white;
 }
-/* line 5, ../sass/base/_header.sass */
+
+/* line 4, ../sass/base/_header.sass */
 header div#branding {
   width: 612px;
   margin: 0 auto;
   text-align: center;
 }
-/* line 12, ../sass/base/_header.sass */
+/* line 9, ../sass/base/_header.sass */
+header div#branding img {
+  height: 90px;
+  margin: 0 auto;
+}
+/* line 13, ../sass/base/_header.sass */
+header div#branding a {
+  padding: 0.5em 0;
+  font-family: Marcellus, sans-serif;
+  font-size: 32px;
+  color: #00658a;
+}
+/* line 21, ../sass/base/_header.sass */
 header nav#headerleft {
   width: 300px;
   margin: 0;
@@ -1729,11 +1757,11 @@ header nav#headerleft {
   left: 0;
   top: 0;
 }
-/* line 19, ../sass/base/_header.sass */
+/* line 28, ../sass/base/_header.sass */
 header nav#headerleft ul li {
   padding: 0 0.5em;
 }
-/* line 22, ../sass/base/_header.sass */
+/* line 31, ../sass/base/_header.sass */
 header nav#headerright {
   width: 300px;
   margin: 0;
@@ -1742,9 +1770,61 @@ header nav#headerright {
   top: 0;
   text-align: right;
 }
-/* line 30, ../sass/base/_header.sass */
+/* line 39, ../sass/base/_header.sass */
 header nav#headerright ul li {
   padding: 0 0.5em;
+  font-size: 80%;
+}
+
+/* line 43, ../sass/base/_header.sass */
+div.navigation {
+  height: 2.5em;
+  margin: 1em 0;
+  border: 2px solid #00b0f0;
+  padding: 0.25em 0;
+  clear: both;
+  background-color: #00b0f0;
+}
+/* line 51, ../sass/base/_header.sass */
+div.navigation nav#main-menu {
+  padding: 0.5em 0;
+}
+/* line 54, ../sass/base/_header.sass */
+div.navigation nav#main-menu ul li {
+  /*display: inline-block */
+}
+/* line 57, ../sass/base/_header.sass */
+div.navigation nav#main-menu ul li a {
+  padding: 0.5em 0.615em;
+  border: 0;
+  background-color: transparent;
+  color: white;
+}
+/* line 63, ../sass/base/_header.sass */
+div.navigation nav#main-menu ul li a.is-active, div.navigation nav#main-menu ul li a:hover {
+  border-radius: 2px;
+  background-color: white;
+  color: #008abd;
+}
+
+/* line 1, ../sass/base/_footer.sass */
+footer {
+  background-color: #2e4f5c;
+}
+/* line 4, ../sass/base/_footer.sass */
+footer a {
+  color: white;
+}
+/* line 7, ../sass/base/_footer.sass */
+footer nav {
+  float: left;
+  width: 30%;
+  clear: none;
+}
+/* line 12, ../sass/base/_footer.sass */
+footer nav ul li {
+  display: block;
+  font-size: 80%;
 }
 
 /* line 1, ../sass/base/_navigation.sass */
@@ -1807,109 +1887,4 @@ aside.sidebar.second h2 {
 /* line 4, ../sass/pages/_home.sass */
 .front section.content h2 {
   font-weight: 100;
-}
-
-/* stuff added until i can fix ruby installation */
-
-body .content.column,
-body .sidebar {
-  background-color: #fff;
-}
-header {
-  padding-top: .5em;
-}
-header div#branding img {
-  height: 90px;
-  margin: 0 auto;
-}
-header div#branding a {
-  padding: 0.5em 0;
-  font-family: Marcellus, sans-serif;
-  font-size: 32px;
-  color: hsla(196, 100%, 27%, 1);
-}
-div.navigation {
-  height: 2.5em;
-  margin: 1em 0;
-  border: 2px solid hsla(196, 100%, 47%, 1);  
-  padding: .25em 0;
-  clear: both;
-  background-color: hsla(196, 100%, 47%, 1);
-}
-nav#main-menu {
-  padding: .5em 0;
-}
-nav#main-menu ul li {
-  /*display: inline-block;*/
-}
-nav#main-menu ul li a {
-  padding: 0.5em 0.615em;
-  border: 0;
-  background-color: transparent;
-  color: white;
-}
-nav#main-menu ul li a.is-active,
-nav#main-menu ul li a:hover {
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
-  background-color: white;
-  color: hsla(196, 100%, 27%, 1);
-}
-
-/*tabs*/
-div#local-tasks {
-  clear: both;
-}
-div#local-tasks ul li {
-  display: inline-block;
-}
-div#local-tasks ul li a {
-  padding: 0.231em 0.615em;
-  border: 0;
-  margin: 0;
-  background-color: transparent;
-  color: hsla(196, 33%, 47%, 1);
-  text-shadow: #007BC7 0px 0px;
-}
-div#local-tasks a.is-active,
-div#local-tasks a:hover {
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    -ms-border-radius: 3px;
-    -o-border-radius: 3px;
-    border-radius: 3px;
-    background-color: hsla(196, 33%, 47%, 1);
-    color: white;
-}
-a:hover {
-  text-decoration: none;
-}
-
-/* footer */
-html {
-  position: relative;
-  min-height: 100%;
-}
-footer {
-  position: absolute;
-  bottom: 0;
-  width: 1218px;
-  margin: 0 auto;
-  height: 13em;
-  background-color: hsla(196, 33%, 27%, 1);
-}
-footer, footer a {
-  color: white;
-}
-footer nav ul li {
-  display: block;
-  font-size: 80%;
-}
-footer nav {
-  float: left;
-  width: 30%;
-  clear: none;
 }
