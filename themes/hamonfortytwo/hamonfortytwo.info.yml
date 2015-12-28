@@ -1,6 +1,7 @@
 name: Hamon 42
 type: theme
 description: Forty Two Sub theme made for Hamon
+base theme: fortytwo
 core: 8.x
 
 libraries:
