@@ -1,7 +1,16 @@
 main:
-  version: VERSION
   css:
     base:
       static/css/main.css: {}
   js:
       static/js/main.js: {}
+
+leaflet:
+  css:
+    theme:
+      static/css/leaflet.css: {}
+  js:
+    static/js/leaflet.js: {}
+    static/js/map.js: {}
+  dependencies:
+    - core/jquery
