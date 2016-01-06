@@ -1,0 +1,17 @@
+name: BlueTheme
+type: theme
+description: This is a fresh theme for Hamon
+core: 8.x
+
+
+libraries:
+  - bluetheme/base
+
+regions:
+  header: Header
+  navigation: Navigation
+  featured: Featured
+  content: Content
+  triplet: Triplet
+  sidebar: Sidebar
+  footer: Footer
