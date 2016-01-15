@@ -48,11 +48,24 @@
 #}
 <div class="layout-container">
 
-  {{ page.corp_first }}
+  <header role="banner" class="column row">
 
-  {{ page.corp_second }}
+    {{ page.corp_first }}
 
-  <header role="banner">
+    <div class="medium-12 large-6 column text-center">
+      <a id="site-logo" href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">
+        <img src="{{ page.site_logo }}" alt="{{ 'Home'|t }}" />
+      </a>
+    </div>
+    
+    {{ page.corp_second }}
+
+    <div class="medium-12 column text-center">
+      <a id="site-name" href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">
+        <h1>{{ page.site_name }}</h1>
+      </a>
+    </div>
+
     {{ page.header }}
   </header>
 
@@ -62,10 +75,10 @@
 
   {{ page.help }}
 
-  <main role="main">
+  <main role="main" class="column row">
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
-    <div class="layout-content">
+    <div class="layout-content column">
       {{ page.content }}
 
       {% if page.triplet %}
@@ -77,7 +90,7 @@
     </div>{# /.layout-content #}
 
     {% if page.sidebar %}
-      <aside class="layout-sidebar" role="complementary">
+      <aside class="layout-sidebar column medium-5" role="complementary">
         {{ page.sidebar }}
       </aside>
     {% endif %}

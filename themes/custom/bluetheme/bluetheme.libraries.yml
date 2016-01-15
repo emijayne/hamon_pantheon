@@ -1,8 +1,17 @@
 base:
   css:
     theme:
-      css/style.css: {}
-      css/print.css: { media: print }
+      fz/css/app.css: {}
 
   js:
-    js/script.js: {}
+    fz/js/app.js: {}
+
+leaflet:
+  css:
+    theme:
+      fz/css/leaflet.css: {}
+  js:
+    fz/js/leaflet.js: {}
+    fz/js/map.js: {}
+  dependencies:
+    - core/jquery
