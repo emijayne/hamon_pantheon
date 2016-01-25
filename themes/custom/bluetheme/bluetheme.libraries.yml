@@ -4,6 +4,7 @@ base:
       fz/css/app.css: {}
 
   js:
+    fz/js/foundation.min.js: { minified: true }
     fz/js/app.js: {}
 
 leaflet:

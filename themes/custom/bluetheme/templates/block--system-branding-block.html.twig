@@ -1,0 +1,75 @@
+{% extends "block.html.twig" %}
+{#
+/**
+ * @file
+ * Default theme implementation for a branding block.
+ *
+ * Each branding element variable (logo, name, slogan) is only available if
+ * enabled in the block configuration.
+ *
+ * Available variables:
+ * - site_logo: Logo for site as defined in Appearance or theme settings.
+ * - site_name: Name for site as defined in Site information settings.
+ * - site_slogan: Slogan for site as defined in Site information settings.
+ *
+ * @ingroup themeable
+ */
+
+
+#}
+
+{% block content %}
+   <div id="header-left" class="large-3 column show-for-large large-order-1">
+{#    <ul class="dropdown menu" data-dropdown-menu>
+      <li aria-haspopup="true">
+        <a href="http://www.hamonusa.com">Hamon Companies</a>
+        <ul class="menu" aria-hidden="true">
+          <li><a href="http://www.hamonusa.com/hc">Hamon Custodis</a></li>
+          <li><a href="http://www.hamonusa.com/hdi">Hamon Deltak</a></li>
+          <li><a href="http://www.hamonusa.com/hrc">Hamon Research-Cottrell</a></li>
+          <li><a href="http://www.hamonusa.com/rcc">Research Cottrell Cooling</a></li>
+          <li><a href="http://www.hamonusa.com/rcdc">Research Cottrell Dry Cooling</a></li>
+          <li><a href="http://www.hamonusa.com/ttc">Thermal Transfer Corp</a></li>
+        </ul>
+        </li>
+      <li><a href="http://www.hamonusa.com/contact">Contact</a></<li></li>>
+    </ul>#}
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li role="menuitem" class="has-submenu is-dropdown-submenu-parent is-down-arrow" aria-haspopup="true" aria-selected="false" aria-expanded="false" aria-label="Item 1" data-is-click="false">
+        <a href="#">Item 1</a>
+        <ul class="menu submenu is-dropdown-submenu first-sub vertical" data-submenu="" aria-hidden="true" role="menu">
+          <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="#">Item 1A</a></li>
+          <li role="menuitem" class="is-submenu-item is-dropdown-submenu-item"><a href="#">Item 2A</a></li>
+        </ul>
+      </li>
+      <li role="menuitem"><a href="#">Item 2</a></li>
+      <li role="menuitem"><a href="#">Item 3</a></li>
+      <li role="menuitem"><a href="#">Item 4</a></li>
+    </ul>
+  </div> 
+
+  {% if site_logo %}
+    <div class="medium-12 large-6 column large-order-2 text-center">
+      <a id="site-logo" href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">
+        <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" />
+      </a>
+    </div>
+  {% endif %}
+
+  <div id="header-right" class="large-3 column show-for-large large-order-3">
+    <ul class="menu align-right">
+      <li role="menuitem"><a href="http://www.hamonusa.com/press">Press Center</a></li>
+      <li role="menuitem"><a href="http://www.hamonusa.com/library">Library</a></li>
+      <li role="menuitem"><a href="http://www.hamonusa.com/careers">Careers</a></li>
+    </ul>
+  </div>
+
+  {% if site_name %}
+    <div class="medium-12 column large-order-4 text-center">
+      <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">
+        <h1 id="site-name">{{ site_name }}</h1>
+      </a>
+    </div>
+  {% endif %}
+
+{% endblock %}
