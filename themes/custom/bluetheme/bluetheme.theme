@@ -9,7 +9,7 @@
 /**
  * Implements hook_preprocess_menu_local_task()
  */
-function bluetheme_preprocess_menu_local_task() {
+function bluetheme_preprocess_menu_local_task(&$variables) {
   $variables['attributes']['class'][] = 'button';
 }
 
@@ -17,10 +17,7 @@ function bluetheme_preprocess_menu_local_task() {
  * Implements hook_preprocess_block()
  */
 function bluetheme_preprocess_block(&$variables) {
-  // Add a clearfix class to system branding blocks.
-  if ($variables['plugin_id'] == 'system_branding_block') {
-    $variables['attributes']['class'][] = 'column row';
-  }
+  $variables['attributes']['class'][] = 'column';  
 }
 
 /**
@@ -58,40 +55,11 @@ function bluetheme_preprocess_node(&$variables) {
  * Implements template_preprocess_page
  *
  * Add convenience variables and template suggestions
- *
-*function bluetheme_preprocess_page(&$variables) {
-*  if (theme_get_setting('toggle_name')) {
-*
-*    $path_alias = \Drupal::service('path.alias_manager')->getAliasByPath($system_path);
-*
-*    if (drupal_match_path($path_alias, 'hc*')) {
-*      $variables['site_name'] = filter_xss_admin('Hamon Custodis, Inc.');
-*    } 
-*
-*    else if (drupal_match_path($path_alias, 'hdi*')) {
-*      $variables['site_name'] = filter_xss_admin('Hamon Deltak, Inc.');
-*    } 
-*
-*    else if (drupal_match_path($path_alias, 'hrc*')) {
-*      $variables['site_name'] = filter_xss_admin('Hamon Research-Cottrell, Inc.');
-*    } 
-*
-*    else if (drupal_match_path($path_alias, 'rcc*')) {
-*      $variables['site_name'] = filter_xss_admin('Research Cottrell Cooling, Inc.');
-*      $variables['logo'] = 'logoc.png';
-*    } 
-*
-*    else if (drupal_match_path($path_alias, 'rcdc*')) {
-*      $variables['logo'] = 'logoc.png';
-*      $variables['site_name'] = filter_xss_admin('Research Cottrell Dry Cooling');
-*    } 
-*
-*    else if (drupal_match_path($path_alias, 'ttc*')) {
-*      $variables['site_name'] = filter_xss_admin('Thermal Transfer Corporation');
-*    } 
-*  }
-*}
-*/
+ */
+function bluetheme_preprocess_page(&$variables) {
+
+}
+
 /**
  * Implements hook_preprocess_HOOK() for maintenance-page.html.twig.
  */
@@ -111,4 +79,6 @@ function bluetheme_preprocess_maintenance_page(&$variables) {
 /**
  * Implements template_preprocess_views_view().
  */
-function bluetheme_preprocess_views_view(&$variables) {}
+function bluetheme_preprocess_views_view(&$variables) {
+
+}

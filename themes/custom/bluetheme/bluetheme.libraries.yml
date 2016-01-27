@@ -2,10 +2,10 @@ base:
   css:
     theme:
       fz/css/app.css: {}
-
+      fz/css/foundation-icons.css: {}
   js:
     fz/js/foundation.min.js: { minified: true }
-    fz/js/app.js: {}
+    fz/js/top_bar_active.js: {}
 
 leaflet:
   css:
