@@ -1,0 +1,8 @@
+name: Menu link placeholder
+type: module
+description: Create menu items without links.
+core: 8.x
+package: Other
+dependencies:
+  - menu_ui
+

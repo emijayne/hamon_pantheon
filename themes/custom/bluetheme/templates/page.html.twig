@@ -84,11 +84,17 @@
 
   </main>
 
-  <div class="column row">{{ page.breadcrumb }}</div>
 
   <footer role="contentinfo" id="end">
-    <div class="column row">
+    <div id="crumbs">
+        {{ page.breadcrumb }}
+    </div>
+    <div id="credits" class="column row">
       {{ page.footer }}
+      <div class="shrink">
+        <a href="https://www.linkedin.com/company/hamon-corporation" alt="Find us on LinkedIn"><i class="fi-social-linkedin social"></i></a>
+        <a href="http://www.twitter.com/hamonusa" alt="Follow us on Twitter"><i class="fi-social-twitter social"></i></a>
+      </div>
     </div>
   </footer>
 

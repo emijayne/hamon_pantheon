@@ -17,7 +17,20 @@ function bluetheme_preprocess_menu_local_task(&$variables) {
  * Implements hook_preprocess_block()
  */
 function bluetheme_preprocess_block(&$variables) {
-  $variables['attributes']['class'][] = 'column';  
+  $variables['attributes']['class'][] = 'column';
+
+  // if ($variables['attributes.id'] == 'block-bluetheme-breadcrumbs') {
+  //   $variables['attributes']['class'][] = 'row';
+  // }
+  // if ($variables['attributes.id'] == 'block-bluetheme-addresscorp') {
+  //   $variables['attributes']['class'][] = 'medium-5';
+  // }
+  // if ($variables['attributes.id'] == 'block-contact-menu') {
+  //   $variables['attributes']['class'][] = 'medium-3';
+  // }
+  // if ($variables['attributes.id'] == 'block-resources-menu')) {
+  //   $variables['attributes']['class'][] = 'medium-3';
+  // }
 }
 
 /**
