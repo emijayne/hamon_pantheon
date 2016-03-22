@@ -65,21 +65,36 @@
   <main role="main" class="column row">
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
-    <div class="layout-content column">
+    {% if page.sidebar %}
+
+    <div class="layout-content column medium-7">
       {{ page.content }}
 
       {% if page.triplet %}
-        <div class="layout-triplet">
+        <div class="layout-triplet row">
           {{ page.triplet }}
         </div>
       {% endif %}
 
     </div>{# /.layout-content #}
 
-    {% if page.sidebar %}
-      <aside class="layout-sidebar column medium-5" role="complementary">
-        {{ page.sidebar }}
-      </aside>
+    <aside class="layout-sidebar column medium-5" role="complementary">
+      {{ page.sidebar }}
+    </aside>
+
+    {% else %}
+
+    <div class="layout-content column">
+      {{ page.content }}
+
+      {% if page.triplet %}
+        <div class="layout-triplet row">
+          {{ page.triplet }}
+        </div>
+      {% endif %}
+
+    </div>{# /.layout-content #}
+
     {% endif %}
 
   </main>
