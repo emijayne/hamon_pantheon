@@ -31,4 +31,17 @@ $settings['install_profile'] = 'standard';
 
 $settings['trusted_host_patterns'] = array(
   '^dev-hamon\.pantheon\.io$',
+  '^test-hamon\.pantheon\.io$',
+  '^live-hamon\.pantheon\.io$',
 );
+
+/**
+ * Redirects
+ */
+
+// 301 Redirect from /old to /new.
+//if (($_SERVER['REQUEST_URI'] == '/old') && (php_sapi_name() != "cli")) {
+ // header('HTTP/1.0 301 Moved Permanently');
+ // header('Location: /new');
+ // exit();
+//}
