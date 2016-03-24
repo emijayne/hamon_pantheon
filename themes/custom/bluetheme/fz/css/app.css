@@ -3844,15 +3844,15 @@ body {
   [data-whatinput='mouse'] .orbit-bullets {
     outline: 0; }
   .orbit-bullets button {
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 0.8rem;
+    height: 0.8rem;
     margin: 0.1rem;
-    background-color: #cacaca;
+    background-color: #3c94b4;
     border-radius: 50%; }
     .orbit-bullets button:hover {
-      background-color: #8a8a8a; }
+      background-color: #00b0f0; }
     .orbit-bullets button.is-active {
-      background-color: #8a8a8a; }
+      background-color: #00b0f0; }
 
 .pagination {
   margin-left: 0;
