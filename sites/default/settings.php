@@ -29,9 +29,9 @@ $settings['install_profile'] = 'standard';
  * Trusted Host Settings
  */
 
-$settings['trusted_host_patterns'][] = '^dev-hamon\.pantheon\.io$';
-$settings['trusted_host_patterns'][] = '^test-hamon\.pantheon\.io$';
-$settings['trusted_host_patterns'][] = '^live-hamon\.pantheon\.io$';
+// $settings['trusted_host_patterns'][] = '^dev-hamon\.pantheon\.io$';
+// $settings['trusted_host_patterns'][] = '^test-hamon\.pantheon\.io$';
+// $settings['trusted_host_patterns'][] = '^live-hamon\.pantheon\.io$';
 
 
 /**
