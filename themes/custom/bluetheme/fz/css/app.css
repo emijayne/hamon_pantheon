@@ -1412,7 +1412,7 @@ table {
   width: 100%; }
 
 aside.layout-sidebar div, div#block-bluetheme-content, div.layout-triplet {
-  margin-bottom: 1rem; }
+  margin-bottom: 4rem; }
 
 #block-bluetheme-content img, #block-sidebar img {
   width: 150;
@@ -1425,10 +1425,15 @@ aside.layout-sidebar div, div#block-bluetheme-content, div.layout-triplet {
 li.tabs-title > a {
   font-size: 1rem; }
 
+.layout-triplet i {
+  font-size: 60px;
+  text-shadow: 2px 2px 1px #8a8a8a, 0 0 5px #8a8a8a;
+  color: #fefefe; }
+
 #superfish-header-left,
 #superfish-header-right {
   font-size: 0.813rem;
-  background-color: #FFF; }
+  background-color: #fefefe; }
 
 #nav {
   font-size: 0.875rem;
@@ -1440,10 +1445,10 @@ li.tabs-title > a {
 
 #nav a.sf-depth-1 {
   background-color: #009FDF;
-  color: #ffffff; }
+  color: #fefefe; }
 
 #nav a.sf-depth-1:hover {
-  background-color: #ffffff;
+  background-color: #fefefe;
   color: #005070; }
 
 #nav ul.sf-menu .sf-with-ul {
@@ -1452,7 +1457,7 @@ li.tabs-title > a {
 #superfish-header-left a.sf-depth-2,
 #nav a.sf-depth-2,
 #nav a.sf-depth-3 {
-  background-color: #ffffff; }
+  background-color: #fefefe; }
 
 #superfish-header-left li.sf-depth-1.menuparent a.sf-depth-1.menuparent,
 #nav li.sf-depth-1.menuparent a.sf-depth-1.menuparent {
@@ -1481,11 +1486,11 @@ footer#end {
     background-color: #e6e6e6; }
   footer#end #credits {
     font-size: 0.813rem;
-    color: #ffffff;
+    color: #fefefe;
     padding: 1rem 0; }
   footer#end #credits h4,
   footer#end #credits a {
-    color: #ffffff; }
+    color: #fefefe; }
   footer#end #credits .contextual-links a {
     color: #009FDF; }
 

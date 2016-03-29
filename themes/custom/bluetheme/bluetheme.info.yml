@@ -9,8 +9,6 @@ libraries:
 regions:
   header: Header
   navigation: Navigation
-  corp_first: CorpNav1
-  corp_second: CorpNav2
   highlighted: Highlighted
   help: Help
   content: Content

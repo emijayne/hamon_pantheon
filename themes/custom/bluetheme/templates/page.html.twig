@@ -67,12 +67,14 @@
 
     {% if page.sidebar %}
 
-    <div class="layout-content column medium-7">
+    <div class="layout-content row column medium-7">
       {{ page.content }}
 
       {% if page.triplet %}
-        <div class="layout-triplet row">
-          {{ page.triplet }}
+        <div class="layout-triplet column">
+          <div class="row small-up-1 medium-up-1 large-up-3">
+            {{ page.triplet }}
+          </div>
         </div>
       {% endif %}
 
@@ -88,8 +90,10 @@
       {{ page.content }}
 
       {% if page.triplet %}
-        <div class="layout-triplet row">
-          {{ page.triplet }}
+        <div class="layout-triplet column">
+          <div class="row small-up-1 medium-up-1 large-up-3">
+            {{ page.triplet }}
+          </div>
         </div>
       {% endif %}
 
@@ -106,7 +110,7 @@
     </div>
     <div id="credits" class="column row">
       {{ page.footer }}
-      <div class="shrink">
+      <div class="column shrink">
         <a href="https://www.linkedin.com/company/hamon-corporation" alt="Find us on LinkedIn"><i class="fi-social-linkedin social"></i></a>
         <a href="http://www.twitter.com/hamonusa" alt="Follow us on Twitter"><i class="fi-social-twitter social"></i></a>
       </div>
