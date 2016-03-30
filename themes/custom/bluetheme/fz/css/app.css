@@ -1389,8 +1389,7 @@
   opacity: .75;
   color: black; }
 
-#site-logo-wrap, #site-name-wrap,
-.logowrap, .sitename {
+#site-logo-wrap, #site-name-wrap, .logowrap, .sitename {
   text-align: center; }
 
 img#site-logo, .logowrap svg {
@@ -1430,6 +1429,9 @@ li.tabs-title > a {
   text-shadow: 2px 2px 1px #8a8a8a, 0 0 5px #8a8a8a;
   color: #fefefe; }
 
+.layout-triplet h4 {
+  text-shadow: 1px 1px 0 #e6e6e6; }
+
 #superfish-header-left,
 #superfish-header-right {
   font-size: 0.813rem;
@@ -1466,6 +1468,9 @@ li.tabs-title > a {
 ul.sf-menu a, ul.sf-menu span.nolink {
   padding: .5em 1.5em; }
 
+a#superfish-main-toggle {
+  color: #fefefe; }
+
 .layout-container {
   height: 100%; }
 
@@ -1481,18 +1486,17 @@ ul.sf-menu a, ul.sf-menu span.nolink {
   height: 200px; }
 
 footer#end {
-  background-color: #005070; }
+  background-color: #8a8a8a; }
   footer#end #crumbs {
     background-color: #e6e6e6; }
   footer#end #credits {
     font-size: 0.813rem;
     color: #fefefe;
     padding: 1rem 0; }
-  footer#end #credits h4,
-  footer#end #credits a {
-    color: #fefefe; }
-  footer#end #credits .contextual-links a {
-    color: #009FDF; }
+    footer#end #credits h4, footer#end #credits a {
+      color: #fefefe; }
+    footer#end #credits .contextual-links a {
+      color: #009FDF; }
 
 .social {
   font-size: 30px;
@@ -3852,12 +3856,12 @@ body {
     width: 0.8rem;
     height: 0.8rem;
     margin: 0.1rem;
-    background-color: #3c94b4;
+    background-color: #8a8a8a;
     border-radius: 50%; }
     .orbit-bullets button:hover {
-      background-color: #00b0f0; }
+      background-color: #009FDF; }
     .orbit-bullets button.is-active {
-      background-color: #00b0f0; }
+      background-color: #009FDF; }
 
 .pagination {
   margin-left: 0;
