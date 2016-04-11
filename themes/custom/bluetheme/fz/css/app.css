@@ -1392,9 +1392,6 @@
 #site-logo-wrap, #site-name-wrap, .logowrap, .sitename {
   text-align: center; }
 
-img#site-logo, .logowrap svg {
-  height: 90px; }
-
 .button a {
   color: #fff; }
 
@@ -1410,8 +1407,27 @@ table, #prod-side p {
 table {
   width: 100%; }
 
-aside.layout-sidebar div, div#block-bluetheme-content, div.layout-triplet {
-  margin-bottom: 4rem; }
+aside.layout-sidebar div#block-image,
+aside.layout-sidebar div#block-sidebar,
+aside.layout-sidebar div#block-views-block-tech-link-01-block-1,
+aside.layout-sidebar div#block-views-block-tech-link-01-block-2,
+div#block-bluetheme-content,
+div.layout-triplet {
+  margin-bottom: 2rem; }
+
+img#site-logo, .logowrap svg {
+  height: 50px; }
+
+@media screen and (min-width: 40em) {
+  aside.layout-sidebar div#block-image,
+  aside.layout-sidebar div#block-sidebar,
+  aside.layout-sidebar div#block-views-block-tech-link-01-block-1,
+  aside.layout-sidebar div#block-views-block-tech-link-01-block-2,
+  div#block-bluetheme-content,
+  div.layout-triplet {
+    margin-bottom: 4rem; }
+  img#site-logo, .logowrap svg {
+    height: 90px; } }
 
 #block-bluetheme-content img, #block-sidebar img {
   width: 150;
@@ -1425,12 +1441,14 @@ li.tabs-title > a {
   font-size: 1rem; }
 
 .layout-triplet i {
-  font-size: 60px;
   text-shadow: 2px 2px 1px #8a8a8a, 0 0 5px #8a8a8a;
-  color: #fefefe; }
+  color: #ffffff; }
 
-.layout-triplet h4 {
-  text-shadow: 1px 1px 0 #e6e6e6; }
+h1, h2, h3 {
+  text-shadow: 2px 2px 2px #cacaca; }
+
+.orbit h3 {
+  text-shadow: none; }
 
 #superfish-header-left,
 #superfish-header-right {
@@ -1483,7 +1501,7 @@ a#superfish-main-toggle {
   display: block; }
 
 .site-footer, .page-wrap:after {
-  height: 200px; }
+  min-height: 200px; }
 
 footer#end {
   background-color: #8a8a8a; }
@@ -1493,6 +1511,8 @@ footer#end {
     font-size: 0.813rem;
     color: #fefefe;
     padding: 1rem 0; }
+    footer#end #credits #block-address-corp, footer#end #credits nav {
+      padding: 1rem 0.625rem; }
     footer#end #credits h4, footer#end #credits a {
       color: #fefefe; }
     footer#end #credits .contextual-links a {
@@ -1518,6 +1538,15 @@ div.slick--optionset--products {
   height: 20rem; }
   .big-slides img {
     height: auto; }
+
+.accordion-title {
+  font-size: inherit;
+  border-bottom: none;
+  padding: 0.85em 1em; }
+
+.accordion-content {
+  background-color: #e6e6e6;
+  border: 1px dotted #cacaca; }
 
 /**
  * Foundation for Sites by ZURB

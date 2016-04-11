@@ -17,20 +17,12 @@ function bluetheme_preprocess_menu_local_task(&$variables) {
  * Implements hook_preprocess_block()
  */
 function bluetheme_preprocess_block(&$variables) {
-  $variables['attributes']['class'][] = 'column';
-
-  // if ($variables['attributes.id'] == 'block-bluetheme-breadcrumbs') {
-  //   $variables['attributes']['class'][] = 'row';
-  // }
-  // if ($variables['attributes.id'] == 'block-bluetheme-addresscorp') {
-  //   $variables['attributes']['class'][] = 'medium-5';
-  // }
-  // if ($variables['attributes.id'] == 'block-contact-menu') {
-  //   $variables['attributes']['class'][] = 'medium-3';
-  // }
-  // if ($variables['attributes.id'] == 'block-resources-menu')) {
-  //   $variables['attributes']['class'][] = 'medium-3';
-  // }
+  // Add a clearfix class to system branding blocks.
+  if ($variables['plugin_id'] == 'address_corp') {
+    $variables['attributes']['class'][] = 'column small-12 medium-12 large-4';
+  } else {
+    $variables['attributes']['class'][] = 'column';
+  }
 }
 
 /**

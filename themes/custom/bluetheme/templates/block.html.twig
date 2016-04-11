@@ -27,7 +27,17 @@
  * @ingroup themeable
  */
 #}
+
+{% if plugin_id == 'address_corp' or plugin_id == 'address_hc' or plugin_id == 'address_hdi' or plugin_id == 'address_hrc' or plugin_id == 'address_rcc' or plugin_id == 'address_rcdc' or plugin_id == 'address_ttc'%}
+
+<div{{ attributes.addClass('small-12 large-4') }}>
+
+{% else %}
+
 <div{{ attributes }}>
+
+{% endif %}
+
   {{ title_prefix }}
   {% if label %}
     <h4{{ title_attributes }}>{{ label }}</h4>
@@ -37,3 +47,4 @@
     {{ content }}
   {% endblock %}
 </div>
+
