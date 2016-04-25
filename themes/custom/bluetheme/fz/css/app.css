@@ -1412,8 +1412,12 @@ div.layout-triplet {
   div.layout-triplet {
     margin-bottom: 4rem; } }
 
-.sf-menu {
-  font-size: 80%; }
+ul.sf-menu {
+  font-size: 87%; }
+
+#nav {
+  height: 3rem;
+  margin: 2em 0; }
 
 #nav,
 #nav a.sf-depth-1,
@@ -1444,6 +1448,8 @@ footer#end {
   background-color: #8a8a8a; }
   footer#end #crumbs {
     background-color: #e6e6e6; }
+    footer#end #crumbs .breadcrumbs {
+      padding: 1rem 0; }
   footer#end #credits {
     font-size: 0.813rem;
     color: #fefefe;
@@ -1458,6 +1464,10 @@ footer#end {
 .social {
   font-size: 30px;
   padding-left: .4em; }
+
+.button a,
+a.button {
+  color: #fefefe; }
 
 /**
  * Foundation for Sites by ZURB
@@ -3319,7 +3329,7 @@ select {
 
 .breadcrumbs {
   list-style: none;
-  margin: 0 0 1rem 0; }
+  margin: 1rem 0; }
   .breadcrumbs::before, .breadcrumbs::after {
     content: ' ';
     display: table;
