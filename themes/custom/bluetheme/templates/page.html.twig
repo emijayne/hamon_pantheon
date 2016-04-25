@@ -53,16 +53,16 @@
   </header>
 
   <div id="nav">
-    <div class="column row">
+    <div class="row">
       {{ page.navigation }}
     </div>
   </div>
 
-  <div class="column row align-center">{{ page.highlighted }}</div>
+  <div class="row align-center">{{ page.highlighted }}</div>
   
-  <div class="column row">{{ page.help }}</div>
+  <div class="row">{{ page.help }}</div>
 
-  <main role="main" class="column row">
+  <main role="main" class="row">
     <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
     {% if page.sidebar %}
