@@ -1389,6 +1389,76 @@
   opacity: .75;
   color: black; }
 
+.logowrap svg {
+  max-height: 90px; }
+
+.sitename {
+  text-align: center; }
+
+aside.layout-sidebar div#block-image,
+aside.layout-sidebar div#block-sidebar,
+aside.layout-sidebar div#block-views-block-tech-link-01-block-1,
+aside.layout-sidebar div#block-views-block-tech-link-01-block-2,
+div#block-bluetheme-content,
+div.layout-triplet {
+  margin-bottom: 2rem; }
+
+@media screen and (min-width: 40em) {
+  aside.layout-sidebar div#block-image,
+  aside.layout-sidebar div#block-sidebar,
+  aside.layout-sidebar div#block-views-block-tech-link-01-block-1,
+  aside.layout-sidebar div#block-views-block-tech-link-01-block-2,
+  div#block-bluetheme-content,
+  div.layout-triplet {
+    margin-bottom: 4rem; } }
+
+.sf-menu {
+  font-size: 80%; }
+
+#nav,
+#nav a.sf-depth-1,
+a#superfish-main-toggle {
+  background-color: #009FDF;
+  color: #fefefe; }
+
+#superfish-header-left,
+#superfish-header-left a.sf-depth-2,
+#superfish-header-right,
+#nav a.sf-depth-2,
+#nav a.sf-depth-3,
+#nav a.sf-depth-1:hover {
+  background-color: #fefefe;
+  color: #009FDF; }
+
+#nav ul.sf-menu .sf-with-ul {
+  padding-right: 1em; }
+
+#superfish-header-left li.sf-depth-1.menuparent a.sf-depth-1.menuparent,
+#nav li.sf-depth-1.menuparent a.sf-depth-1.menuparent {
+  padding-right: 2em; }
+
+ul.sf-menu a, ul.sf-menu span.nolink {
+  padding: .5em 1.5em; }
+
+footer#end {
+  background-color: #8a8a8a; }
+  footer#end #crumbs {
+    background-color: #e6e6e6; }
+  footer#end #credits {
+    font-size: 0.813rem;
+    color: #fefefe;
+    padding: 1rem 0; }
+    footer#end #credits #block-address-corp, footer#end #credits nav {
+      padding: 1rem 0.625rem; }
+    footer#end #credits h4, footer#end #credits a {
+      color: #fefefe; }
+    footer#end #credits .contextual-links a {
+      color: #009FDF; }
+
+.social {
+  font-size: 30px;
+  padding-left: .4em; }
+
 /**
  * Foundation for Sites by ZURB
  * Version 6.2.1
@@ -2631,7 +2701,7 @@ a {
   line-height: inherit;
   cursor: pointer; }
   a:hover, a:focus {
-    color: #0089c0; }
+    color: #924D00; }
   a img {
     border: 0; }
 
@@ -4200,8 +4270,8 @@ body {
   [data-whatinput='mouse'] .orbit-bullets {
     outline: 0; }
   .orbit-bullets button {
-    width: 1.2rem;
-    height: 1.2rem;
+    width: 0.8rem;
+    height: 0.8rem;
     margin: 0.1rem;
     background-color: #cacaca;
     border-radius: 50%; }
