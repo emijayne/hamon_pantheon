@@ -1421,10 +1421,8 @@ ul.sf-menu {
   height: 3rem;
   margin: 2em 0;
   line-height: 2rem; }
-  #nav ul.sf-menu .sf-with-ul {
-    padding-right: 1em; }
-  #nav a.sf-depth-1 {
-    margin: 0.5rem 0; }
+  #nav li.sf-depth-1.sf-no-children a.sf-depth-1 {
+    padding: 1.1rem 1rem; }
 
 #nav,
 #nav a.sf-depth-1,
