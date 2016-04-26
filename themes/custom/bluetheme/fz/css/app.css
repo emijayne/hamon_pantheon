@@ -1423,7 +1423,8 @@ ul.sf-menu {
 #nav a.sf-depth-1,
 a#superfish-main-toggle {
   background-color: #009FDF;
-  color: #fefefe; }
+  color: #fefefe;
+  line-height: 2rem; }
 
 #superfish-header-left,
 #superfish-header-left a.sf-depth-2,
@@ -1469,17 +1470,18 @@ footer#end {
 a.button {
   color: #fefefe; }
 
-@media screen and (min-width: 40em) {
+/*@media screen and (min-width: 40em) {
   .form-item-name, .form-item-mail,
   .field--name-field-company,
   .field--name-field-phone,
   .field--name-field-part-number,
   .field--name-field-quantity {
     -webkit-flex: 0 0 50%;
-    -ms-flex: 0 0 50%;
-    flex: 0 0 50%;
-    max-width: 50%; } }
-
+        -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
+    max-width: 50%; 
+  }
+}*/
 /**
  * Foundation for Sites by ZURB
  * Version 6.2.1
