@@ -1447,6 +1447,20 @@ a#superfish-main-toggle {
 #superfish-header-left li.sf-depth-1.menuparent a.sf-depth-1.menuparent {
   padding-right: 2rem; }
 
+.layout-container {
+  height: 100%; }
+
+.page-wrap {
+  min-height: 100%;
+  margin-bottom: -200px; }
+
+.page-wrap:after {
+  content: "";
+  display: block; }
+
+.site-footer, .page-wrap:after {
+  min-height: 200px; }
+
 footer#end {
   background-color: #8a8a8a; }
   footer#end #crumbs {
@@ -1471,6 +1485,27 @@ footer#end {
 .button a,
 a.button {
   color: #fefefe; }
+
+#block-bluetheme-content img, #block-sidebar img {
+  width: 150;
+  height: auto; }
+  #block-bluetheme-content img .align-right, #block-sidebar img .align-right {
+    padding-left: 1rem; }
+  #block-bluetheme-content img .align-left, #block-sidebar img .align-left {
+    padding-right: 1rem; }
+
+li.tabs-title > a {
+  font-size: 1rem; }
+
+.layout-triplet i {
+  text-shadow: 2px 2px 1px #8a8a8a, 0 0 5px #8a8a8a;
+  color: #ffffff; }
+
+h1, h2, h3 {
+  text-shadow: 2px 2px 2px #cacaca; }
+
+.orbit h3 {
+  text-shadow: none; }
 
 /*@media screen and (min-width: 40em) {
   .form-item-name, .form-item-mail,
