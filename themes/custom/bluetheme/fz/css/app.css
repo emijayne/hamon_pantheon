@@ -1469,6 +1469,17 @@ footer#end {
 a.button {
   color: #fefefe; }
 
+@media screen and (min-width: 40em) {
+  .form-item-name, .form-item-mail,
+  .field--name-field-company,
+  .field--name-field-phone,
+  .field--name-field-part-number,
+  .field--name-field-quantity {
+    -webkit-flex: 0 0 50%;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%; } }
+
 /**
  * Foundation for Sites by ZURB
  * Version 6.2.1
