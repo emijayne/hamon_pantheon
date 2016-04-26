@@ -1414,17 +1414,23 @@ div.layout-triplet {
 
 ul.sf-menu {
   font-size: 87%; }
+  ul.sf-menu a, ul.sf-menu span.nolink {
+    padding: .5em 1.5em; }
 
 #nav {
   height: 3rem;
-  margin: 2em 0; }
+  margin: 2em 0;
+  line-height: 2rem; }
+  #nav ul.sf-menu .sf-with-ul {
+    padding-right: 1em; }
+  #nav a.sf-depth-1 {
+    margin: 0.5rem 0; }
 
 #nav,
 #nav a.sf-depth-1,
 a#superfish-main-toggle {
   background-color: #009FDF;
-  color: #fefefe;
-  line-height: 2rem; }
+  color: #fefefe; }
 
 #superfish-header-left,
 #superfish-header-left a.sf-depth-2,
@@ -1435,15 +1441,8 @@ a#superfish-main-toggle {
   background-color: #fefefe;
   color: #009FDF; }
 
-#nav ul.sf-menu .sf-with-ul {
-  padding-right: 1em; }
-
-#superfish-header-left li.sf-depth-1.menuparent a.sf-depth-1.menuparent,
-#nav li.sf-depth-1.menuparent a.sf-depth-1.menuparent {
+li.sf-depth-1.menuparent a.sf-depth-1.menuparent {
   padding-right: 2em; }
-
-ul.sf-menu a, ul.sf-menu span.nolink {
-  padding: .5em 1.5em; }
 
 footer#end {
   background-color: #8a8a8a; }
