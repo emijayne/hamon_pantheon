@@ -53,3 +53,15 @@ Thumbs.db
 # Things in the core directory that Drupal 8 commits in the repository.
 !core/**/*.gz
 
+# ignore misc foundation files
+themes/custom/bluetheme/config.rb
+themes/custom/bluetheme/fz/.bowerrc
+themes/custom/bluetheme/fz/CHANGELOG.md
+themes/custom/bluetheme/fz/README.md
+themes/custom/bluetheme/fz/bower.json
+themes/custom/bluetheme/fz/bower_components/
+themes/custom/bluetheme/fz/gulpfile.js
+themes/custom/bluetheme/fz/index.html
+themes/custom/bluetheme/fz/node_modules/
+themes/custom/bluetheme/fz/package.json
+themes/custom/bluetheme/fz/scss/
