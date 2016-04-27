@@ -29,10 +29,18 @@ $settings['install_profile'] = 'standard';
  * Trusted Host Settings
  */
 
-// $settings['trusted_host_patterns'][] = '^dev-hamon\.pantheon\.io$';
-// $settings['trusted_host_patterns'][] = '^test-hamon\.pantheon\.io$';
-$settings['trusted_host_patterns'][] = '^www\.hamonusa\.com$';
+if (defined('PANTHEON_ENVIRONMENT')) {
+  if (in_array($_ENV['PANTHEON_ENVIRONMENT'], array('dev', 'test', 'live'))) {
+    $settings['trusted_host_patterns'][] = "{$_ENV['PANTHEON_ENVIRONMENT']}-{$_ENV['PANTHEON_SITE_NAME']}.getpantheon.io";
+    $settings['trusted_host_patterns'][] = "{$_ENV['PANTHEON_ENVIRONMENT']}-{$_ENV['PANTHEON_SITE_NAME']}.pantheon.io";
+    $settings['trusted_host_patterns'][] = "{$_ENV['PANTHEON_ENVIRONMENT']}-{$_ENV['PANTHEON_SITE_NAME']}.pantheonsite.io";
+    $settings['trusted_host_patterns'][] = "{$_ENV['PANTHEON_ENVIRONMENT']}-{$_ENV['PANTHEON_SITE_NAME']}.panth.io";  
 
+    # Replace value with custom domain(s) added in the site Dashboard
+    $settings['trusted_host_patterns'][] = '^.+\.hamonusa\.com$';
+    $settings['trusted_host_patterns'][] = '^hamonusa\.com$';
+  }
+}
 
 /**
  * Redirects
