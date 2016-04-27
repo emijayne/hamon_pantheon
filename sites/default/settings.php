@@ -218,14 +218,9 @@ if (($_SERVER['REQUEST_URI'] == '/COHPACTMandTOXECONTM.asp') && (php_sapi_name()
   header('Location: /hrc/products/ff');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == '/contact') && (php_sapi_name() != "cli")) {
-  header('HTTP/1.0 301 Moved Permanently');
-  header('Location: /hrc/contact');
-  exit();
-}
 if (($_SERVER['REQUEST_URI'] == '/contact_email') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
-  header('Location: /hrc/contact');
+  header('Location: /contact');
   exit();
 }
 if (($_SERVER['REQUEST_URI'] == '/ContactHC.asp') && (php_sapi_name() != "cli")) {
@@ -250,7 +245,7 @@ if (($_SERVER['REQUEST_URI'] == '/ContactThermalTransfer.asp') && (php_sapi_name
 }
 if (($_SERVER['REQUEST_URI'] == '/ContactUs.asp') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
-  header('Location: /ttc/contact');
+  header('Location: /contact');
   exit();
 }
 if (($_SERVER['REQUEST_URI'] == '/CustomerSurveyForm.asp') && (php_sapi_name() != "cli")) {
