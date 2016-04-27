@@ -66,8 +66,7 @@ if (isset($_SERVER['PANTHEON_ENVIRONMENT']) &&
       $_SERVER['HTTP_HOST'] == 'coolingsystems-us.com' || $_SERVER['HTTP_HOST'] == 'www.coolingsystems-us.com' || 
       $_SERVER['HTTP_HOST'] == 'aircooledcondensers.com' || $_SERVER['HTTP_HOST'] == 'www.aircooledcondensers.com' || 
       $_SERVER['HTTP_HOST'] == 'hamon-coolingsystems.com' || $_SERVER['HTTP_HOST'] == 'www.hamon-coolingsystems.com' || 
-      $_SERVER['HTTP_HOST'] == 'aircooledsteamcondensers.com' || $_SERVER['HTTP_HOST'] == 'www.aircooledsteamcondensers.com' || 
-      $_SERVER['HTTP_HOST'] == 'hamon-usa.com' || $_SERVER['HTTP_HOST'] == 'www.hamon-usa.com'
+      $_SERVER['HTTP_HOST'] == 'aircooledsteamcondensers.com' || $_SERVER['HTTP_HOST'] == 'www.aircooledsteamcondensers.com'
       ) {
     header('HTTP/1.0 301 Moved Permanently');
     header('Location: http://www.hamonusa.com'. $_SERVER['REQUEST_URI']);
