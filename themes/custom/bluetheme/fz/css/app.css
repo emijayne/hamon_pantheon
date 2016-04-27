@@ -1389,8 +1389,10 @@
   opacity: .75;
   color: black; }
 
-.logowrap svg {
-  max-height: 90px; }
+.logowrap {
+  text-align: center; }
+  .logowrap svg {
+    max-height: 90px; }
 
 .sitename {
   text-align: center; }
