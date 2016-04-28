@@ -46,40 +46,64 @@ if (defined('PANTHEON_ENVIRONMENT')) {
  * Redirects
  */
 
-// Require www.
+// Pull in all external site names and require www.
 if (isset($_SERVER['PANTHEON_ENVIRONMENT']) &&
   ($_SERVER['PANTHEON_ENVIRONMENT'] === 'live') &&
   (php_sapi_name() != "cli")) {
-  if ($_SERVER['HTTP_HOST'] == 'hamonusa.com' ||
-      $_SERVER['HTTP_HOST'] == 'live-hamon.pantheonsite.io' || 
-      $_SERVER['HTTP_HOST'] == 'hamon-usa.com' || $_SERVER['HTTP_HOST'] == 'www.hamon-usa.com' || 
-      $_SERVER['HTTP_HOST'] == 'custodis-us.com' || $_SERVER['HTTP_HOST'] == 'www.custodis-us.com' || 
-      $_SERVER['HTTP_HOST'] == 'hamoncustodis.com' || $_SERVER['HTTP_HOST'] == 'www.hamoncustodis.com' || 
-      $_SERVER['HTTP_HOST'] == 'deltak.com' || $_SERVER['HTTP_HOST'] == 'www.deltak.com' || 
-      $_SERVER['HTTP_HOST'] == 'hamondeltak.com' || $_SERVER['HTTP_HOST'] == 'www.hamondeltak.com' || 
-      $_SERVER['HTTP_HOST'] == 'researchcottrell.com' || $_SERVER['HTTP_HOST'] == 'www.researchcottrell.com' || 
-      $_SERVER['HTTP_HOST'] == 'research-cottrell.com' || $_SERVER['HTTP_HOST'] == 'www.research-cottrell.com' || 
-      $_SERVER['HTTP_HOST'] == 'research-cottrell-us.com' || $_SERVER['HTTP_HOST'] == 'www.research-cottrell-us.com' || 
-      $_SERVER['HTTP_HOST'] == 'hamonresearchcottrell.com' || $_SERVER['HTTP_HOST'] == 'www.hamonresearchcottrell.com' || 
-      $_SERVER['HTTP_HOST'] == 'hamon-researchcottrell.com' || $_SERVER['HTTP_HOST'] == 'www.hamon-researchcottrell.com' || 
-      $_SERVER['HTTP_HOST'] == 'hamon-heatrecovery.com' || $_SERVER['HTTP_HOST'] == 'www.hamon-heatrecovery.com' || 
-      $_SERVER['HTTP_HOST'] == 'ttcjobs.net' || $_SERVER['HTTP_HOST'] == 'www.ttcjobs.net' || 
-      $_SERVER['HTTP_HOST'] == 'thermaltransfercorp.com' || $_SERVER['HTTP_HOST'] == 'www.thermaltransfercorp.com' || 
-      $_SERVER['HTTP_HOST'] == 'hamon-heatexchangers.com' || $_SERVER['HTTP_HOST'] == 'www.hamon-heatexchangers.com' || 
-      $_SERVER['HTTP_HOST'] == 'hamon-thermaltransfer.com' || $_SERVER['HTTP_HOST'] == 'www.hamon-thermaltransfer.com' || 
-      $_SERVER['HTTP_HOST'] == 'rc-cooling.com' || $_SERVER['HTTP_HOST'] == 'www.rc-cooling.com' || 
-      $_SERVER['HTTP_HOST'] == 'rc-drycooling.com' || $_SERVER['HTTP_HOST'] == 'www.rc-drycooling.com' || 
-      $_SERVER['HTTP_HOST'] == 'rc-wetcooling.com' || $_SERVER['HTTP_HOST'] == 'www.rc-wetcooling.com' || 
-      $_SERVER['HTTP_HOST'] == 'hamondrycooling.com' || $_SERVER['HTTP_HOST'] == 'www.hamondrycooling.com' || 
-      $_SERVER['HTTP_HOST'] == 'coolingsystems-us.com' || $_SERVER['HTTP_HOST'] == 'www.coolingsystems-us.com' || 
-      $_SERVER['HTTP_HOST'] == 'aircooledcondensers.com' || $_SERVER['HTTP_HOST'] == 'www.aircooledcondensers.com' || 
-      $_SERVER['HTTP_HOST'] == 'hamon-coolingsystems.com' || $_SERVER['HTTP_HOST'] == 'www.hamon-coolingsystems.com' || 
-      $_SERVER['HTTP_HOST'] == 'aircooledsteamcondensers.com' || $_SERVER['HTTP_HOST'] == 'www.aircooledsteamcondensers.com'
+  if ($_SERVER['HTTP_HOST'] == 'live-hamon.pantheonsite.io' || 
+      $_SERVER['HTTP_HOST'] == 'hamonusa.com' || 
+      $_SERVER['HTTP_HOST'] == 'hamon-usa.com' || $_SERVER['HTTP_HOST'] == 'www.hamon-usa.com'
       ) {
     header('HTTP/1.0 301 Moved Permanently');
     header('Location: http://www.hamonusa.com'. $_SERVER['REQUEST_URI']);
     exit();
-  }
+  } elseif ($_SERVER['HTTP_HOST'] == 'custodis-us.com' || $_SERVER['HTTP_HOST'] == 'www.custodis-us.com' || 
+      $_SERVER['HTTP_HOST'] == 'hamoncustodis.com' || $_SERVER['HTTP_HOST'] == 'www.hamoncustodis.com'
+      ) {
+    header('HTTP/1.0 301 Moved Permanently');
+    header('Location: http://www.hamonusa.com/hc'. $_SERVER['REQUEST_URI']);
+    exit();
+  } elseif ($_SERVER['HTTP_HOST'] == 'deltak.com' || $_SERVER['HTTP_HOST'] == 'www.deltak.com' || 
+      $_SERVER['HTTP_HOST'] == 'hamondeltak.com' || $_SERVER['HTTP_HOST'] == 'www.hamondeltak.com' || 
+      $_SERVER['HTTP_HOST'] == 'hamon-deltak.com' || $_SERVER['HTTP_HOST'] == 'www.hamon-deltak.com'
+      ) {
+    header('HTTP/1.0 301 Moved Permanently');
+    header('Location: http://www.hamonusa.com/hdi'. $_SERVER['REQUEST_URI']);
+    exit();
+  } elseif ($_SERVER['HTTP_HOST'] == 'researchcottrell.com' || $_SERVER['HTTP_HOST'] == 'www.researchcottrell.com' || 
+      $_SERVER['HTTP_HOST'] == 'research-cottrell.com' || $_SERVER['HTTP_HOST'] == 'www.research-cottrell.com' || 
+      $_SERVER['HTTP_HOST'] == 'research-cottrell-us.com' || $_SERVER['HTTP_HOST'] == 'www.research-cottrell-us.com' || 
+      $_SERVER['HTTP_HOST'] == 'hamonresearchcottrell.com' || $_SERVER['HTTP_HOST'] == 'www.hamonresearchcottrell.com' || 
+      $_SERVER['HTTP_HOST'] == 'hamon-researchcottrell.com' || $_SERVER['HTTP_HOST'] == 'www.hamon-researchcottrell.com' || 
+      $_SERVER['HTTP_HOST'] == 'hamon-heatrecovery.com' || $_SERVER['HTTP_HOST'] == 'www.hamon-heatrecovery.com'
+      ) {
+    header('HTTP/1.0 301 Moved Permanently');
+    header('Location: http://www.hamonusa.com/hrc'. $_SERVER['REQUEST_URI']);
+    exit();
+  } elseif ($_SERVER['HTTP_HOST'] == 'rc-cooling.com' || $_SERVER['HTTP_HOST'] == 'www.rc-cooling.com' || 
+      $_SERVER['HTTP_HOST'] == 'rc-wetcooling.com' || $_SERVER['HTTP_HOST'] == 'www.rc-wetcooling.com' || 
+      $_SERVER['HTTP_HOST'] == 'coolingsystems-us.com' || $_SERVER['HTTP_HOST'] == 'www.coolingsystems-us.com' || 
+      $_SERVER['HTTP_HOST'] == 'hamon-coolingsystems.com' || $_SERVER['HTTP_HOST'] == 'www.hamon-coolingsystems.com'
+      ) {
+    header('HTTP/1.0 301 Moved Permanently');
+    header('Location: http://www.hamonusa.com/rcc'. $_SERVER['REQUEST_URI']);
+    exit();
+  } elseif ($_SERVER['HTTP_HOST'] == 'aircooledcondensers.com' || $_SERVER['HTTP_HOST'] == 'www.aircooledcondensers.com' || 
+      $_SERVER['HTTP_HOST'] == 'aircooledsteamcondensers.com' || $_SERVER['HTTP_HOST'] == 'www.aircooledsteamcondensers.com' || 
+      $_SERVER['HTTP_HOST'] == 'hamondrycooling.com' || $_SERVER['HTTP_HOST'] == 'www.hamondrycooling.com'
+      ) {
+    header('HTTP/1.0 301 Moved Permanently');
+    header('Location: http://www.hamonusa.com/rcdc'. $_SERVER['REQUEST_URI']);
+    exit();
+  } elseif ($_SERVER['HTTP_HOST'] == 'ttcjobs.net' || $_SERVER['HTTP_HOST'] == 'www.ttcjobs.net' || 
+      $_SERVER['HTTP_HOST'] == 'thermaltransfercorp.com' || $_SERVER['HTTP_HOST'] == 'www.thermaltransfercorp.com' || 
+      $_SERVER['HTTP_HOST'] == 'hamon-heatexchangers.com' || $_SERVER['HTTP_HOST'] == 'www.hamon-heatexchangers.com' || 
+      $_SERVER['HTTP_HOST'] == 'hamon-thermaltransfer.com' || $_SERVER['HTTP_HOST'] == 'www.hamon-thermaltransfer.com'
+      ) {
+    header('HTTP/1.0 301 Moved Permanently');
+    header('Location: http://www.hamonusa.com/ttc'. $_SERVER['REQUEST_URI']);
+    exit();
+  } 
 }
 
 
