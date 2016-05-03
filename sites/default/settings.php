@@ -63,8 +63,12 @@ if (isset($_SERVER['PANTHEON_ENVIRONMENT']) &&
     header('HTTP/1.0 301 Moved Permanently');
     header('Location: http://www.hamonusa.com/hc'. $_SERVER['REQUEST_URI']);
     exit();
+  } elseif ($_SERVER['HTTP_HOST'] == 'hamondeltak.com' || $_SERVER['HTTP_HOST'] == 'www.hamondeltak.com'
+      ) {
+    header('HTTP/1.0 301 Moved Permanently');
+    header('Location: http://www.hamonusa.com/helloworld'. $_SERVER['REQUEST_URI']);
+    exit();
   } elseif ($_SERVER['HTTP_HOST'] == 'deltak.com' || $_SERVER['HTTP_HOST'] == 'www.deltak.com' || 
-      $_SERVER['HTTP_HOST'] == 'hamondeltak.com' || $_SERVER['HTTP_HOST'] == 'www.hamondeltak.com' || 
       $_SERVER['HTTP_HOST'] == 'hamon-deltak.com' || $_SERVER['HTTP_HOST'] == 'www.hamon-deltak.com'
       ) {
     header('HTTP/1.0 301 Moved Permanently');
