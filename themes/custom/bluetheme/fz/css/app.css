@@ -1420,9 +1420,7 @@ ul.sf-menu {
     padding: .5em 1.5em; }
 
 #nav {
-  height: 3rem;
-  margin: 2em 0;
-  line-height: 2rem; }
+  margin: 2em 0; }
   #nav li.sf-depth-1.sf-no-children a.sf-depth-1 {
     padding: 1.1rem 1rem; }
   #nav li.sf-depth-1.menuparent a.sf-depth-1.menuparent {
