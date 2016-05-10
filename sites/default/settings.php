@@ -830,11 +830,6 @@ if (($_SERVER['REQUEST_URI'] == '/LearningCenter_MaintenanceTips.asp') && (php_s
   header('Location: /ttc/products/convection');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == '/locations') && (php_sapi_name() != "cli")) {
-  header('HTTP/1.0 301 Moved Permanently');
-  header('Location: /locations');
-  exit();
-}
 if (($_SERVER['REQUEST_URI'] == '/MRC.asp') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
