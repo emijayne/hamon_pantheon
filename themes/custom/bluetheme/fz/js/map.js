@@ -1,6 +1,6 @@
 (function ($) {
 
-  var mymap = L.map('locationmap').setView([40.5699382,-74.6107626], 4);
+  var mymap = L.map('locationmap').setView([43.855202, -79.387218], 4);
 
   L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
     attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
