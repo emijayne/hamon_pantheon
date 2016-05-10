@@ -260,6 +260,11 @@ if (($_SERVER['REQUEST_URI'] == '/ContactHC.asp') && (php_sapi_name() != "cli"))
   header('Location: /hc/contact');
   exit();
 }
+if (($_SERVER['REQUEST_URI'] == '/Contactinfo') && (php_sapi_name() != "cli")) {
+  header('HTTP/1.0 301 Moved Permanently');
+  header('Location: /contact');
+  exit();
+}
 if (($_SERVER['REQUEST_URI'] == '/ContactHRC.asp') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/contact');
