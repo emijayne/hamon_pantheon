@@ -2,21 +2,15 @@ base:
   css:
     theme:
       fz/css/app.css: {}
+      fz/css/leaflet.css: {}
   js:
     fz/js/jquery-migrate-1.2.1.min.js: { minified: true }
     fz/js/app.js: {}
     fz/js/foundation.min.js: { minified: true }
     fz/js/top_bar_active.js: {}
     fz/js/slick.min.js: { minified: true }
-  dependencies:
-    - core/jquery
-
-leaflet:
-  css:
-    theme:
-      fz/css/leaflet.css: {}
-  js:
     fz/js/leaflet.js: {}
     fz/js/map.js: {}
   dependencies:
     - core/jquery
+
