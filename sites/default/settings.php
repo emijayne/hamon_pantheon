@@ -1550,742 +1550,742 @@ if (($_SERVER['REQUEST_URI'] == '/VisitUs.asp') && (php_sapi_name() != "cli")) {
   header('Location: /locations');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hdi') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hdi') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hdi/aftermarket');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hdi/contact') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hdi/contact') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hdi/contact');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hdi/contact/equipment') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hdi/contact/equipment') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hdi/contact/equipment');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hdi/contact/parts') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hdi/contact/parts') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hdi/contact/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hdi/contact/services') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hdi/contact/services') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hdi/contact/services');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hdi/equipment') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hdi/equipment') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hdi/equipment');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hdi/manufacturing') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hdi/manufacturing') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hdi/aftermarket');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hdi/parts') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hdi/parts') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hdi/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hdi/products') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hdi/products') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hdi/aftermarket');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hdi/reps') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hdi/reps') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /locations');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hdi/technical') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hdi/technical') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hdi/aftermarket');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hdi/training') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hdi/training') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hdi/aftermarket');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/contact') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/contact') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/contact');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/contact/equipment') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/contact/equipment') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/contact/equipment');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/contact/parts') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/contact/parts') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/contact/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/contact/services') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/contact/services') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/contact/services');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/equipment') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/equipment') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/equipment');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/equipment/collectingplates') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/equipment/collectingplates') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/equipment');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/equipment/dischargeelectrode') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/equipment/dischargeelectrode') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/equipment');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/equipment/ff') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/equipment/ff') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/equipment');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/equipment/rebuild-retrofit') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/equipment/rebuild-retrofit') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/equipment');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/equipment/scrubbers') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/equipment/scrubbers') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/equipment');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/equipment/sealair') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/equipment/sealair') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/equipment');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/equipment/sncr') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/equipment/sncr') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/equipment');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/equipment/u2a') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/equipment/u2a') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/equipment');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/parts') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/parts') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/parts/esp') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/parts/esp') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/parts/esp/accessories') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/parts/esp/accessories') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/parts/esp/accessories/doorlocks') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/parts/esp/accessories/doorlocks') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/parts/esp/accessories/keyinterlocksystem') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/parts/esp/accessories/keyinterlocksystem') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/parts/esp/accessories/keytransferblock') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/parts/esp/accessories/keytransferblock') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/parts/esp/accessories/transformerrectifier') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/parts/esp/accessories/transformerrectifier') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/parts/esp/controls') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/parts/esp/controls') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/parts/esp/controls/cpc') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/parts/esp/controls/cpc') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/parts/esp/controls/mrc') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/parts/esp/controls/mrc') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/parts/esp/controls/mtc') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/parts/esp/controls/mtc') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/parts/esp/controls/pc') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/parts/esp/controls/pc') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/parts/esp/insulator') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/parts/esp/insulator') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/parts/esp/insulator/antisway') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/parts/esp/insulator/antisway') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/parts/esp/insulator/bushing') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/parts/esp/insulator/bushing') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/parts/esp/insulator/ders') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/parts/esp/insulator/ders') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/parts/esp/insulator/hvs') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/parts/esp/insulator/hvs') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/parts/esp/insulator/post') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/parts/esp/insulator/post') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/parts/esp/power') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/parts/esp/power') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/parts/esp/power/tr-accessories') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/parts/esp/power/tr-accessories') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/parts/esp/power/tr-groundswitches') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/parts/esp/power/tr-groundswitches') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/parts/esp/rapping') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/parts/esp/rapping') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/parts/ff') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/parts/ff') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/parts/other') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/parts/other') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/parts/sda') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/parts/sda') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/parts');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/products') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/products') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/reps') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/reps') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /locations');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/technical') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/technical') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/technical');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/technical/cfd') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/technical/cfd') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/technical');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/technical/consulting') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/technical/consulting') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/technical');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/technical/inspection') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/technical/inspection') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/technical');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/technical/maintenance') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/technical/maintenance') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/technical');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/technical/maintenance/monitoring') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/technical/maintenance/monitoring') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/technical');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/technical/maintenance/operation') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/technical/maintenance/operation') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/technical');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/technical/maintenance/ozone') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/technical/maintenance/ozone') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/technical');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/technical/maintenance/safety') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/technical/maintenance/safety') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/technical');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/technical/maintenance/troubleshoot') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/technical/maintenance/troubleshoot') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/technical');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'aftermarket/hrc/technical/training') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/aftermarket/hrc/technical/training') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/aftermarket/technical');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'directions') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/directions') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /locations');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'employment') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/employment') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /careers');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'front') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/front') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'hamoncustodis/careers') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/hamoncustodis/careers') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /careers');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'hamoncustodis/contact.john.boone') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/hamoncustodis/contact.john.boone') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hc/contact');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'hamoncustodis/contact/done') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/hamoncustodis/contact/done') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hc/contact');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'hamondeltak') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/hamondeltak') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hdi');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'hamondeltak/aftermarket') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/hamondeltak/aftermarket') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hdi/aftermarket');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'hamondeltak/boilers') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/hamondeltak/boilers') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hdi/products/whb');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'hamondeltak/chp') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/hamondeltak/chp') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hdi/products/chp');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'hamondeltak/chp/experience') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/hamondeltak/chp/experience') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hdi/products/chp');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'hamondeltak/contact') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/hamondeltak/contact') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hdi/contact');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'hamondeltak/contact/done') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/hamondeltak/contact/done') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hdi/contact');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'hamondeltak/contactlist') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/hamondeltak/contactlist') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hdi/contact');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'hamondeltak/directions') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/hamondeltak/directions') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /locations');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'hamondeltak/directions_denver') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/hamondeltak/directions_denver') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /locations');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'hamondeltak/hrsg') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/hamondeltak/hrsg') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hdi/products/hrsg');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'hamondeltak/jobs') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/hamondeltak/jobs') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /careers');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'hamondeltak/products') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/hamondeltak/products') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hdi/products');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'hamondeltak/representatives') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/hamondeltak/representatives') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /locations');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'hamonresearchcottrell/careers') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/hamonresearchcottrell/careers') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /careers');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'hamonresearchcottrell/contact/done') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/hamonresearchcottrell/contact/done') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/contact');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'hamonresearchcottrell/jobs') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/hamonresearchcottrell/jobs') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /careers');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'hamonresearchcottrell/webinars') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/hamonresearchcottrell/webinars') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /hrc/webinars');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'jobs') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/jobs') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /careers');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20100301') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20100301') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20100402') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20100402') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20100405') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20100405') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20100413') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20100413') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_2010041313') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_2010041313') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20100422') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20100422') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20100601') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20100601') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20100701') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20100701') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20100806') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20100806') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20101115') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20101115') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20110701') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20110701') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20110719') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20110719') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20120101') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20120101') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_201201a') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_201201a') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_201201b') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_201201b') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_201202') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_201202') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20120314') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20120314') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20120507') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20120507') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20120801') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20120801') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20121031') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20121031') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20121118') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20121118') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20121206') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20121206') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20130118') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20130118') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20130124') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20130124') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20130404') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20130404') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20130711') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20130711') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20130815') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20130815') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_201308271') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_201308271') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_201308272') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_201308272') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20130829') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20130829') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20130904') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20130904') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20130917') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20130917') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20131021a') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20131021a') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20131021b') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20131021b') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20131021c') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20131021c') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20131216') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20131216') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20140120') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20140120') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20140304') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20140304') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20140305') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20140305') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20140502') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20140502') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20140521') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20140521') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20140609') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20140609') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20141215') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20141215') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20141222a') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20141222a') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20141222b') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20141222b') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20141222c') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20141222c') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20150105') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20150105') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20150122') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20150122') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20150217') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20150217') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news_20150617') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news_20150617') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news20130320') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news20130320') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news20130801') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news20130801') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'news-20130806') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/news-20130806') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /press');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'researchcottrellcooling/contact/done') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/researchcottrellcooling/contact/done') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /rcc/contact');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'researchcottrellcooling/jobs') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/researchcottrellcooling/jobs') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /careers');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'researchcottrelldrycooling/contact/done') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/researchcottrelldrycooling/contact/done') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /rcdc/contact');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'researchcottrelldrycooling/contactlist') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/researchcottrelldrycooling/contactlist') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /rcdc/contact');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'thermaltransfercorp/contact/done') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/thermaltransfercorp/contact/done') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /ttc/contact');
   exit();
 }
-if (($_SERVER['REQUEST_URI'] == 'thermaltransfercorp/jobs') && (php_sapi_name() != "cli")) {
+if (($_SERVER['REQUEST_URI'] == '/thermaltransfercorp/jobs') && (php_sapi_name() != "cli")) {
   header('HTTP/1.0 301 Moved Permanently');
   header('Location: /careers');
   exit();
