@@ -18,7 +18,8 @@ use \Drupal\metatag\Plugin\metatag\Tag\MetaPropertyBase;
  *   name = "og:fax_number",
  *   group = "open_graph",
  *   weight = 25,
- *   image = FALSE,
+ *   type = "string",
+ *   secure = FALSE,
  *   multiple = FALSE
  * )
  */

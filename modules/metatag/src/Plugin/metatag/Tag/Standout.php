@@ -16,7 +16,8 @@ namespace Drupal\metatag\Plugin\metatag\Tag;
  *   name = "standout",
  *   group = "advanced",
  *   weight = 3,
- *   image = FALSE,
+ *   type = "label",
+ *   secure = FALSE,
  *   multiple = FALSE
  * )
  */

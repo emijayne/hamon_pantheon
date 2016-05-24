@@ -18,7 +18,8 @@ use \Drupal\metatag\Plugin\metatag\Tag\MetaPropertyBase;
  *   name = "og:image:height",
  *   group = "open_graph",
  *   weight = 14,
- *   image = FALSE,
+ *   type = "integer",
+ *   secure = FALSE,
  *   multiple = FALSE
  * )
  */

@@ -16,7 +16,8 @@ namespace Drupal\metatag\Plugin\metatag\Tag;
  *   name = "title",
  *   group = "basic",
  *   weight = -1,
- *   image = FALSE,
+ *   type = "label",
+ *   secure = FALSE,
  *   multiple = FALSE
  * )
  */

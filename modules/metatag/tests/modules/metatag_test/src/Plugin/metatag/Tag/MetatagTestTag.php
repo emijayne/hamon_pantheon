@@ -17,7 +17,8 @@ use Drupal\metatag\Plugin\metatag\Tag\MetaNameBase;
  *   name = "metatag_test",
  *   group = "basic",
  *   weight = 3,
- *   image = FALSE,
+ *   type = "label",
+ *   secure = FALSE,
  *   multiple = FALSE
  * )
  */

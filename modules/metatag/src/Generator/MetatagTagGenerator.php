@@ -22,10 +22,11 @@ class MetatagTagGenerator extends Generator {
    * @param string $class_name
    * @param string $group
    * @param string $weight
-   * @param bool $image
+   * @param string type
+   * @param bool $secure
    * @param bool $multiple
    */
-  public function generate($base_class, $module, $name, $label, $description, $plugin_id, $class_name, $group, $weight, $image, $multiple) {
+  public function generate($base_class, $module, $name, $label, $description, $plugin_id, $class_name, $group, $weight, $type, $secure, $multiple) {
     $parameters = [
       'base_class' => $base_class,
       'module' => $module,
@@ -36,7 +37,8 @@ class MetatagTagGenerator extends Generator {
       'class_name' => $class_name,
       'group' => $group,
       'weight' => $weight,
-      'image' => $image,
+      'type' => $type,
+      'secure' => $secure,
       'multiple' => $multiple,
     ];
 

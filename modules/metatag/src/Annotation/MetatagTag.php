@@ -63,11 +63,19 @@ class MetatagTag extends Plugin {
   public $weight;
 
   /**
-   * True if an image URL needs to be parsed out.
+   * Type of the meta tag should be either 'date', 'image', 'integer', 'label',
+   * 'string' or 'uri'.
+   *
+   * @var string
+   */
+  public $type;
+
+  /**
+   * True if URL must use HTTPS.
    *
    * @var boolean
    */
-  public $image;
+  protected $secure;
 
   /**
    * True if more than one is allowed.

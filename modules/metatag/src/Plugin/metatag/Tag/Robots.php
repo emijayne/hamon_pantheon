@@ -16,7 +16,8 @@ namespace Drupal\metatag\Plugin\metatag\Tag;
  *   name = "robots",
  *   group = "advanced",
  *   weight = 1,
- *   image = FALSE,
+ *   type = "string",
+ *   secure = FALSE,
  *   multiple = FALSE
  * )
  */

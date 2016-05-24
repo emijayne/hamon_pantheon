@@ -16,7 +16,8 @@ namespace Drupal\metatag\Plugin\metatag\Tag;
  *   name = "fb:admins",
  *   group = "facebook",
  *   weight = 1,
- *   image = FALSE,
+ *   type = "string",
+ *   secure = FALSE,
  *   multiple = FALSE
  * )
  */

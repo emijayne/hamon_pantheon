@@ -34,6 +34,9 @@ class MetatagFieldTest extends WebTestBase {
    * @var array
    */
   public static $modules = [
+    // Needed for token handling.
+    'token',
+
     // Needed for the field UI testing.
     'field_ui',
 
@@ -48,6 +51,9 @@ class MetatagFieldTest extends WebTestBase {
 
     // Some extra custom logic for testing Metatag.
     'metatag_test',
+
+    // Needed for testSecureTagOption().
+    'metatag_open_graph',
   ];
 
   /**
@@ -175,6 +181,54 @@ class MetatagFieldTest extends WebTestBase {
     $this->drupalGet('entity_test/add');
     $this->assertResponse(200);
     $this->assertFieldByName('field_metatag[0][basic][description]', $global_values['description'], t('Description field has the global default as the field default does not define it.'));
+  }
+
+  /**
+   * Tests whether HTML is correctly removed from metatags
+   *
+   * Tests three values in metatags -- one without any HTML; one with raw html; and one with escaped HTML.
+   * To pass all HTML including escaped should be removed.
+   */
+  public function testHTMLIsRemoved() {
+    $values = array(
+      'abstract' => 'No HTML here',
+      'description' => '<html><body><p class="test">Surrounded by raw HTML</p></body></html>',
+      'keywords' => '&lt;html&gt;&lt;body&gt;&lt;p class="test"&gt;Surrounded by escaped HTML&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;',
+    );
+
+    $this->drupalPostForm('admin/config/search/metatag/global', $values, 'Save');
+    $this->assertText('Saved the Global Metatag defaults.');
+    drupal_flush_all_caches();
+    $this->drupalGet('hit-a-404');
+    $this->assertResponse(404);
+
+    $this->assertRaw('<meta name="abstract" content="No HTML here" />', t('Test with no HTML content'));
+    $this->assertRaw('<meta name="description" content="Surrounded by raw HTML" />', t('Test with raw HTML content'));
+    $this->assertRaw('<meta name="keywords" content="Surrounded by escaped HTML" />', t('Test with escaped HTML content'));
+  }
+
+  /**
+   * Tests whether insecure links in Tags with attribute secure = TRUE are
+   * correctly changed to secure links
+   *
+   * Tests insecure values in og:image:secure_url (a tag with secure attribue
+   * set to TRUE) and in og:image (a tag with secure attribue set to FALSE). To
+   * To pass og:image_secure should be changed to https:// and og:image
+   * unchanged.
+   */
+  public function testSecureTagOption() {
+    $values = array(
+      'og_image' => 'http://blahblahblah.com/insecure.jpg',
+      'og_image_secure_url' => 'http://blahblahblah.com/secure.jpg',
+    );
+    $this->drupalPostForm('admin/config/search/metatag/global', $values, 'Save');
+    $this->assertText('Saved the Global Metatag defaults.');
+    drupal_flush_all_caches();
+    $this->drupalGet('');
+    $this->assertResponse(200);
+
+    $this->assertRaw('<meta property="og:image" content="http://blahblahblah.com/insecure.jpg" />', t('Test og:image with regular http:// link'));
+    $this->assertRaw('<meta property="og:image:secure_url" content="https://blahblahblah.com/secure.jpg" />', t('Test og:image:secure_url updated regular http:// link to https:// '));
   }
 
 }
