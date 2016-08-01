@@ -7,71 +7,54 @@
 
 namespace Drupal\slick;
 
+use Drupal\blazy\Dejavu\BlazyDefault;
+
 /**
  * Defines shared plugin default settings for field formatter and Views style.
  *
  * @see FormatterBase::defaultSettings()
- * @see StylePluginBase::defineOptions().
+ * @see StylePluginBase::defineOptions()
  */
-class SlickDefault {
+class SlickDefault extends BlazyDefault {
 
   /**
    * Returns basic plugin settings.
    */
   public static function baseSettings() {
     return [
-      'cache'               => -1,
       'display'             => 'main',
-      'current_view_mode'   => '',
-      'optionset'           => 'default',
       'optionset_thumbnail' => '',
       'override'            => FALSE,
       'overridables'        => [],
-      'preloader'           => FALSE,
-      'skin'                => '',
       'skin_arrows'         => '',
       'skin_dots'           => '',
       'skin_thumbnail'      => '',
       'thumbnail_caption'   => '',
-    ];
+    ] + parent::baseSettings();
   }
 
   /**
-   * Returns extended field formatter and Views settings.
+   * Returns image-related field formatter and Views settings.
    */
-  public static function extendedSettings() {
+  public static function imageSettings() {
     return [
-      'box_style'              => '',
-      'caption'                => [],
-      'image_style'            => '',
-      'layout'                 => '',
-      'media_switch'           => '',
-      'ratio'                  => '',
-      'responsive_image_style' => '',
-      'thumbnail_style'        => '',
-      'thumbnail_hover'        => FALSE,
-      'vanilla'                => FALSE,
-    ] + self::baseSettings();
+      'thumbnail_effect' => '',
+    ] + self::baseSettings() + parent::imageSettings();
   }
 
   /**
    * Returns fieldable entity formatter and Views settings.
    */
-  public static function fieldableSettings() {
+  public static function extendedSettings() {
     return [
-      'class'          => '',
-      'dimension'      => '',
-      'grid'           => '',
-      'grid_medium'    => '',
-      'grid_small'     => '',
-      'image'          => '',
-      'link'           => '',
-      'overlay'        => '',
+      'grid'           => 0,
+      'grid_header'    => '',
+      'grid_medium'    => 0,
+      'grid_small'     => 0,
       'preserve_keys'  => FALSE,
-      'title'          => '',
-      'view_mode'      => '',
-      'visible_slides' => '',
-    ] + self::extendedSettings();
+      'thumbnail'      => '',
+      'visible_items'  => 0,
+    ] + self::imageSettings() + parent::extendedSettings();
   }
 
 }

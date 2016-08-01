@@ -18,14 +18,14 @@ interface SlickManagerInterface {
    * @param array $build
    *   An associative array containing:
    *   - items: An array of slick contents: text, image or media.
-   *   - options: An array of key:value pairs of custom JS options.
+   *   - options: An array of key:value pairs of custom JS overrides.
    *   - optionset: The cached optionset object to avoid multiple invocations.
    *   - settings: An array of key:value pairs of HTML/layout related settings.
    *
    * @return array
    *   The cacheable renderable array of a slick instance, or empty array.
    */
-  public function slick($build = []);
+  public static function slick($build = []);
 
   /**
    * Returns a renderable array of both main and thumbnail slick instances.
@@ -33,7 +33,7 @@ interface SlickManagerInterface {
    * @param array $build
    *   An associative array containing:
    *   - items: An array of slick contents: text, image or media.
-   *   - options: An array of key:value pairs of custom JS options.
+   *   - options: An array of key:value pairs of custom JS overrides.
    *   - optionset: The cached optionset object to avoid multiple invocations.
    *   - settings: An array of key:value pairs of HTML/layout related settings.
    *   - thumb: An associative array of slick thumbnail following the same

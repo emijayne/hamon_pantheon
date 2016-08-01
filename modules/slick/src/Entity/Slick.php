@@ -10,7 +10,6 @@ namespace Drupal\slick\Entity;
 use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Config\Entity\ConfigEntityBase;
-use Drupal\slick\SlickInterface;
 
 /**
  * Defines the Slick configuration entity.
@@ -23,12 +22,14 @@ use Drupal\slick\SlickInterface;
  *   entity_keys = {
  *     "id" = "name",
  *     "label" = "label",
+ *     "status" = "status",
  *     "weight" = "weight",
  *   },
  *   config_export = {
  *     "id",
  *     "name",
  *     "label",
+ *     "status",
  *     "weight",
  *     "group",
  *     "skin",
@@ -58,7 +59,7 @@ class Slick extends ConfigEntityBase implements SlickInterface {
    *
    * @var int
    */
-  protected $weight;
+  protected $weight = 0;
 
   /**
    * The optionset group for easy selections.
@@ -136,6 +137,7 @@ class Slick extends ConfigEntityBase implements SlickInterface {
       }
       return $this->options[$group];
     }
+
     return $this->options;
   }
 
@@ -149,8 +151,32 @@ class Slick extends ConfigEntityBase implements SlickInterface {
   /**
    * {@inheritdoc}
    */
+  public function setSettings($settings) {
+    $this->options['settings'] = $settings;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getSetting($setting_name) {
     return isset($this->options['settings'][$setting_name]) ? $this->options['settings'][$setting_name] : NULL;
+  }
+
+  /**
+   * Returns available slick default options under group 'settings'.
+   */
+  public static function defaultSettings($group = 'settings') {
+    return self::load('default')->options[$group];
+  }
+
+  /**
+   * Overrides Drupal\Core\Entity\Entity::create().
+   */
+  public static function create(array $values = []) {
+    $optionset = parent::create($values);
+
+    $optionset->setSettings($optionset->getSettings() + self::defaultSettings());
+    return $optionset;
   }
 
   /**
@@ -256,13 +282,13 @@ class Slick extends ConfigEntityBase implements SlickInterface {
   }
 
   /**
-   * Returns the HTML ID of a single slick instance.
+   * Returns the trusted HTML ID of a single slick instance.
    */
   public static function getHtmlId($string = 'slick', $id = '') {
     $slick_id = &drupal_static('slick_id', 0);
 
     // Do not use dynamic Html::getUniqueId, otherwise broken asnavfors.
-    return $id ?: Html::getId($string . '-' . ++$slick_id);
+    return empty($id) ? Html::getId($string . '-' . ++$slick_id) : $id;
   }
 
   /**
@@ -270,15 +296,18 @@ class Slick extends ConfigEntityBase implements SlickInterface {
    */
   public static function htmlSettings() {
     return [
-      'display'      => 'main',
-      'grid'         => '',
-      'id'           => '',
-      'nav'          => FALSE,
-      'media_switch' => '',
-      'optionset'    => 'default',
-      'skin'         => '',
-      'unslick'      => FALSE,
-      'vanilla'      => FALSE,
+      'cache'             => -1,
+      'current_view_mode' => '',
+      'display'           => 'main',
+      'grid'              => '',
+      'id'                => '',
+      'nav'               => FALSE,
+      'media_switch'      => '',
+      'optionset'         => 'default',
+      'skin'              => '',
+      'unslick'           => FALSE,
+      'vanilla'           => FALSE,
+      'view_name'         => '',
     ];
   }
 

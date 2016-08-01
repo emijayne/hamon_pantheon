@@ -3,10 +3,3 @@
 views.style.slick:
   type: slick_extended
   label: 'Slick carousel'
-  mapping:
-    id:
-      type: string
-      label: 'Slick ID'
-    thumbnail:
-      type: string
-      label: 'Thumbnail image'

@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Default theme implementation for the individual Slick item/slide template.
+ * Default theme implementation for the individual slick item/slide template.
  *
  * Available variables:
  * - attributes: An array of attributes to apply to the element.
@@ -31,6 +31,13 @@
     not settings.detroy ? 'slide__content'
   ]
 %}
+{% set slide %}
+  {% if settings.split and not settings.unslick %}
+    <div class="slide__media">{{ item.slide }}</div>
+  {% else %}
+    {{ item.slide }}
+  {% endif %}
+{% endset %}
 
 {% spaceless %}
 {% if settings.wrapper %}
@@ -38,34 +45,32 @@
   {% if settings.grid is empty %}<div{{ content_attributes.addClass(content_classes) }}>{% endif %}
 {% endif %}
 
-  {% if settings.split %}<div class="slide__media">{% endif %}
-    {{ item.slide }}
-  {% if settings.split %}</div>{% endif %}
+  {{ slide }}
 
   {% if item.caption %}
     {% if settings.fullwidth %}<div class="slide__constrained">{% endif %}
 
       <div class="slide__caption">
-      {% if item.caption.overlay %}
-        <div class="slide__overlay">{{ item.caption.overlay }}</div>
-        {% if settings.data %}<div class="slide__data">{% endif %}
-      {% endif %}
+        {% if item.caption.overlay %}
+          <div class="slide__overlay">{{ item.caption.overlay }}</div>
+          {% if settings.data %}<div class="slide__data">{% endif %}
+        {% endif %}
 
-      {% if item.caption.title %}
-        <h2 class="slide__title">{{ item.caption.title }}</h2>
-      {% endif %}
+        {% if item.caption.title %}
+          <h2 class="slide__title">{{ item.caption.title }}</h2>
+        {% endif %}
 
-      {% if item.caption.alt %}
-        <p class="slide__description">{{ item.caption.alt }}</p>
-      {% endif %}
+        {% if item.caption.alt %}
+          <p class="slide__description">{{ item.caption.alt }}</p>
+        {% endif %}
 
-      {{ item.caption.data }}
+        {{ item.caption.data }}
 
-      {% if item.caption.link %}
-        <div class="slide__link">{{ item.caption.link }}</div>
-      {% endif %}
+        {% if item.caption.link %}
+          <div class="slide__link">{{ item.caption.link }}</div>
+        {% endif %}
 
-      {% if item.caption.overlay and settings.data %}</div>{% endif %}
+        {% if item.caption.overlay and settings.data %}</div>{% endif %}
       </div>
 
     {% if settings.fullwidth %}</div>{% endif %}

@@ -12,7 +12,7 @@ use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\slick\SlickAdmin;
+use Drupal\slick\Form\SlickAdmin;
 use Drupal\slick\SlickManagerInterface;
 
 /**
@@ -23,25 +23,15 @@ abstract class SlickFormBase extends EntityForm {
   /**
    * The slick service.
    *
-   * @var \Drupal\slick\SlickAdmin.
+   * @var \Drupal\slick\Form\SlickAdmin.
    */
   protected $admin;
 
   /**
-   * The slick service.
-   *
-   * @var \Drupal\slick\SlickManagerInterface.
-   */
-  protected $manager;
-
-  /**
    * Constructs a SlickForm object.
-   *
-   * @param \Drupal\slick\SlickManagerInterface $manager
-   *   The slick manager.
    */
   public function __construct(SlickAdmin $admin, SlickManagerInterface $manager) {
-    $this->admin   = $admin;
+    $this->admin = $admin;
     $this->manager = $manager;
   }
 
@@ -76,6 +66,7 @@ abstract class SlickFormBase extends EntityForm {
     $readme  = Url::fromUri('base:' . $path . '/README.txt')->toString();
 
     $form['#attributes']['class'][] = 'form--slick';
+    $form['#attributes']['class'][] = 'form--blazy';
     $form['#attributes']['class'][] = 'form--optionset';
 
     $form['label'] = [
@@ -86,7 +77,7 @@ abstract class SlickFormBase extends EntityForm {
       '#required'      => TRUE,
       '#description'   => $this->t("Label for the Slick optionset."),
       '#attributes'    => $tooltip,
-      '#prefix'        => '<div class="form--slick__header form--slick__half form--slick__half-first has-tooltip clearfix">',
+      '#prefix'        => '<div class="form__header form__half form__half--first has-tooltip clearfix">',
     ];
 
     // Keep the legacy CTools ID, i.e.: name as ID.
@@ -106,12 +97,12 @@ abstract class SlickFormBase extends EntityForm {
     $form['skin'] = [
       '#type'          => 'select',
       '#title'         => $this->t('Skin'),
-      '#options'       => $this->admin->getSkinOptions(),
+      '#options'       => $this->admin->getSkinsByGroupOptions(),
       '#empty_option'  => $this->t('- None -'),
       '#default_value' => $slick->getSkin(),
       '#description'   => $this->t('Skins allow swappable layouts like next/prev links, split image and caption, etc. However a combination of skins and options may lead to unpredictable layouts, get yourself dirty. See main <a href="@url">README</a> for details on Skins. Only useful for custom work, and ignored/overridden by slick formatters or sub-modules.', ['@url' => $readme]),
       '#attributes'    => $tooltip,
-      '#prefix'        => '<div class="form--slick__header form--slick__half form--slick__half-last has-tooltip clearfix">',
+      '#prefix'        => '<div class="form__header form__half form__half--last has-tooltip clearfix">',
     ];
 
     $form['group'] = [

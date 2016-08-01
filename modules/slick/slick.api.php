@@ -34,12 +34,18 @@
 
   // Invoke the plugin class, or use a DI service container accordingly.
   $slick = \Drupal::service('slick.manager');
+
+  // Access the formatter service for image-related methods:
+  $formatter = \Drupal::service('slick.formatter');
+
   $build = [];
 
-  // Use theme_slick_image to have lazyLoad, or theme_image_style/theme_image.
   // Caption contains: alt, data, link, overlay, title.
   // Each item has keys: slide, caption, settings.
   $items[] = [
+    // Use $formatter->getImage($element) to have lazyLoad where $element
+    // contains:
+    // item: Drupal\image\Plugin\Field\FieldType\ImageItem
     'slide'   => '<img src="https://drupal.org/files/One.gif" />',
     'caption' => ['title' => t('Description #1')],
   ];
@@ -91,6 +97,10 @@
 
   // Invoke the plugin class, or use a DI service container accordingly.
   $slick = \Drupal::service('slick.manager');
+
+  // Access the formatter service for image related methods:
+  $formatter = \Drupal::service('slick.formatter');
+
   $build = [];
 
   // 1.
@@ -220,6 +230,10 @@
 
   // Invoke the plugin class, or use a DI service container accordingly.
   $slick = \Drupal::service('slick.manager');
+
+  // Access the formatter service for image related methods:
+  $formatter = \Drupal::service('slick.formatter');
+
   $build = [];
 
   // 1. Main slider ------------------------------------------------------------
@@ -232,6 +246,10 @@
   foreach ($images as $key) {
     // Each item has keys: slide, caption, settings.
     $build['items'][] = [
+
+      // Use $formatter->getImage($element) to have lazyLoad where $element
+      // contains:
+      // item: Drupal\image\Plugin\Field\FieldType\ImageItem
       'slide'   => '<img src="/sites/all/images/image-0' . $key . '.jpg" width="1140" />',
 
       // Main caption contains: alt, data, link, overlay, title keys which serve
@@ -271,6 +289,8 @@
   foreach ($images as $key) {
     // Each item has keys: slide, caption, settings.
     $build['thumb']['items'][] = [
+      // Use $formatter->getThumbnail($settings) where $settings contain:
+      // uri, image_style, height, width, alt, title.
       'slide'   => '<img src="/sites/all/images/image-0' . $key . '.jpg" width="210" />',
 
       // Thumbnail caption accepts direct markup or custom renderable array
@@ -310,6 +330,7 @@
  *
  * @deprecated, will be removed anytime when a core solution is available.
  * @see #2233261
+ * Postponed till D9.
  *
  * @see slick_hook_info()
  * @see slick_example.module
@@ -347,9 +368,11 @@ class HookSlickSkin implements SlickSkinInterface {
         // Optional module name to prefix the library name.
         'provider' => 'my_module',
         'css' => [
-          // Full path to a CSS file to include with the skin.
-          $theme_path . '/css/my-theme--slider.css' => [],
-          $theme_path . '/css/my-theme--carousel.css' => [],
+          'theme' => [
+            // Full path to a CSS file to include with the skin.
+            $theme_path . '/css/my-theme--slider.css' => [],
+            $theme_path . '/css/my-theme--carousel.css' => [],
+          ],
         ],
         'js' => [
           // Full path to a JS file to include with the skin.

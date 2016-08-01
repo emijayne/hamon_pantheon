@@ -1,17 +1,17 @@
 {#
 /**
  * @file
- * Default theme implementation for the slick-grid template.
+ * Default theme implementation for the slick-grid items template.
  *
  * Available variables:
  * - attributes: An array of attributes to apply to the element.
- * - items: A renderable array of the main image/background.
- * - settings: A renderable array containing cherry-picked seetings.
+ * - items: A renderable array containing chunks of slick-slide.html.twig.
+ * - settings: A renderable array containing the given settings.
  */
 #}
 {%
   set classes = [
-    'slide__content',
+    settings.unslick ? 'slick__grid' : 'slide__content',
     'block-grid',
     settings.grid_small ? 'small-block-grid-' ~ settings.grid_small,
     settings.grid_medium ? 'medium-block-grid-' ~ settings.grid_medium,
@@ -20,11 +20,11 @@
 %}
 {%
   set item_classes = [
-    setting.unslick ? 'slick__grid' : 'slide__grid',
+    not settings.unslick ? 'slide__grid',
     'grid'
   ]
 %}
-
+{{ kint(settings) }}
 {% spaceless %}
 <ul{{ attributes.addClass(classes) }}>
   {% for delta, item in items %}

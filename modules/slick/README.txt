@@ -20,12 +20,36 @@ samples from slick_example [3] only if trouble to build slicks. Be sure to read
 its README.txt. Spending 5 minutes or so will save you hours in building more
 complex slideshows.
 
-The module supports Slick 1.5 above, and dropped supporting Slick 1.4.x below.
+The module supports Slick 1.5 above.
 Slick 2.x is just out 9/21/15, and hasn't been officially supported now, 9/27.
 
 [1] https://groups.drupal.org/node/20384
 [2] https://www.drupal.org/node/418616
 [3] http://dgo.to/slick_extras
+
+
+REQUIREMENTS
+--------------------------------------------------------------------------------
+- Slick library:
+  o Download Slick archive >= 1.5 from https://github.com/kenwheeler/slick/
+  o Extract it as is, rename "slick-master" to "slick", so the assets are at:
+
+    /libraries/slick/slick/slick.css
+    /libraries/slick/slick/slick-theme.css (optional if a skin chosen)
+    /libraries/slick/slick/slick.min.js
+
+- Download jqeasing from https://github.com/gdsmith/jquery.easing, so available
+  at:
+  /libraries/easing/jquery.easing.min.js
+  This is CSS easing fallback for non-supporting browsers.
+
+- Blazy.module, to reduce DRY stuffs, and as a bonus, advanced lazyloading
+  such as delay lazyloading for below-fold sliders, iframe, (fullscreen) CSS
+  background lazyloading, breakpoint dependent multi-serving images, lazyload
+  ahead for smoother UX.
+
+  Important! Be sure to enable Blazy first before updating Slick Alphas,
+  otherwise a requirements error.
 
 FEATURES
 --------------------------------------------------------------------------------
@@ -62,34 +86,19 @@ The Slick module has several sub-modules:
 
 - slick_media [1], to get richer contents using Media entity.
 
-- slick_views [2], to get more complex slides.
+- slick_video [2], to get video carousels using Video Embed Field.
+
+- slick_views [3], to get more complex slides.
 
 - slick_devel, if you want to help testing and developing the Slick.
 - slick_example, to get up and running quickly.
-  Both are included in slick_extras [3].
+  Both are included in slick_extras [4].
 
 
 [1] http://dgo.to/slick_media
-[2] http://dgo.to/slick_views
-[3] http://dgo.to/slick_extras
-
-
-REQUIREMENTS
---------------------------------------------------------------------------------
-- Slick library:
-  o Download Slick archive >= 1.5 from https://github.com/kenwheeler/slick/
-  o Extract it as is, rename "slick-master" to "slick", so the assets are at:
-
-    /libraries/slick/slick/slick.css
-    /libraries/slick/slick/slick-theme.css (optional if a skin chosen)
-    /libraries/slick/slick/slick.min.js
-
-- Download jqeasing from https://github.com/gdsmith/jquery.easing, so available
-  at:
-  /libraries/easing/jquery.easing.min.js
-  This is CSS easing fallback for non-supporting browsers.
-
-- A basic knowledge of Drupal site building.
+[2] http://dgo.to/slick_media
+[3] http://dgo.to/slick_views
+[4] http://dgo.to/slick_extras
 
 
 
@@ -114,7 +123,7 @@ To create optionsets, go to:
 
   admin/config/media/slick
 
-Be sure to enable Slick UI sub-module first.
+Be sure to enable Slick UI sub-module first, otherwise regular "Access denied".
 These will be available at field formatter "Manage display", and Views UI.
 
 
@@ -149,7 +158,8 @@ do. But more often CSS will do.
 
 Skins allow swappable layouts like next/prev links, split image or caption, etc.
 with just CSS. However a combination of skins and options may lead to
-unpredictable layouts, get yourself dirty.
+unpredictable layouts, get yourself dirty. Use the provided samples to see
+the working skins.
 
 Some default complex layout skins applied to desktop only, adjust for the mobile
 accordingly. The provided skins are very basic to support the necessary layouts.
@@ -205,8 +215,9 @@ Use hook_slick_skins_info() and implement \Drupal\slick\SlickSkinInterface
 to register ones. Clear the cache once.
 See slick.api.php for more info on skins.
 See \Drupal\slick\SlickSkinInterface.
+
 Other skins are available at http://dgo.to/slick_extras
-Some extras skins are WIP which may not work as expected.
+Some extra skins are WIP which may not work as expected.
 
 
 GRID
@@ -238,16 +249,7 @@ broken Grid, see skin Grid above for more details.
 HTML STRUCTURE
 --------------------------------------------------------------------------------
 Note, non-BEM classes are added by JS.
-Before Slick 1.4, no longer supported:
--------------------------------------
-<div class="slick slick-processed slick-initialized slick-slider">
-  <div class="slick__slide"></div>
-  <nav class="slick__arrow"></nav>
-</div>
 
-
-After Slick 1.4 is the currently supported version:
---------------------------------------------------
 <div class="slick slick-processed">
   <div class="slick__slider slick-initialized slick-slider">
     <div class="slick__slide"></div>
@@ -255,15 +257,7 @@ After Slick 1.4 is the currently supported version:
   <nav class="slick__arrow"></nav>
 </div>
 
-The reason behind the change was the new Slick will make direct children as
-slides, meaning arrows are slides, not navigation anymore, which is unwanted.
-At both cases, asNavFor should target slick-initialized class/ID attributes.
-
-
-HOW CAN YOU HELP?
---------------------------------------------------------------------------------
-Please consider helping in the issue queue, provide improvement, or helping with
-documentation.
+asNavFor should target slick-initialized class/ID attributes.
 
 
 BUG REPORTS OR SUPPORT REQUESTS
@@ -311,6 +305,8 @@ TROUBLESHOOTING
 - If you are customizing template files, or theme functions, be sure to re-check
   against the latest.
 
+- Be sure Slick release is similar, or later than Blazy.
+
 
 KNOWN ISSUES
 --------------------------------------------------------------------------------
@@ -321,7 +317,7 @@ KNOWN ISSUES
 - The Slick lazyLoad is not supported with Responsive image. Slick only
   facilitates Responsive image to get in. The image formatting is taken over by
   Responsive image.
-  Some other options such as Media switchers are currently not supported either.
+  Some other options such as Aspect ratio is currently not supported either.
 
 - Photobox is best for:
   - infinite true + slidesToShow 1
@@ -331,7 +327,12 @@ KNOWN ISSUES
 
 - The following is not module related, but worth a note:
   o lazyLoad ondemand has issue with dummy image excessive height.
-    Added fixes to suppress it via option Aspect ratio (fluid).
+    Added fixes to suppress it via option Aspect ratio (fluid | enforced).
+    Or use Blazy lazyload for more advanced options.
+  o Aspect ratio is not compatible with Responsive image or multi-serving
+    images.
+    However if you can stick to one Aspect ratio, choose 'enforced' instead.
+    Otherwise disable Aspect ratio for multi-serving images.
   o If the total < slidesToShow, Slick behaves. Previously added a workaround to
     fix this, but later dropped and handed over to the core instead.
   o Fade option with slideToShow > 1 will screw up.
@@ -341,22 +342,30 @@ KNOWN ISSUES
     obvious if slidesToShow > 1. Simply disable it if not desired.
 
 
-UNKNOWN ISSUES
---------------------------------------------------------------------------------
-- Anything the maintainers are not aware of.
-  Please report if you find one. Your report and help is any module QA. Thanks.
-
-
 CURRENT DEVELOPMENT STATUS
 --------------------------------------------------------------------------------
 A full release should be reasonable after proper feedbacks from the community,
 some code cleanup, and optimization where needed. Patches are very much welcome.
+
 Alpha and Beta releases are for developers only. Be aware of possible breakage.
+
+Be sure to first update Blazy.
+However if it is broken, unless an update is explicitly required, clearing cache
+should fix most issues durig DEV phases. Prior to any update, always visit:
+/admin/config/development/performance
 
 
 ROADMAP
 --------------------------------------------------------------------------------
 - Bug fixes, code cleanup, optimization, and full release.
+
+
+HOW CAN YOU HELP?
+--------------------------------------------------------------------------------
+Please consider helping in the issue queue, provide improvement, or helping with
+documentation.
+
+If you find this module helpful, please help back spread the love. Thanks.
 
 
 AUTHOR/MAINTAINER/CREDITS
@@ -365,7 +374,6 @@ Slick 8.x-1.x by gausarts, and other authors below.
 Slick 7.x-2.x by gausarts, inspired by Flexslider with CTools integration.
 Slick 7.x-1.x by arshadcn, the original author.
 
-With the help from the community:
 - https://www.drupal.org/node/2232779/committers
 - CHANGELOG.txt for helpful souls with their patches, suggestions and reports.
 
