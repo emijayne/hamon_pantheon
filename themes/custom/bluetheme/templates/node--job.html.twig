@@ -74,11 +74,12 @@
 #}
 <article{{ attributes }}>
 
-  {{ title_prefix }}
+{#   {{ title_prefix }}
   {% if not page %}
-    <h2{{ title_attributes }}>
-      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
-    </h2>
+  <h2{{ title_attributes }}>
+    <a href="{{ url }}" rel="bookmark">{{ label }}</a> 
+    <span class="subtitle">for {{ content.field_tags }}</span>
+  </h2>
   {% endif %}
   {{ title_suffix }}
 
@@ -91,14 +92,22 @@
       </div>
     </footer>
   {% endif %}
-
+ #}
   <div{{ content_attributes }}>
-    <div class="callout lead">
+    <div class="large callout lead">
+      {% if label %}
+      <h3 class="align-right">{{ content.field_tags }}</h3>
+      <h2 class="page-title">{{ label }}</h2>
+      {% endif %}
       {{ content.body }}
       <a class="button primary" href="https://hamonusa-hr.com/onlineapp/default.aspx?position={{ node.field_code.value }}">Apply Now</a>
     </div>
-    {{ content.field_responsibilities }}
-    {{ content.field_skills }}
+    <div class="row align-center">
+      <div class="columns medium-11">
+      {{ content.field_responsibilities }}
+      {{ content.field_skills }}
+      </div>
+    </div>
   </div>
 
 </article>
