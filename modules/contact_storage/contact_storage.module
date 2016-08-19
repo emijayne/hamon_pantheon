@@ -6,6 +6,8 @@
  */
 
 use Drupal\contact\MessageForm;
+use Drupal\contact_storage\Form\ContactFormDisableForm;
+use Drupal\contact_storage\Form\ContactFormEnableForm;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
@@ -13,13 +15,20 @@ use Drupal\contact\ContactFormInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\contact\Entity\ContactForm;
+use Drupal\views\Views;
 
 /**
  * Implements hook_form_FORM_ID_alter() for contact_form_form().
  */
 function contact_storage_form_contact_form_form_alter(&$form, FormStateInterface $form_state) {
   /** @var \Drupal\contact\ContactFormInterface $contact_form */
-  $contact_form = $form_state->getFormObject()->getEntity();
+
+  $form_object = $form_state->getFormObject();
+  if (!in_array($form_object->getOperation(), ['edit', 'add'], TRUE)) {
+    // Only alter the edit and add forms.
+    return;
+  }
+  $contact_form = $form_object->getEntity();
   $form['contact_storage_uri'] = [
     '#type' => 'textfield',
     '#title' => t('Redirect Page'),
@@ -32,6 +41,12 @@ function contact_storage_form_contact_form_form_alter(&$form, FormStateInterface
     '#description' => t("Override the submit button's default <em>Send message</em> text."),
     '#default_value' => $contact_form->getThirdPartySetting('contact_storage', 'submit_text', 'Send message'),
   ];
+  $form['contact_storage_disabled_form_message'] = [
+    '#type' => 'textfield',
+    '#title' => t('Default disabled contact form message'),
+    '#description' => t('Default message to display if the contact form is disabled.'),
+    '#default_value' => $contact_form->getThirdPartySetting('contact_storage', 'disabled_form_message', t('This contact form has been disabled.')),
+  ];
   $form['contact_storage_preview'] = [
     '#type' => 'checkbox',
     '#title' => t('Allow preview'),
@@ -40,6 +55,7 @@ function contact_storage_form_contact_form_form_alter(&$form, FormStateInterface
   ];
   $form['#entity_builders'][] = 'contact_storage_contact_form_form_builder';
 }
+
 /**
  * Entity builder for the contact form edit form with third party options.
  *
@@ -49,6 +65,7 @@ function contact_storage_contact_form_form_builder($entity_type, ContactFormInte
   $contact_form->setThirdPartySetting('contact_storage', 'redirect_uri', $form_state->getValue('contact_storage_uri'));
   $contact_form->setThirdPartySetting('contact_storage', 'submit_text', $form_state->getValue('contact_storage_submit_text'));
   $contact_form->setThirdPartySetting('contact_storage', 'show_preview', $form_state->getValue('contact_storage_preview'));
+  $contact_form->setThirdPartySetting('contact_storage', 'disabled_form_message', $form_state->getValue('contact_storage_disabled_form_message'));
 }
 
 /**
@@ -112,7 +129,6 @@ function contact_storage_entity_base_field_info(EntityTypeInterface $entity_type
   }
 }
 
-
 /**
  * Implements hook_entity_base_field_info_alter().
  */
@@ -139,13 +155,31 @@ function contact_storage_entity_operation_alter(array &$operations, EntityInterf
       'url' => $entity->urlInfo('canonical'),
     );
   }
+  if ($entity->getEntityTypeId() == 'contact_form' && $entity->access('update')) {
+    $operations['clone'] = array(
+      'title' => t('Clone'),
+      'weight' => 10,
+      'url' => $entity->urlInfo('clone-form'),
+    );
+
+    // Provide a link to view messages submitted form the form, if the view
+    // exists and if the user has access rights to it.
+    $view = Views::getView('contact_messages');
+    if ($view && $view->access('page_1')) {
+      $view->setDisplay('page_1');
+      $operations['view_messages'] = array(
+        'title' => t('View messages'),
+        'url' => $view->getUrl()->setOption('query', ['form' => $entity->id()]),
+      );
+    }
+  }
 }
 
 /**
  * Implements hook_entity_type_alter().
  */
 function contact_storage_entity_type_alter(array &$entity_types) {
-  /** @var $entity_types \Drupal\Core\Entity\EntityTypeInterface[] */
+  /* @var $entity_types \Drupal\Core\Entity\EntityTypeInterface[] */
   // Set the controller class for nodes to an alternate implementation of the
   // Drupal\Core\Entity\EntityStorageInterface interface.
   $entity_types['contact_message']->setStorageClass('\Drupal\Core\Entity\Sql\SqlContentEntityStorage');
@@ -157,11 +191,22 @@ function contact_storage_entity_type_alter(array &$entity_types) {
   // Add edit and delete forms.
   $entity_types['contact_message']->setFormClass('edit', '\Drupal\contact_storage\MessageEditForm');
   $entity_types['contact_message']->setFormClass('delete', '\Drupal\Core\Entity\ContentEntityDeleteForm');
+  // Add clone form for messages.
+  $entity_types['contact_form']->setFormClass('clone', '\Drupal\contact_storage\Form\ContactFormCloneForm');
   // Allow edit/delete links in list builder.
   $entity_types['contact_message']->setLinkTemplate('collection', '/admin/structure/contact/messages');
   $entity_types['contact_message']->setLinkTemplate('canonical', '/admin/structure/contact/messages/{contact_message}');
   $entity_types['contact_message']->setLinkTemplate('edit-form', '/admin/structure/contact/messages/{contact_message}/edit');
   $entity_types['contact_message']->setLinkTemplate('delete-form', '/admin/structure/contact/messages/{contact_message}/delete');
+  // Add clone link for forms.
+  $entity_types['contact_form']->setLinkTemplate('clone-form', '/admin/structure/contact/manage/{contact_form}/clone');
+
+  // Define the entity route provider.
+  $route_providers = $entity_types['contact_message']->getRouteProviderClasses();
+  $route_providers['html'] = '\Drupal\contact_storage\ContactRouteProvider';
+  $entity_types['contact_message']->setHandlerClass('route_provider', $route_providers);
+  $entity_types['contact_form']->setHandlerClass('route_provider', $route_providers);
+
   // @todo Replace with access control handler when not enough.
   $entity_types['contact_message']->set('admin_permission', 'administer contact forms');
   // Integrate with Views.
@@ -169,4 +214,113 @@ function contact_storage_entity_type_alter(array &$entity_types) {
   $entity_types['contact_message']->setListBuilderClass('\Drupal\Core\Entity\EntityListBuilder');
 
   $entity_types['contact_form']->setViewBuilderClass('\Drupal\contact_storage\ContactFormViewBuilder');
+
+  // If the body of the message should be sent as HTML.
+  if (\Drupal::config('contact_storage.settings')->get('send_html')) {
+    $entity_types['contact_message']->setViewBuilderClass('Drupal\contact_storage\ContactMessageViewBuilder');
+  }
+
+  $keys = $entity_types['contact_form']->getKeys();
+  $keys['status'] = 'status';
+  $entity_types['contact_form']->set('entity_keys', $keys);
+
+  // Handler classes and templates for the Enable and Disable options.
+  $entity_types['contact_form']
+    ->setFormClass('disable', ContactFormDisableForm::class)
+    ->setFormClass('enable', ContactFormEnableForm::class)
+    ->setLinkTemplate('enable', '/admin/structure/contact/view/{contact_form}/enable')
+    ->setLinkTemplate('disable', '/admin/structure/contact/view/{contact_form}/disable');
+}
+
+/**
+ * Implements hook_entity_extra_field_info().
+ */
+function contact_storage_entity_extra_field_info() {
+  $fields = array();
+  foreach (array_keys(\Drupal::service('entity_type.bundle.info')->getBundleInfo('contact_message')) as $bundle) {
+    $fields['contact_message'][$bundle]['form']['preview'] = array(
+      'label' => t('Preview'),
+      'description' => t('Rendered preview'),
+      'weight' => 50,
+    );
+  }
+  return $fields;
+}
+
+/**
+ * Implements hook_mail_alter().
+ */
+function contact_storage_mail_alter(&$message) {
+  // Check that the message isn't a copy sent to the sender (page_copy).
+  if (($message['key'] == 'page_mail') && isset($message['params']['contact_message'])) {
+    $contact_message = $message['params']['contact_message'];
+    foreach ($contact_message->getFields() as $field) {
+      if ($field->getFieldDefinition()->getType() === 'contact_storage_options_email') {
+        // Add recipients to the message from the Option email field.
+        foreach ($field as $delta => $item) {
+          $label = $item->value;
+          // Obtain the email to add to the message, using the label.
+          $email = $item->getFieldDefinition()->getSetting('allowed_values')[$label]['emails'];
+          $message['to'] .= ',' . $email;
+        }
+      }
+    }
+  }
+  // If enabled, ensure that contact mails are sent as plain text.
+  if ($message['module'] === 'contact' && isset($message['params']['contact_message']) && \Drupal::config('contact_storage.settings')->get('send_html')) {
+    // Enforce that we are sending mails as HTML, and tell Swiftmailer to
+    // generate a plain text version.
+    $message['headers']['Content-Type'] = 'text/html';
+    $message['params']['convert'] = TRUE;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function contact_storage_theme() {
+  return array(
+    'swiftmailer__contact' => array(
+      'variables' => array(
+        'message' => array(),
+      ),
+    ),
+    'contact_storage_disabled_form' => array(
+      'template' => 'contact-storage-disabled-form',
+      'variables' => array(
+        'contact_form' => NULL,
+        'redirect_uri' => '',
+        'disabled_form_message' => '',
+      ),
+    ),
+  );
+}
+
+/**
+ * Prepares variables for contact mail templates.
+ *
+ * @param array $variables
+ *   An associative array containing:
+ *   - message: An associative array containing the message array.
+ *   - body: The processed body.
+ */
+function template_preprocess_swiftmailer__contact(&$variables) {
+  $variables['subject'] = $variables['message']['subject'];
+  $variables['body'] = $variables['message']['body'];
+}
+
+/**
+ * Implements hook_field_formatter_info_alter().
+ */
+function contact_storage_field_formatter_info_alter(&$info) {
+  // Let our options_email field type re-use the default list formatter.
+  $info['list_default']['field_types'][] = 'contact_storage_options_email';
+}
+
+/**
+ * Implements hook_field_widget_info_alter().
+ */
+function contact_storage_field_widget_info_alter(&$info) {
+  // Let our options_email field type re-use the default options widget.
+  $info['options_select']['field_types'][] = 'contact_storage_options_email';
 }
