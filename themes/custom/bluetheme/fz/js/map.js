@@ -5,96 +5,11 @@ L.tileLayer('https://api.mapbox.com/styles/v1/emijayne/cisaohquy00052yqad6dhqmub
   accessToken: 'pk.eyJ1IjoiZW1pamF5bmUiLCJhIjoiY2lvMWtnbzJqMWFlNnR0bTNxcDhhYW0xaSJ9.tdujy5zALLoojTt2yEGtwA'
 }).addTo(hcmap);
 
-L.marker([43.856339, -79.387269]).addTo(hcmap).bindPopup('<div id="lochccc" class="vcard">
-  <h2 class="org">Hamon Custodis Cottrell Canada</h2>
-  <p class="adr">
-    <abbr class="geo" title="43.856339, -79.387269">
-      <span class="street-address">2-23 W Beaver Creek Rd</span><br />
-      <span class="locality">Richmond Hill</span>,&nbsp;
-      <span class="region">Ontario</span>,&nbsp;
-      <span class="postal-code">L4B 1K5</span><br />
-      <span class="country-name">Canada</span>
-    </abbr>
-  </p>
-  <p>
-    <span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:18004239011">1 800-423-9011</a><br />
-    <span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:19057710234">1 905-771-0234</a>
-  </p>
-</div>');
-L.marker([40.567142, -74.609816]).addTo(hcmap).bindPopup('<div id="lochcer" class="vcard">
-  <h2 class="org">Eastern Region</h2>
-  <p class="adr">
-    <abbr class="geo" title="40.567142, -74.609816">
-      <span class="street-address">58 East Main Street</span><br />
-      <span class="post-office-box">P.O. Box 1500</span><br />
-      <span class="locality">Somerville</span>,&nbsp;
-      <span class="region">New Jersey</span>,&nbsp;
-      <span class="postal-code">08876</span><br />
-      <span class="country-name">United States</span>
-    </abbr>
-  </p>
-  <p>
-    <span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:18004456578">1 800-445-6578</a><br />
-    <span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:19083332000">1 908-333-2000</a><br />
-    <span class="secondary badge"><i class="fi-print"></i></span> 1 908-333-2151
-  </p>
-</div>');
-L.marker([39.494215, -87.125675]).addTo(hcmap).bindPopup('<div id="lochcmr" class="vcard">
-  <h2 class="org">Midwest Region</h2>
-  <p class="adr">
-    <abbr class="geo" title="39.494215, -87.125675">
-      <span class="street-address">7335 North State Highway 59</span><br />
-      <span class="locality">Brazil</span>,&nbsp;
-      <span class="region">Indiana</span>,&nbsp;
-      <span class="postal-code">47834</span><br />
-      <span class="country-name">United States</span>
-    </abbr>
-  </p>
-  <p>
-    <span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:18124427822">1 812-442-7822</a><br />
-    <span class="secondary badge"><i class="fi-print"></i></span> 1 812-446-4151
-  </p>
-  <p><strong>Midwest Warehouse</strong></p>
-  <p>
-    <span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:18005432629">1 800-543-2629</a><br />
-    <span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:18124488791">1 812-448-8791</a><br />
-    <span class="secondary badge"><i class="fi-print"></i></span> 1 812-446-0800
-  </p>
-</div>');
-L.marker([33.581116, -86.644753]).addTo(hcmap).bindPopup('<div id="lochcsr" class="vcard">
-  <h2 class="org">Southern Region</h2>
-  <p class="adr">
-    <abbr class="geo" title="33.581116, -86.644753">
-      <span class="street-address">941 Alton Parkway</span><br />
-      <span class="locality">Birmingham</span>,&nbsp;
-      <span class="region">Alabama</span>,&nbsp;
-      <span class="postal-code">35210</span><br />
-      <span class="country-name">United States</span>
-    </abbr>
-  </p>
-  <p>
-    <span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:18008432116">1 800-843-2116</a><br />
-    <span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:12058360057">1 205-836-0057</a><br />
-    <span class="secondary badge"><i class="fi-print"></i></span> 1 205-836-0058
-  </p>
-</div>');
-L.marker([40.601414, -111.988843]).addTo(hcmap).bindPopup('<div id="lochcwr" class="vcard">
-  <h2 class="org">Western Region</h2>
-  <p class="adr">
-    <abbr class="geo" title="40.601414, -111.988843">
-      <span class="street-address">4078 West Nike Drive</span><br />
-      <span class="locality">West Jordan</span>,&nbsp;
-      <span class="region">Utah</span>,&nbsp;
-      <span class="postal-code">84084</span><br />
-      <span class="country-name">United States</span>
-    </abbr>
-  </p>
-  <p>
-    <span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:18006691022">1 800-669-1022</a><br />
-    <span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:18012558786">1 801-255-8786</a><br />
-    <span class="secondary badge"><i class="fi-print"></i></span> 1 801-255-8796
-  </p>
-</div>');
+L.marker([43.856339, -79.387269]).addTo(hcmap).bindPopup('<div id="lochccc" class="vcard"><h2 class="org">Hamon Custodis Cottrell Canada</h2><p class="adr"><abbr class="geo" title="43.856339, -79.387269"><span class="street-address">2-23 W Beaver Creek Rd</span><br /><span class="locality">Richmond Hill</span>,&nbsp;<span class="region">Ontario</span>,&nbsp;<span class="postal-code">L4B 1K5</span><br /><span class="country-name">Canada</span></abbr></p><p><span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:18004239011">1 800-423-9011</a><br /><span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:19057710234">1 905-771-0234</a></p></div>');
+L.marker([40.567142, -74.609816]).addTo(hcmap).bindPopup('<div id="lochcer" class="vcard"><h2 class="org">Eastern Region</h2><p class="adr"><abbr class="geo" title="40.567142, -74.609816"><span class="street-address">58 East Main Street</span><br /><span class="post-office-box">P.O. Box 1500</span><br /><span class="locality">Somerville</span>,&nbsp;<span class="region">New Jersey</span>,&nbsp;<span class="postal-code">08876</span><br /><span class="country-name">United States</span></abbr></p><p><span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:18004456578">1 800-445-6578</a><br /><span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:19083332000">1 908-333-2000</a><br /><span class="secondary badge"><i class="fi-print"></i></span> 1 908-333-2151</p></div>');
+L.marker([39.494215, -87.125675]).addTo(hcmap).bindPopup('<div id="lochcmr" class="vcard"><h2 class="org">Midwest Region</h2><p class="adr"><abbr class="geo" title="39.494215, -87.125675"><span class="street-address">7335 North State Highway 59</span><br /><span class="locality">Brazil</span>,&nbsp;<span class="region">Indiana</span>,&nbsp;<span class="postal-code">47834</span><br /><span class="country-name">United States</span></abbr></p><p><span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:18124427822">1 812-442-7822</a><br /><span class="secondary badge"><i class="fi-print"></i></span> 1 812-446-4151</p><p><strong>Midwest Warehouse</strong></p><p><span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:18005432629">1 800-543-2629</a><br /><span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:18124488791">1 812-448-8791</a><br /><span class="secondary badge"><i class="fi-print"></i></span> 1 812-446-0800</p></div>');
+L.marker([33.581116, -86.644753]).addTo(hcmap).bindPopup('<div id="lochcsr" class="vcard"><h2 class="org">Southern Region</h2><p class="adr"><abbr class="geo" title="33.581116, -86.644753"><span class="street-address">941 Alton Parkway</span><br /><span class="locality">Birmingham</span>,&nbsp;<span class="region">Alabama</span>,&nbsp;<span class="postal-code">35210</span><br /><span class="country-name">United States</span></abbr></p><p><span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:18008432116">1 800-843-2116</a><br /><span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:12058360057">1 205-836-0057</a><br /><span class="secondary badge"><i class="fi-print"></i></span> 1 205-836-0058</p></div>');
+L.marker([40.601414, -111.988843]).addTo(hcmap).bindPopup('<div id="lochcwr" class="vcard"><h2 class="org">Western Region</h2><p class="adr"><abbr class="geo" title="40.601414, -111.988843"><span class="street-address">4078 West Nike Drive</span><br /><span class="locality">West Jordan</span>,&nbsp;<span class="region">Utah</span>,&nbsp;<span class="postal-code">84084</span><br /><span class="country-name">United States</span></abbr></p><p><span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:18006691022">1 800-669-1022</a><br /><span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:18012558786">1 801-255-8786</a><br /><span class="secondary badge"><i class="fi-print"></i></span> 1 801-255-8796</p></div>');
 
   // var mapmain = L.map('locationmap').setView([44.9925, -93.449522], 4);
 
