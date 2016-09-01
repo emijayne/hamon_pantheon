@@ -1,6 +1,11 @@
+var hcmap = L.map('hcoffices').setView([44.9925,-93.449522],3);
 
-// text
-var textca = '<div id="lochccc" class="vcard">
+L.tileLayer('https://api.mapbox.com/styles/v1/emijayne/cisaohquy00052yqad6dhqmub/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZW1pamF5bmUiLCJhIjoiY2lvMWtnbzJqMWFlNnR0bTNxcDhhYW0xaSJ9.tdujy5zALLoojTt2yEGtwA', {
+  attribution: '<strong>HC Office Locations</strong> | &copy; Hamon',
+  accessToken: 'pk.eyJ1IjoiZW1pamF5bmUiLCJhIjoiY2lvMWtnbzJqMWFlNnR0bTNxcDhhYW0xaSJ9.tdujy5zALLoojTt2yEGtwA'
+}).addTo(hcmap);
+
+L.marker([43.856339, -79.387269]).addTo(hcmap).bindPopup('<div id="lochccc" class="vcard">
   <h2 class="org">Hamon Custodis Cottrell Canada</h2>
   <p class="adr">
     <abbr class="geo" title="43.856339, -79.387269">
@@ -15,9 +20,8 @@ var textca = '<div id="lochccc" class="vcard">
     <span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:18004239011">1 800-423-9011</a><br />
     <span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:19057710234">1 905-771-0234</a>
   </p>
-</div>';
-
-var textnj = '<div id="lochcer" class="vcard">
+</div>');
+L.marker([40.567142, -74.609816]).addTo(hcmap).bindPopup('<div id="lochcer" class="vcard">
   <h2 class="org">Eastern Region</h2>
   <p class="adr">
     <abbr class="geo" title="40.567142, -74.609816">
@@ -34,9 +38,8 @@ var textnj = '<div id="lochcer" class="vcard">
     <span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:19083332000">1 908-333-2000</a><br />
     <span class="secondary badge"><i class="fi-print"></i></span> 1 908-333-2151
   </p>
-</div>';
-
-var textin = '<div id="lochcmr" class="vcard">
+</div>');
+L.marker([39.494215, -87.125675]).addTo(hcmap).bindPopup('<div id="lochcmr" class="vcard">
   <h2 class="org">Midwest Region</h2>
   <p class="adr">
     <abbr class="geo" title="39.494215, -87.125675">
@@ -57,9 +60,8 @@ var textin = '<div id="lochcmr" class="vcard">
     <span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:18124488791">1 812-448-8791</a><br />
     <span class="secondary badge"><i class="fi-print"></i></span> 1 812-446-0800
   </p>
-</div>';
-
-var textal = '<div id="lochcsr" class="vcard">
+</div>');
+L.marker([33.581116, -86.644753]).addTo(hcmap).bindPopup('<div id="lochcsr" class="vcard">
   <h2 class="org">Southern Region</h2>
   <p class="adr">
     <abbr class="geo" title="33.581116, -86.644753">
@@ -75,9 +77,8 @@ var textal = '<div id="lochcsr" class="vcard">
     <span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:12058360057">1 205-836-0057</a><br />
     <span class="secondary badge"><i class="fi-print"></i></span> 1 205-836-0058
   </p>
-</div>';
-
-var textut = '<div id="lochcwr" class="vcard">
+</div>');
+L.marker([40.601414, -111.988843]).addTo(hcmap).bindPopup('<div id="lochcwr" class="vcard">
   <h2 class="org">Western Region</h2>
   <p class="adr">
     <abbr class="geo" title="40.601414, -111.988843">
@@ -93,21 +94,7 @@ var textut = '<div id="lochcwr" class="vcard">
     <span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:18012558786">1 801-255-8786</a><br />
     <span class="secondary badge"><i class="fi-print"></i></span> 1 801-255-8796
   </p>
-</div>';
-
-
-var hcmap = L.map('hcoffices').setView([44.9925,-93.449522],3);
-
-L.tileLayer('https://api.mapbox.com/styles/v1/emijayne/cisaohquy00052yqad6dhqmub/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZW1pamF5bmUiLCJhIjoiY2lvMWtnbzJqMWFlNnR0bTNxcDhhYW0xaSJ9.tdujy5zALLoojTt2yEGtwA', {
-  attribution: '<strong>HC Office Locations</strong> | &copy; Hamon',
-  accessToken: 'pk.eyJ1IjoiZW1pamF5bmUiLCJhIjoiY2lvMWtnbzJqMWFlNnR0bTNxcDhhYW0xaSJ9.tdujy5zALLoojTt2yEGtwA'
-}).addTo(hcmap);
-
-L.marker([43.856339, -79.387269]).addTo(hcmap).bindPopup(textca);
-L.marker([40.567142, -74.609816]).addTo(hcmap).bindPopup(textnj);
-L.marker([39.494215, -87.125675]).addTo(hcmap).bindPopup(textin);
-L.marker([33.581116, -86.644753]).addTo(hcmap).bindPopup(textal);
-L.marker([40.601414, -111.988843]).addTo(hcmap).bindPopup(textut);
+</div>');
 
   // var mapmain = L.map('locationmap').setView([44.9925, -93.449522], 4);
 
