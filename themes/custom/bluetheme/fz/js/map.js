@@ -1,4 +1,5 @@
 
+
 // text
 var txt_hcca = '<div id="lochccc" class="vcard"><h3 class="org">Hamon Custodis Cottrell Canada</h3><p class="adr"><span class="tiny hollow button align-right"><a href="https://www.google.com/maps/place/43°51\'22.8"N+79°23\'14.2"W/@43.8563428,-79.3894577,17z">directions</a></span><span class="street-address">2-23 W Beaver Creek Rd</span><br /><span class="locality">Richmond Hill</span>,&nbsp;<span class="region">Ontario</span>,&nbsp;<span class="postal-code">L4B 1K5</span><br /><span class="country-name">Canada</span></p><p><span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:18004239011">1 800-423-9011</a>&nbsp; toll-free<br /><span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:19057710234">1 905-771-0234</a></p></div>';
 var txt_hcnj = '<div id="lochcer" class="vcard"><h3 class="org">Hamon Custodis Eastern Region</h3><p class="adr"><span class="tiny hollow button align-right"><a href="https://www.google.com/maps/place/40°34\'01.7"N+74°36\'35.3"W/@40.5671461,-74.6120047,17z">directions</a></span><span class="street-address">58 East Main Street</span><br /><span class="post-office-box">P.O. Box 1500</span><br /><span class="locality">Somerville</span>,&nbsp;<span class="region">New Jersey</span>,&nbsp;<span class="postal-code">08876</span><br /><span class="country-name">United States</span></p><p><span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:18004456578">1 800-445-6578</a>&nbsp; toll-free<br /><span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:19083332000">1 908-333-2000</a><br /><span class="secondary badge"><i class="fi-print"></i></span> 1 908-333-2151</p></div>';
@@ -9,20 +10,6 @@ var txt_hcut = '<div id="lochcwr" class="vcard"><h3 class="org">Hamon Custodis W
 var txt_corp = '<div id="lochcer" class="vcard"><h3 class="org">Hamon Corporate Headquarters</h3><h4>Hamon Custodis<br />Hamon Custodis Eastern Region<br />Hamon Research-Cottrell<br />Research Cottrell Cooling</h4><p class="adr"><span class="tiny hollow button align-right"><a href="https://www.google.com/maps/place/40°34\'01.7"N+74°36\'35.3"W/@40.5671461,-74.6120047,17z">directions</a></span><span class="street-address">58 East Main Street</span><br /><span class="post-office-box">P.O. Box 1500</span><br /><span class="locality">Somerville</span>,&nbsp;<span class="region">New Jersey</span>,&nbsp;<span class="postal-code">08876</span><br /><span class="country-name">United States</span></p><p><span class="secondary badge"><i class="fi-mail"></i></span> <a class="email" href="mailto:info.hcorp@hamonusa.com">info.hcorp@hamonusa.com</a>&nbsp; toll-free<br /><span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:19083332000">1 908-333-2000</a></p></div>';
 var txt_hdi = '<div id="locttc" class="vcard"><h2 class="org">Hamon Deltak</h2><p class="adr"><span class="tiny hollow button align-right"><a href="https://www.google.com/maps/place/44°59\'33.0"N+93°26\'58.3"W/@44.9925038,-93.4517107,17z">directions</a></span><span class="street-address">13330 12th Avenue North</span><br /><span class="locality">Plymouth</span>,&nbsp;<span class="region">Minnesota</span>,&nbsp;<span class="postal-code">55441</span><br /><span class="country-name">United States</span></p><p><span class="secondary badge"><i class="fi-mail"></i></span> <a class="email" href="mailto:info.hd@hamonusa.com">info.hd@hamonusa.com</a><br /><span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:17635577440">1 763-557-7440</a><br /><span class="secondary badge"><i class="fi-print"></i></span> 1 763-557-4700</p></div>';
 var txt_ttc = '<div id="locttc" class="vcard"><h2 class="org">Thermal Transfer Corporation</h2><p class="adr"><span class="tiny hollow button align-right"><a href="https://www.google.com/maps/place/40°22\'41.6"N+79°50\'53.8"W/@40.3782312,-79.8504684,17z">directions</a></span><span class="street-address">50 North Linden Street</span><br /><span class="locality">Duquesne</span>,&nbsp;<span class="region">Pennsylvania</span>,&nbsp;<span class="postal-code">15110</span><br /><span class="country-name">United States</span></p><p><span class="secondary badge"><i class="fi-mail"></i></span> <a class="email" href="mailto:info.ttc@hamonusa.com">info.ttc@hamonusa.com</a><br /><span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:14124604004">1 412-460-4004</a><br /><span class="secondary badge"><i class="fi-print"></i></span> 1 412-466-2899</p></div>';
-
-// hc offices
-var hcmap = L.map('hcoffices').setView([44.9925,-93.449522],3);
-
-L.tileLayer('https://api.mapbox.com/styles/v1/emijayne/cisaohquy00052yqad6dhqmub/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZW1pamF5bmUiLCJhIjoiY2lvMWtnbzJqMWFlNnR0bTNxcDhhYW0xaSJ9.tdujy5zALLoojTt2yEGtwA', {
-  attribution: '<strong>HC Office Locations</strong> | &copy; Hamon',
-  accessToken: 'pk.eyJ1IjoiZW1pamF5bmUiLCJhIjoiY2lvMWtnbzJqMWFlNnR0bTNxcDhhYW0xaSJ9.tdujy5zALLoojTt2yEGtwA'
-}).addTo(hcmap);
-
-L.marker([43.856339, -79.387269]).addTo(hcmap).bindPopup(txt_hcca);
-L.marker([40.567142, -74.609816]).addTo(hcmap).bindPopup(txt_hcnj);
-L.marker([39.494215, -87.125675]).addTo(hcmap).bindPopup(txt_hcin);
-L.marker([33.581116, -86.644753]).addTo(hcmap).bindPopup(txt_hcal);
-L.marker([40.601414, -111.988843]).addTo(hcmap).bindPopup(txt_hcut);
 
 // main
 var mapmain = L.map('locationmap').setView([44.9925,-93.449522], 4);
@@ -39,6 +26,21 @@ L.marker([33.581116, -86.644753]).addTo(mapmain).bindPopup(txt_hcal);
 L.marker([40.601414, -111.988843]).addTo(mapmain).bindPopup(txt_hcut);
 L.marker([44.992500, -93.449522]).addTo(mapmain).bindPopup(txt_hdi);
 L.marker([40.378223, -79.846091]).addTo(mapmain).bindPopup(txt_ttc);
+
+// hc offices
+var hcmap = L.map('hcoffices').setView([44.9925,-93.449522],3);
+
+L.tileLayer('https://api.mapbox.com/styles/v1/emijayne/cisaohquy00052yqad6dhqmub/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZW1pamF5bmUiLCJhIjoiY2lvMWtnbzJqMWFlNnR0bTNxcDhhYW0xaSJ9.tdujy5zALLoojTt2yEGtwA', {
+  attribution: '<strong>HC Office Locations</strong> | &copy; Hamon',
+  accessToken: 'pk.eyJ1IjoiZW1pamF5bmUiLCJhIjoiY2lvMWtnbzJqMWFlNnR0bTNxcDhhYW0xaSJ9.tdujy5zALLoojTt2yEGtwA'
+}).addTo(hcmap);
+
+L.marker([43.856339, -79.387269]).addTo(hcmap).bindPopup(txt_hcca);
+L.marker([40.567142, -74.609816]).addTo(hcmap).bindPopup(txt_hcnj);
+L.marker([39.494215, -87.125675]).addTo(hcmap).bindPopup(txt_hcin);
+L.marker([33.581116, -86.644753]).addTo(hcmap).bindPopup(txt_hcal);
+L.marker([40.601414, -111.988843]).addTo(hcmap).bindPopup(txt_hcut);
+
 
 // -------------------------------------
   // var maps = [
