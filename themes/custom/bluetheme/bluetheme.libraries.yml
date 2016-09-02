@@ -11,6 +11,7 @@ base:
     fz/js/slick.min.js: { minified: true }
     fz/js/leaflet.js: {}
     fz/js/map.js: {}
+    fz/js/maphc.js: {}
   dependencies:
     - core/jquery
 
