@@ -7,7 +7,7 @@ var txt_hcut = '<div id="lochcwr" class="vcard"><h3 class="org">Hamon Custodis W
 
 
 // hc offices
-var hcmap = L.map('hcoffices').setView([44.9925,-93.449522],3);
+var hcmap = L.map('hcoffices').setView([44.9925,-93.449522], 3);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/emijayne/cisaohquy00052yqad6dhqmub/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZW1pamF5bmUiLCJhIjoiY2lvMWtnbzJqMWFlNnR0bTNxcDhhYW0xaSJ9.tdujy5zALLoojTt2yEGtwA', {
   attribution: '<strong>HC Office Locations</strong> | &copy; Hamon',

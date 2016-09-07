@@ -11,11 +11,11 @@ var txt_ttc = '<div id="locttc" class="vcard"><h2 class="org">Thermal Transfer C
 
 
 // main
-var mapmain = L.map('locationmap').setView([44.9925,-93.449522], 4);
+var mapmain = L.map('locationmap').setView([44.9925,-93.449522], 3);
 
-L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZW1pamF5bmUiLCJhIjoiY2lvMWtnbzJqMWFlNnR0bTNxcDhhYW0xaSJ9.tdujy5zALLoojTt2yEGtwA', {
     attribution: '<strong>Hamon No.American Office Locations</strong> | &copy Hamon', 
-    accessToken: 'pk.eyJ1IjoiZW1pamF5bmUiLCJhIjoiY2lvMWxrbGxrMWFtaXVrbTNmNWE2dWZkZyJ9.1mt_VncCBhOtJSpSsXN96g'
+    accessToken: 'pk.eyJ1IjoiZW1pamF5bmUiLCJhIjoiY2lvMWtnbzJqMWFlNnR0bTNxcDhhYW0xaSJ9.tdujy5zALLoojTt2yEGtwA'
   }).addTo(mapmain);
 
 L.marker([40.567142, -74.609816]).addTo(mapmain).bindPopup(txt_corp);
