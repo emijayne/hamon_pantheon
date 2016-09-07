@@ -12,6 +12,7 @@ base:
     fz/js/leaflet.js: {}
     fz/js/map.js: {}
     fz/js/maphc.js: {}
+    fz/js/maprcc.js: {}
   dependencies:
     - core/jquery
 
