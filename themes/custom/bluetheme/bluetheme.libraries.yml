@@ -9,10 +9,10 @@ base:
     fz/js/foundation.min.js: { minified: true }
     fz/js/top_bar_active.js: {}
     fz/js/slick.min.js: { minified: true }
+    fz/js/geojson_rcc.js: {}
     fz/js/leaflet.js: {}
     fz/js/map.js: {}
     fz/js/maphc.js: {}
-    fz/js/geojson_rcc.js: {}
     fz/js/maprcc.js: {}
   dependencies:
     - core/jquery

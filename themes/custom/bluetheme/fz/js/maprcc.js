@@ -15,6 +15,8 @@ L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/
     accessToken: 'pk.eyJ1IjoiZW1pamF5bmUiLCJhIjoiY2lvMWtnbzJqMWFlNnR0bTNxcDhhYW0xaSJ9.tdujy5zALLoojTt2yEGtwA'
   }).addTo(mapmain);
 
+var rcc_oem = [rcc_btu, rcc_ahm, rcc_ast, rcc_tex, rcc_apa],
+    rcc_aft = [rcc_btu, rcc_ahm, rcc_ast, rcc_cej, rcc_apa];
 
 L.geoJson([rcc_oem, afterm], {
   style: function (feature) {
@@ -64,9 +66,6 @@ L.geoJson([rcc_oem, afterm], {
   }
 });
 
-
-var rcc_oem = [rcc_btu, rcc_ahm, rcc_ast, rcc_tex, rcc_apa],
-    rcc_aft = [rcc_btu, rcc_ahm, rcc_ast, rcc_cej, rcc_apa];
 
 var overlays = {
   "New Construction": rcc_oem, 
