@@ -2,18 +2,34 @@ base:
   css:
     theme:
       fz/css/app.css: {}
-      fz/css/leaflet.css: {}
   js:
     fz/js/jquery-migrate-1.2.1.min.js: { minified: true }
     fz/js/app.js: {}
     fz/js/foundation.min.js: { minified: true }
     fz/js/top_bar_active.js: {}
     fz/js/slick.min.js: { minified: true }
-    fz/js/geojson_rcc.js: {}
-    fz/js/leaflet.js: {}
-    fz/js/map.js: {}
-    fz/js/maphc.js: {}
-    fz/js/maprcc.js: {}
   dependencies:
     - core/jquery
 
+map_main:
+  css:
+    theme:
+      fz/css/leaflet.css: {}
+  js:
+    fz/js/leaflet.js: {}
+    fz/js/map.js: {}
+map_hc:
+  css:
+    theme:
+      fz/css/leaflet.css: {}
+  js:
+    fz/js/leaflet.js: {}
+    fz/js/maphc.js: {}
+map_rcc:
+  css:
+    theme:
+      fz/css/leaflet.css: {}
+  js:
+    fz/js/geojson_rcc.js: {}
+    fz/js/leaflet.js: {}
+    fz/js/maprcc.js: {}

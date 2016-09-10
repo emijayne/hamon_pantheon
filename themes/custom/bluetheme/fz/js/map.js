@@ -14,7 +14,7 @@ var txt_ttc = '<div id="locttc" class="vcard"><h2 class="org">Thermal Transfer C
 var mapmain = L.map('locationmap').setView([44.9925,-93.449522], 3);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZW1pamF5bmUiLCJhIjoiY2lvMWtnbzJqMWFlNnR0bTNxcDhhYW0xaSJ9.tdujy5zALLoojTt2yEGtwA', {
-    attribution: '<strong>Hamon No.American Office Locations</strong> | &copy Hamon', 
+    attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> | <strong>Hamon No.American Office Locations</strong>', 
     accessToken: 'pk.eyJ1IjoiZW1pamF5bmUiLCJhIjoiY2lvMWtnbzJqMWFlNnR0bTNxcDhhYW0xaSJ9.tdujy5zALLoojTt2yEGtwA'
   }).addTo(mapmain);
 
