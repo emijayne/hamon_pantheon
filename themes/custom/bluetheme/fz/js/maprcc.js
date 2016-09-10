@@ -8,68 +8,21 @@ var textrcccej = '<div id="cejka" class="vcard"><h3 class="org">Cejka Industrial
 
 
 // reps rcc
-var maprcc = L.map('repsrcc').setView([44.9925,-93.449522], 3);
+var mapboxAccessToken = 'pk.eyJ1IjoiZW1pamF5bmUiLCJhIjoiY2lvMWtnbzJqMWFlNnR0bTNxcDhhYW0xaSJ9.tdujy5zALLoojTt2yEGtwA';
+var mapboxAttribution = '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> | <strong>Research Cottrell Cooling Sales Representatives</strong>';
 
-L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZW1pamF5bmUiLCJhIjoiY2lvMWtnbzJqMWFlNnR0bTNxcDhhYW0xaSJ9.tdujy5zALLoojTt2yEGtwA', {
-    attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> | <strong>Research Cottrell Cooling Sales Representatives</strong>', 
-    accessToken: 'pk.eyJ1IjoiZW1pamF5bmUiLCJhIjoiY2lvMWtnbzJqMWFlNnR0bTNxcDhhYW0xaSJ9.tdujy5zALLoojTt2yEGtwA'
-  }).addTo(maprcc);
+var oemmap = L.tileLayer('https://api.mapbox.com/styles/v1/emijayne/cisrlcgs200472xvrwkvm6jex/tiles/256/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {attribution: mapboxAttribution, accessToken: mapboxAccessToken}),
+    aftmap = L.tileLayer('https://api.mapbox.com/styles/v1/emijayne/cisw6zyjp00272xodgwcb4klu/tiles/256/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {attribution: mapboxAttribution, accessToken: mapboxAccessToken});
 
-var rcc_oem = [rcc_btu, rcc_ahm, rcc_ast, rcc_tex, rcc_apa],
-    rcc_aft = [rcc_btu, rcc_ahm, rcc_ast, rcc_cej, rcc_apa];
-
-L.geoJson([rcc_oem, afterm], {
-  style: function (feature) {
-    switch(feature.properties.REP_ID) {
-      case 'rcc_btu':
-        return {color: "#af8dc3"};
-        break;
-      case 'rcc_ahm':
-        return {color: "#e7d4e8"};
-        break;
-      case 'rcc_ast':
-        return {color: "#1b7837"};
-        break;
-      case 'rcc_tex':
-        return {color: "#762a83"};
-        break;
-      case 'rcc_apa':
-        return {color: "#7fbf7b"};
-        break;
-      case 'rcc_cej':
-        return {color: "#d9f0d3"};
-    }
-  },
-  onEachFeature: function (feature, layer) {
-    switch(feature.properties.REP_ID) {
-      case 'rcc_btu':
-        layer.bindPopup(textrccbtu);
-        break;
-      case 'rcc_ahm':
-        layer.bindPopup(textrccahm);
-        break;
-      case 'rcc_ast':
-        layer.bindPopup(textrccast);
-        break;
-      case 'rcc_tex':
-        layer.bindPopup(textrcctex);
-        break;
-      case 'rcc_apa':
-        layer.bindPopup(textrccapa);
-        break;
-      case 'rcc_cej':
-        layer.bindPopup(textrcccej);
-        break;
-      default:
-        layer.bindPopup(feature.properties.popupContent);
-    }
-  }
+var maprcc = L.map('repsrcc', {
+  center: [40, -96],
+  zoom: 5,
+  layers: [oemmap]
 });
 
-
-var overlays = {
-  "New Construction": rcc_oem, 
-  "Aftermarket": rcc_aft
+var basemaps = {
+  "New Construction": oemmap, 
+  "Aftermarket": aftmap
 };
 
 L.control.layers(overlays).addTo(maprcc);
