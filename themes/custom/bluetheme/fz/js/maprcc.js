@@ -25,4 +25,4 @@ var basemaps = {
   "Aftermarket": aftmap
 };
 
-L.control.layers(overlays).addTo(maprcc);
+L.control.layers(basemaps).addTo(maprcc);
