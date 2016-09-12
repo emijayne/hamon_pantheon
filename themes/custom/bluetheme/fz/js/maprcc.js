@@ -28,15 +28,33 @@ var mapboxAttribution = '&copy; <a href="https://www.mapbox.com/about/maps/">Map
 
 // L.control.layers(basemaps).addTo(maprcc);
 
-var maprcc =  L.map('repsrcc').setView([35, -99], 5);
+function getColor(r) {
+  return r = 'rcc_btu' ? 'hsl(115, 45%, 71%)' :
+         r = 'rcc_ahm' ? 'hsl(44, 100%, 78%)' :
+         r = 'rcc_ast' ? 'hsl(19, 97%, 67%)' :
+         r = 'rcc_tex' ? 'hsl(353, 65%, 54%)' :
+         r = 'rcc_apa' ? 'hsl(203, 59%, 47%)' :
+         r = 'rcc_cej' ? 'hsl(70, 82%, 78%)' ;
+}
+function style(feature) {
+    return {
+        fillColor: getColor(feature.properties.REP_ID),
+        weight: 1,
+        opacity: 1,
+        color: '#cccccc',
+        fillOpacity: 0.5
+    };
+}
+
+var maprcc =  L.map('repsrcc', {layers: [oemmap]}).setView([35, -99], 5);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {
   attribution: mapboxAttribution, 
   accessToken: mapboxAccessToken
 }).addTo(maprcc);
 
-var oemmap = L.geoJson(rccoem),
-    aftmap = L.geoJson(rccaft);
+var oemmap = L.geoJson(rccoem, {style: style}),
+    aftmap = L.geoJson(rccaft, {style: style});
 
 var jsonData = {
    "New Construction": oemmap, 
