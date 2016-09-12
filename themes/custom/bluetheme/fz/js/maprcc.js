@@ -15,7 +15,7 @@ var oemmap = L.tileLayer('https://api.mapbox.com/styles/v1/emijayne/cisrlcgs2004
     aftmap = L.tileLayer('https://api.mapbox.com/styles/v1/emijayne/cisw6zyjp00272xodgwcb4klu/tiles/256/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {attribution: mapboxAttribution, accessToken: mapboxAccessToken});
 
 var maprcc = L.map('repsrcc', {
-  center: [40, -96],
+  center: [35, -99],
   zoom: 5,
   layers: [oemmap]
 });
@@ -26,3 +26,5 @@ var basemaps = {
 };
 
 L.control.layers(basemaps).addTo(maprcc);
+
+//if L.map.hasLayer(oemmap) 
