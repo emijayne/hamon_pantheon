@@ -11,20 +11,36 @@ var textrcccej = '<div id="cejka" class="vcard"><h3 class="org">Cejka Industrial
 var mapboxAccessToken = 'pk.eyJ1IjoiZW1pamF5bmUiLCJhIjoiY2lvMWtnbzJqMWFlNnR0bTNxcDhhYW0xaSJ9.tdujy5zALLoojTt2yEGtwA';
 var mapboxAttribution = '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> | <strong>Research Cottrell Cooling Sales Representatives</strong>';
 
-var oemmap = L.tileLayer('https://api.mapbox.com/styles/v1/emijayne/cisrlcgs200472xvrwkvm6jex/tiles/256/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {attribution: mapboxAttribution, accessToken: mapboxAccessToken}),
-    aftmap = L.tileLayer('https://api.mapbox.com/styles/v1/emijayne/cisw6zyjp00272xodgwcb4klu/tiles/256/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {attribution: mapboxAttribution, accessToken: mapboxAccessToken});
 
-var maprcc = L.map('repsrcc', {
-  center: [35, -99],
-  zoom: 5,
-  layers: [oemmap]
-});
+//var oemmap = L.tileLayer('https://api.mapbox.com/styles/v1/emijayne/cisrlcgs200472xvrwkvm6jex/tiles/256/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {attribution: mapboxAttribution, accessToken: mapboxAccessToken}),
+//    aftmap = L.tileLayer('https://api.mapbox.com/styles/v1/emijayne/cisw6zyjp00272xodgwcb4klu/tiles/256/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {attribution: mapboxAttribution, accessToken: mapboxAccessToken});
 
-var basemaps = {
-  "New Construction": oemmap, 
-  "Aftermarket": aftmap
-};
+// var maprcc = L.map('repsrcc', {
+//   center: [35, -99],
+//   zoom: 5,
+//   layers: [oemmap]
+// });
 
-L.control.layers(basemaps).addTo(maprcc);
+// var basemaps = {
+//   "New Construction": oemmap, 
+//   "Aftermarket": aftmap
+// };
 
-//if L.map.hasLayer(oemmap) 
+// L.control.layers(basemaps).addTo(maprcc);
+
+var maprcc =  L.map('repsrcc').setView([35, -99], 5);
+
+L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {
+  attribution: mapboxAttribution, 
+  accessToken: mapboxAccessToken
+}).addTo(maprcc);
+
+var oemmap = L.geoJson(rccoem),
+    aftmap = L.geoJson(rccaft);
+
+var jsonData = {
+   "New Construction": oemmap, 
+   "Aftermarket": aftmap
+}
+
+L.control.layers(jsonData).addTo(maprcc);
