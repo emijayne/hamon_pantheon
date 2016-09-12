@@ -59,7 +59,7 @@ var aftmap = L.geoJson(rccaft, {
       case 'rcc_cej' : return {color: 'hsl(70, 82%, 78%)'};
     } 
   }
-);
+});
 
 var jsonData = {
    "New Construction": oemmap, 
