@@ -34,7 +34,8 @@ function getColor(r) {
          r = 'rcc_ast' ? 'hsl(19, 97%, 67%)' :
          r = 'rcc_tex' ? 'hsl(353, 65%, 54%)' :
          r = 'rcc_apa' ? 'hsl(203, 59%, 47%)' :
-         r = 'rcc_cej' ? 'hsl(70, 82%, 78%)' ;
+         r = 'rcc_cej' ? 'hsl(70, 82%, 78%)' :
+                         'hsla(0, 0%, 0%, 0)';
 }
 function style(feature) {
     return {
