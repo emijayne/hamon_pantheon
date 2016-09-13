@@ -11,7 +11,7 @@ var textrcccej = '<div id="cejka" class="vcard"><h3 class="org">Cejka Industrial
 var mapboxAccessToken = 'pk.eyJ1IjoiZW1pamF5bmUiLCJhIjoiY2lvMWtnbzJqMWFlNnR0bTNxcDhhYW0xaSJ9.tdujy5zALLoojTt2yEGtwA';
 var mapboxAttribution = '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> | <strong>Research Cottrell Cooling Sales Representatives</strong>';
 
-var maprcc =  L.map('repsrcc').setView([35, -99], 5);
+var maprcc =  L.map('repsrcc').setView([35, -99], 4);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {
   attribution: mapboxAttribution, 
@@ -22,7 +22,7 @@ var stylefun = function(feature) {
   return {
     color: '#C0C0C0', 
     weight: 1, 
-    fillColor: layer.properties.color
+    fillColor: feature.properties.color
   };
 }
 var popup = function(feature, layer) {
