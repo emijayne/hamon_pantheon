@@ -26,9 +26,7 @@ var stylefun = function(feature) {
   };
 }
 var popup = function(feature, layer) {
-  return {
-    layer.bindPopup(text + feature.properties.REP_ID)
-  };
+  layer.bindPopup(text + feature.properties.REP_ID);
 }
 
 
