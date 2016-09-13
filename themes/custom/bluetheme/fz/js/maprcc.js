@@ -29,6 +29,7 @@ var textrccbtu = '<div id="btu" class="vcard"><h3 class="org">BTU Company</h3><h
 var popup = function(feature, layer) {
   var repid = window['text' + feature.properties.REP_ID];
   layer.bindPopup(repid);
+  document.getElementById('details').innerHTML = repid;
 }
 
 // set layers and the control
@@ -40,4 +41,4 @@ var jsonData = {
    "Aftermarket": aftmap
 }
 
-L.control.layers(jsonData).addTo(maprcc);
+L.control.layers(jsonData, {collapsed: false}).addTo(maprcc);
