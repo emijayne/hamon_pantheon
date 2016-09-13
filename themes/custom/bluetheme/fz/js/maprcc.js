@@ -35,31 +35,29 @@ L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/
   accessToken: mapboxAccessToken
 }).addTo(maprcc);
 
-var oemmap = L.geoJson(rccoem, {
-  style: function(feature) {
+var styleFun = function(feature) {
     switch(feature.properties.REP_ID) {
-      case 'rcc_btu' : return {color: 'hsl(115, 45%, 71%)'};
-      case 'rcc_ahm' : return {color: 'hsl(44, 100%, 78%)'};
-      case 'rcc_ast' : return {color: 'hsl(19, 97%, 67%)'};
-      case 'rcc_tex' : return {color: 'hsl(353, 65%, 54%)'};
-      case 'rcc_apa' : return {color: 'hsl(203, 59%, 47%)'};
-      case 'rcc_cej' : return {color: 'hsl(70, 82%, 78%)'};
+      case 'rcc_btu' : return {color: '#C0C0C0', weight: 1, fillColor: '#a6cee3'};
+      case 'rcc_ahm' : return {color: '#C0C0C0', weight: 1, fillColor: '#e31a1c'};
+      case 'rcc_ast' : return {color: '#C0C0C0', weight: 1, fillColor: '#b2df8a'};
+      case 'rcc_tex' : return {color: '#C0C0C0', weight: 1, fillColor: '#fdbf6f'};
+      case 'rcc_apa' : return {color: '#C0C0C0', weight: 1, fillColor: '#33a02c'};
+      case 'rcc_cej' : return {color: '#C0C0C0', weight: 1, fillColor: '#1f78b4'};
     } 
   }
-}).addTo(maprcc);
+var popUp = function(feature, layer) {
+    switch(feature.properties.REP_ID) {
+      case 'rcc_btu' : return layer.bindPopup(textrccbtu);
+      case 'rcc_ahm' : return layer.bindPopup(textrccahm);
+      case 'rcc_ast' : return layer.bindPopup(textrccast);
+      case 'rcc_tex' : return layer.bindPopup(textrcctex);
+      case 'rcc_apa' : return layer.bindPopup(textrccapa);
+      case 'rcc_cej' : return layer.bindPopup(textrcccej);
+    } 
+  }
 
-var aftmap = L.geoJson(rccaft, {
-  style: function(feature) {
-    switch(feature.properties.REP_ID) {
-      case 'rcc_btu' : return {color: 'hsl(115, 45%, 71%)'};
-      case 'rcc_ahm' : return {color: 'hsl(44, 100%, 78%)'};
-      case 'rcc_ast' : return {color: 'hsl(19, 97%, 67%)'};
-      case 'rcc_tex' : return {color: 'hsl(353, 65%, 54%)'};
-      case 'rcc_apa' : return {color: 'hsl(203, 59%, 47%)'};
-      case 'rcc_cej' : return {color: 'hsl(70, 82%, 78%)'};
-    } 
-  }
-});
+var oemmap = L.geoJson(rccoem, {style: styleFun, onEachFeature: popUp}).addTo(maprcc);
+var aftmap = L.geoJson(rccaft, {style: styleFun, onEachFeature: popUp});
 
 var jsonData = {
    "New Construction": oemmap, 
