@@ -58,12 +58,12 @@ L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/
 
 var details = function(feature, layer) {
     switch(feature.properties.REP_ID) {
-      case 'rcc_btu' : return style: {color: '#C0C0C0', weight: 1, fillColor: '#a6cee3'}, onEachFeature: layer.bindPopup(textrccbtu);
-      case 'rcc_ahm' : return style: {color: '#C0C0C0', weight: 1, fillColor: '#b2df8a'}, onEachFeature: layer.bindPopup(textrccahm);
-      case 'rcc_ast' : return style: {color: '#C0C0C0', weight: 1, fillColor: '#e31a1c'}, onEachFeature: layer.bindPopup(textrccast);
-      case 'rcc_tex' : return style: {color: '#C0C0C0', weight: 1, fillColor: '#fdbf6f'}, onEachFeature: layer.bindPopup(textrcctex);
-      case 'rcc_apa' : return style: {color: '#C0C0C0', weight: 1, fillColor: '#33a02c'}, onEachFeature: layer.bindPopup(textrccapa);
-      case 'rcc_cej' : return style: {color: '#C0C0C0', weight: 1, fillColor: '#1f78b4'}, onEachFeature: layer.bindPopup(textrcccej);
+      case 'rcc_btu' : return "style: {color: '#C0C0C0', weight: 1, fillColor: '#a6cee3'}, onEachFeature: layer.bindPopup(textrccbtu)";
+      case 'rcc_ahm' : return "style: {color: '#C0C0C0', weight: 1, fillColor: '#b2df8a'}, onEachFeature: layer.bindPopup(textrccahm)";
+      case 'rcc_ast' : return "style: {color: '#C0C0C0', weight: 1, fillColor: '#e31a1c'}, onEachFeature: layer.bindPopup(textrccast)";
+      case 'rcc_tex' : return "style: {color: '#C0C0C0', weight: 1, fillColor: '#fdbf6f'}, onEachFeature: layer.bindPopup(textrcctex)";
+      case 'rcc_apa' : return "style: {color: '#C0C0C0', weight: 1, fillColor: '#33a02c'}, onEachFeature: layer.bindPopup(textrccapa)";
+      case 'rcc_cej' : return "style: {color: '#C0C0C0', weight: 1, fillColor: '#1f78b4'}, onEachFeature: layer.bindPopup(textrcccej)";
     } 
   }
 
