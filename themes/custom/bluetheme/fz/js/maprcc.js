@@ -35,29 +35,41 @@ L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/
   accessToken: mapboxAccessToken
 }).addTo(maprcc);
 
-var styleFun = function(feature) {
+// var styleFun = function(feature) {
+//     switch(feature.properties.REP_ID) {
+//       case 'rcc_btu' : return {color: '#C0C0C0', weight: 1, fillColor: '#a6cee3'};
+//       case 'rcc_ahm' : return {color: '#C0C0C0', weight: 1, fillColor: '#e31a1c'};
+//       case 'rcc_ast' : return {color: '#C0C0C0', weight: 1, fillColor: '#b2df8a'};
+//       case 'rcc_tex' : return {color: '#C0C0C0', weight: 1, fillColor: '#fdbf6f'};
+//       case 'rcc_apa' : return {color: '#C0C0C0', weight: 1, fillColor: '#33a02c'};
+//       case 'rcc_cej' : return {color: '#C0C0C0', weight: 1, fillColor: '#1f78b4'};
+//     } 
+//   }
+// var popUp = function(feature, layer) {
+//     switch(feature.properties.REP_ID) {
+//       case 'rcc_btu' : return layer.bindPopup(textrccbtu);
+//       case 'rcc_ahm' : return layer.bindPopup(textrccahm);
+//       case 'rcc_ast' : return layer.bindPopup(textrccast);
+//       case 'rcc_tex' : return layer.bindPopup(textrcctex);
+//       case 'rcc_apa' : return layer.bindPopup(textrccapa);
+//       case 'rcc_cej' : return layer.bindPopup(textrcccej);
+//     } 
+//   }
+
+var details = function(feature, layer) {
     switch(feature.properties.REP_ID) {
-      case 'rcc_btu' : return {color: '#C0C0C0', weight: 1, fillColor: '#a6cee3'};
-      case 'rcc_ahm' : return {color: '#C0C0C0', weight: 1, fillColor: '#e31a1c'};
-      case 'rcc_ast' : return {color: '#C0C0C0', weight: 1, fillColor: '#b2df8a'};
-      case 'rcc_tex' : return {color: '#C0C0C0', weight: 1, fillColor: '#fdbf6f'};
-      case 'rcc_apa' : return {color: '#C0C0C0', weight: 1, fillColor: '#33a02c'};
-      case 'rcc_cej' : return {color: '#C0C0C0', weight: 1, fillColor: '#1f78b4'};
-    } 
-  }
-var popUp = function(feature, layer) {
-    switch(feature.properties.REP_ID) {
-      case 'rcc_btu' : return layer.bindPopup(textrccbtu);
-      case 'rcc_ahm' : return layer.bindPopup(textrccahm);
-      case 'rcc_ast' : return layer.bindPopup(textrccast);
-      case 'rcc_tex' : return layer.bindPopup(textrcctex);
-      case 'rcc_apa' : return layer.bindPopup(textrccapa);
-      case 'rcc_cej' : return layer.bindPopup(textrcccej);
+      case 'rcc_btu' : return style: {color: '#C0C0C0', weight: 1, fillColor: '#a6cee3'}, onEachFeature: layer.bindPopup(textrccbtu);
+      case 'rcc_ahm' : return style: {color: '#C0C0C0', weight: 1, fillColor: '#b2df8a'}, onEachFeature: layer.bindPopup(textrccahm);
+      case 'rcc_ast' : return style: {color: '#C0C0C0', weight: 1, fillColor: '#e31a1c'}, onEachFeature: layer.bindPopup(textrccast);
+      case 'rcc_tex' : return style: {color: '#C0C0C0', weight: 1, fillColor: '#fdbf6f'}, onEachFeature: layer.bindPopup(textrcctex);
+      case 'rcc_apa' : return style: {color: '#C0C0C0', weight: 1, fillColor: '#33a02c'}, onEachFeature: layer.bindPopup(textrccapa);
+      case 'rcc_cej' : return style: {color: '#C0C0C0', weight: 1, fillColor: '#1f78b4'}, onEachFeature: layer.bindPopup(textrcccej);
     } 
   }
 
-var oemmap = L.geoJson(rccoem, {style: styleFun, onEachFeature: popUp}).addTo(maprcc);
-var aftmap = L.geoJson(rccaft, {style: styleFun, onEachFeature: popUp});
+
+var oemmap = L.geoJson(rccoem, {details}).addTo(maprcc);
+var aftmap = L.geoJson(rccaft, {details});
 
 var jsonData = {
    "New Construction": oemmap, 
