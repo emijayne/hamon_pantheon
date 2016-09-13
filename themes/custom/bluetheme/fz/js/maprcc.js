@@ -26,21 +26,19 @@ var stylefun = function(feature) {
   };
 }
 var popup = function(feature, layer) {
-  if (feature.properties && feature.properties.REP_ID) {
-      layer.bindPopup('text' + feature.properties.REP_ID);
-  }
+  layer.bindPopup(this['text'+feature.properties.REP_ID]);
 }
 
-
-  //   switch(feature.properties.REP_ID) {
-  //     case 'rcc_btu' : return ;
-  //     case 'rcc_ahm' : return layer.bindPopup(textrccahm);
-  //     case 'rcc_ast' : return layer.bindPopup(textrccast);
-  //     case 'rcc_tex' : return layer.bindPopup(textrcctex);
-  //     case 'rcc_apa' : return layer.bindPopup(textrccapa);
-  //     case 'rcc_cej' : return layer.bindPopup(textrcccej);
-  //   } 
-  // }
+// var popup = function(feature, layer) {
+//   switch(feature.properties.REP_ID) {
+//     case 'rcc_btu' : return layer.bindPopup(textrccbtu);
+//     case 'rcc_ahm' : return layer.bindPopup(textrccahm);
+//     case 'rcc_ast' : return layer.bindPopup(textrccast);
+//     case 'rcc_tex' : return layer.bindPopup(textrcctex);
+//     case 'rcc_apa' : return layer.bindPopup(textrccapa);
+//     case 'rcc_cej' : return layer.bindPopup(textrcccej);
+//   } 
+// }
 
 var oemmap = L.geoJson(rccoem, {style: stylefun, onEachFeature: popup}).addTo(maprcc);
 var aftmap = L.geoJson(rccaft, {style: stylefun, onEachFeature: popup});
