@@ -45,7 +45,7 @@ var filterAft = function (feature, layer) {
 }
 
 // set layers and the control
-var oemmap = L.geoJson(rccdata, {style: stylefun, onEachFeature: clickMe, filter: oemmkt)}).addTo(maprcc);
+var oemmap = L.geoJson(rccdata, {style: stylefun, onEachFeature: clickMe, filter: oemmkt}).addTo(maprcc);
 var aftmap = L.geoJson(rccdata, {style: stylefun, onEachFeature: clickMe, filter: aftmkt});
 
 var jsonData = {
