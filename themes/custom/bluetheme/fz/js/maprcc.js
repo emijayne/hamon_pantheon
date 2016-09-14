@@ -27,9 +27,10 @@ var textrccbtu = '<div id="btu" class="vcard"><h3 class="org">BTU Company</h3><h
     textrcccej = '<div id="cejka" class="vcard"><h3 class="org">Cejka Industrial </h3><h4 class="fn">John Cejka</h4><p><span class="secondary badge"><i class="fi-mail"></i></span> <a href="mailto:jcejka@cejkafixindustrial.com">jcejka@cejkafixindustrial.com</a><br /><span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:18329043000" title="mobile phone number">1 832-904-3000</a><br /></p><hr /><p><strong>Territory:</strong> Texas<br /><em>aftermarket only</em></p></div>';
 
 var popup = function(feature, layer) {
+
   var repid = window['text' + feature.properties.REP_ID];
-  layer.bindPopup(repid);
-  document.getElementById('details').innerHTML = repid;
+  var showit = $('#details').html(repid);
+  layer.on({click: showit});
 }
 
 // set layers and the control
@@ -41,4 +42,4 @@ var jsonData = {
    "Aftermarket": aftmap
 }
 
-L.control.layers(jsonData, {collapsed: false}).addTo(maprcc);
+L.control.layers(jsonData, null, {collapsed: false}).addTo(maprcc);
