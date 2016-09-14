@@ -28,9 +28,10 @@ var textrccbtu = '<div id="btu" class="vcard"><h3 class="org">BTU Company</h3><h
 
 var popup = function(feature, layer) {
 
-  var repid = window['text' + feature.properties.REP_ID];
-  var showit = $('#details').html(repid);
-  layer.on({click: showit});
+  layer.on({
+    click: document.getElementById(window['text' + feature.properties.REP_ID])
+  });
+
 }
 
 // set layers and the control
