@@ -28,9 +28,11 @@ var textrccbtu = '<div id="btu" class="vcard"><h3 class="org">BTU Company</h3><h
 
 var popup = function(feature, layer) {
 
-  layer.on({
-    click: document.getElementById(window['text' + feature.properties.REP_ID])
-  });
+  var elem = document.getElementById('details');
+
+  elem.innerHTML = window['text' + feature.properties.REP_ID];
+
+  layer.on({click: elem});
 
 }
 
