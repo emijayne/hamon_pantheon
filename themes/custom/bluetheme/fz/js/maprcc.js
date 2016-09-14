@@ -29,21 +29,18 @@ var textrccbtu = '<div id="btu" class="vcard"><h3 class="org">BTU Company</h3><h
 // move the text to an outside box
 var elem = document.getElementById('details');
 
-var popup = function(feature, layer) {
-
-  var repid = window['text' + feature.properties.REP_ID];
-
-  layer.on({click: 
-    function(elem) {
-      elem.innerHTML = repid;
-    } 
+var clickMe = function (feature, layer) {
+  layer.on({
+    click: function(e) {
+      console.log(e);
+      elem.innerHTML = window['text' + feature.properties.REP_ID];
+    }
   });
-
 }
 
 // set layers and the control
-var oemmap = L.geoJson(rccoem, {style: stylefun, onEachFeature: popup}).addTo(maprcc);
-var aftmap = L.geoJson(rccaft, {style: stylefun, onEachFeature: popup});
+var oemmap = L.geoJson(rccoem, {style: stylefun, onEachFeature: clickMe}).addTo(maprcc);
+var aftmap = L.geoJson(rccaft, {style: stylefun, onEachFeature: clickMe});
 
 var jsonData = {
    "New Construction": oemmap, 
