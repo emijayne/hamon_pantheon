@@ -26,13 +26,18 @@ var textrccbtu = '<div id="btu" class="vcard"><h3 class="org">BTU Company</h3><h
     textrccapa = '<div id="apa" class="vcard"><h3 class="org">APA Inc.</h3><h4 class="fn">Jene Bramel</h4><p><span class="secondary badge"><i class="fi-mail"></i></span> <a href="mailto:jbramelapa@fuse.net">jbramelapa@fuse.net</a><br /><span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:15134846315" title="mobile phone number">1 513-484-6315</a>&nbsp;(M)<br /><span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:15135610687" title="office phone number">1 513-561-0687</a>&nbsp;(O)<br /></p><h4 class="fn">Doug Cron</h4><p><span class="secondary badge"><i class="fi-mail"></i></span> <a href="mailto:dcronapa@fuse.net">dcronapa@fuse.net</a><br /><span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:15136040396" title="mobile phone number">1 513-604-0396</a>&nbsp;(M)<br /><span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:15135610687" title="office phone number">1 513-561-0687</a>&nbsp;(O)<br /></p><hr /><p><strong>Territory:</strong> Southern Illinois, Indiana, Ohio, Western Pennsylvania, Kentucky, West Virginia</p></div>',
     textrcccej = '<div id="cejka" class="vcard"><h3 class="org">Cejka Industrial </h3><h4 class="fn">John Cejka</h4><p><span class="secondary badge"><i class="fi-mail"></i></span> <a href="mailto:jcejka@cejkafixindustrial.com">jcejka@cejkafixindustrial.com</a><br /><span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:18329043000" title="mobile phone number">1 832-904-3000</a><br /></p><hr /><p><strong>Territory:</strong> Texas<br /><em>aftermarket only</em></p></div>';
 
+// move the text to an outside box
+var elem = document.getElementById('details');
+
 var popup = function(feature, layer) {
 
-  var elem = document.getElementById('details');
+  var repid = window['text' + feature.properties.REP_ID];
 
-  elem.innerHTML = window['text' + feature.properties.REP_ID];
-
-  layer.on({click: elem});
+  layer.on({click: 
+    function(elem) {
+      elem.innerHTML = repid;
+    } 
+  });
 
 }
 
