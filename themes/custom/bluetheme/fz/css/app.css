@@ -3136,6 +3136,11 @@ input[type='search'] {
 [type='radio'] {
   margin: 0 0 1rem; }
 
+.leaflet-control-layers-list [type='file'],
+.leaflet-control-layers-list [type='checkbox'],
+.leaflet-control-layers-list [type='radio'] {
+  margin: 0; }
+
 [type='checkbox'] + label,
 [type='radio'] + label {
   display: inline-block;
@@ -3164,6 +3169,8 @@ label {
   label.middle {
     margin: 0 0 1rem;
     padding: 0.5625rem 0; }
+
+.leaflet-control-layers-list label {font-size: 12px; line-height: 1.5;}
 
 .help-text {
   margin-top: -0.5rem;
