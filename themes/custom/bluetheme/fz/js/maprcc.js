@@ -27,7 +27,7 @@ var textrccbtu = '<div id="btu" class="vcard"><h3 class="org">BTU Company</h3><p
     textrcccej = '<div id="cejka" class="vcard"><h3 class="org">Cejka Industrial </h3><p class="callout"><strong>Territory:</strong> Texas | <em>aftermarket only</em></p><h4 class="fn">John Cejka</h4><p><span class="secondary badge"><i class="fi-mail"></i></span> <a href="mailto:jcejka@cejkafixindustrial.com">jcejka@cejkafixindustrial.com</a><br /><span class="secondary badge"><i class="fi-telephone"></i></span> <a class="tel" href="tel:18329043000" title="mobile phone number">1 832-904-3000</a><br /></p></div>';
 
 // move the text to an outside box
-var elem = document.getElementById('details');
+var elem = document.getElementById('repsrcctxt');
 
 var clickMe = function (feature, layer) {
   layer.on({
@@ -37,6 +37,8 @@ var clickMe = function (feature, layer) {
     }
   });
 }
+
+// add filters to pick out the desired json features
 var filterOem = function (feature, layer) {
   return feature.properties.oemmkt;
 }
