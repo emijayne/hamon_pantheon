@@ -18,6 +18,8 @@ map_main:
   js:
     fz/js/leaflet.js: {}
     fz/js/map.js: {}
+  dependencies:
+    - core/jquery
 map_hc:
   css:
     theme:
@@ -25,11 +27,41 @@ map_hc:
   js:
     fz/js/leaflet.js: {}
     fz/js/maphc.js: {}
+  dependencies:
+    - core/jquery
+map_hdi:
+  css:
+    theme:
+      fz/css/leaflet.css: {}
+      fz/css/Control.FullScreen.css: {}
+  js:
+    fz/js/geojson_hdi.js: {}
+    fz/js/leaflet.js: {}
+    fz/js/Control.FullScreen.js: {}
+    fz/js/maphdi.js: {}
+  dependencies:
+    - core/jquery
+map_hrc:
+  css:
+    theme:
+      fz/css/leaflet.css: {}
+      fz/css/Control.FullScreen.css: {}
+  js:
+    fz/js/geojson_hrc.js: {}
+    fz/js/leaflet.js: {}
+    fz/js/Control.FullScreen.js: {}
+    fz/js/maphrc.js: {}
+  dependencies:
+    - core/jquery
 map_rcc:
   css:
     theme:
       fz/css/leaflet.css: {}
+      fz/css/Control.FullScreen.css: {}
   js:
     fz/js/geojson_rcc.js: {}
     fz/js/leaflet.js: {}
+    fz/js/Control.FullScreen.js: {}
     fz/js/maprcc.js: {}
+  dependencies:
+    - core/jquery
