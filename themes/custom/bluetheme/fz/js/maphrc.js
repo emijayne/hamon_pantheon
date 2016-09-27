@@ -7,7 +7,7 @@ var maphrc =  L.map('repshrc', {
   fullscreenControlOptions: {
     position: 'topleft'
   }
-}).setView([42, -99], 4);
+}).setView([45, -99], 4);
 
 L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token=' + mapboxAccessToken, {
   attribution: mapboxAttribution, 
