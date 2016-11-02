@@ -4,6 +4,7 @@ namespace Drupal\contact_storage\Tests;
 
 use Drupal\contact\Entity\ContactForm;
 use Drupal\field_ui\Tests\FieldUiTestTrait;
+use Drupal\language\Entity\ConfigurableLanguage;
 
 /**
  * Tests storing contact messages and viewing them through UI.
@@ -15,6 +16,13 @@ class ContactStorageTest extends ContactStorageTestBase {
   use FieldUiTestTrait;
 
   /**
+   * An administrative user with permission to administer contact forms.
+   *
+   * @var \Drupal\user\UserInterface
+   */
+  protected $adminUser;
+
+  /**
    * Modules to enable.
    *
    * @var array
@@ -23,21 +31,22 @@ class ContactStorageTest extends ContactStorageTestBase {
     'text',
     'block',
     'contact',
+    'language',
     'field_ui',
     'contact_storage_test',
     'contact_test',
     'contact_storage',
   );
 
-  /**
-   * Tests contact messages submitted through contact form.
-   */
-  public function testContactStorage() {
+  protected function setUp() {
+    parent::setUp();
+
     $this->drupalPlaceBlock('system_breadcrumb_block');
     $this->drupalPlaceBlock('local_actions_block');
     $this->drupalPlaceBlock('page_title_block');
+
     // Create and login administrative user.
-    $admin_user = $this->drupalCreateUser(array(
+    $this->adminUser = $this->drupalCreateUser([
       'access site-wide contact form',
       'administer contact forms',
       'administer users',
@@ -45,8 +54,14 @@ class ContactStorageTest extends ContactStorageTestBase {
       'administer contact_message fields',
       'administer contact_message form display',
       'administer contact_message display',
-    ));
-    $this->drupalLogin($admin_user);
+    ]);
+    $this->drupalLogin($this->adminUser);
+  }
+
+  /**
+   * Tests contact messages submitted through contact form.
+   */
+  public function testContactStorage() {
     // Create first valid contact form.
     $mail = 'simpletest@example.com';
     $this->addContactForm('test_id', 'test_label', $mail, '', TRUE);
@@ -67,7 +82,7 @@ class ContactStorageTest extends ContactStorageTestBase {
     $this->assertTrue(count($captured_emails) === 1);
 
     // Login as admin.
-    $this->drupalLogin($admin_user);
+    $this->drupalLogin($this->adminUser);
 
     // Verify that the global setting stating whether e-mails should be sent in
     // HTML format is false by default.
@@ -144,21 +159,6 @@ class ContactStorageTest extends ContactStorageTestBase {
     ]));
     // Make sure no messages are available.
     $this->assertText('There is no Contact message yet.');
-
-    // Fill the redirect field and assert the page is successfully redirected.
-    $edit = ['contact_storage_uri' => 'entity:user/' . $admin_user->id()];
-    $this->drupalPostForm('admin/structure/contact/manage/test_id', $edit, t('Save'));
-    $edit = [
-      'subject[0][value]' => 'Test subject',
-      'message[0][value]' => 'Test message',
-    ];
-    $this->drupalPostForm('contact', $edit, t('Send message'));
-    $this->assertText('Your message has been sent.');
-    $this->assertEqual($this->url, $admin_user->urlInfo()->setAbsolute()->toString());
-
-    // Check that this new message is now in HTML format.
-    $captured_emails = $this->drupalGetMails();
-    $this->assertTrue(strpos($captured_emails[1]['headers']['Content-Type'], 'text/html') !== FALSE);
 
     // Fill the "Submit button text" field and assert the form can still be
     // submitted.
@@ -293,6 +293,85 @@ class ContactStorageTest extends ContactStorageTestBase {
     $this->assertText('Disabled contact form test_disable_label_2.');
     $this->drupalGet('contact/test_disable_id_2');
     $this->assertText('custom disabled message');
+  }
+
+  /**
+   * Tests the url alias creation feature.
+   */
+  public function testUrlAlias() {
+
+    // Add a second language to make sure aliases work with any language.
+    $language = ConfigurableLanguage::createFromLangcode('de');
+    $language->save();
+
+    // Set the second language as default.
+    $this->config('system.site')->set('default_langcode', $language->getId())->save();
+    $this->rebuildContainer();
+
+    $mail = 'simpletest@example.com';
+    // Test for alias without slash.
+    $this->addContactForm('form_alias_1', 'contactForm', $mail, '', FALSE, ['contact_storage_url_alias' => 'form51']);
+    $this->assertText('The alias path has to start with a slash.');
+    $this->drupalGet('form51');
+    $this->assertResponse(404);
+
+    // Test for correct alias. Verify that we land on the correct contact form.
+    $this->addContactForm('form_alias_2', 'contactForm', $mail, '', FALSE, ['contact_storage_url_alias' => '/form51']);
+    $this->assertText('Contact form contactForm has been added.');
+    $this->drupalGet('form51');
+    $this->assertResponse(200);
+    $this->assertText('contactForm');
+
+    // Edit the contact form by changing the alias. Verify that the new alias
+    // is generated and the old one removed.
+    $this->drupalPostForm('admin/structure/contact/manage/form_alias_2', ['contact_storage_url_alias' => '/form52'], 'Save');
+    $this->assertText('Contact form contactForm has been updated.');
+    $this->drupalGet('form51');
+    $this->assertResponse(404);
+    $this->drupalGet('form52');
+    $this->assertResponse(200);
+    $this->assertText('contactForm');
+
+    // Edit the contact form by removing the alias. Verify that is is deleted.
+    $this->drupalPostForm('admin/structure/contact/manage/form_alias_2', ['contact_storage_url_alias' => ''], 'Save');
+    $this->assertText('Contact form contactForm has been updated.');
+    $this->drupalGet('form52');
+    $this->assertResponse(404);
+
+    // Add an alias back and delete the contact form. Verify that the alias is
+    // deleted along with the contact form.
+    $this->drupalPostForm('admin/structure/contact/manage/form_alias_2', ['contact_storage_url_alias' => '/form52'], 'Save');
+    $this->assertText('Contact form contactForm has been updated.');
+    $this->drupalGet('form52');
+    $this->assertResponse(200);
+    $this->assertText('contactForm');
+    $this->drupalPostForm('admin/structure/contact/manage/form_alias_2/delete', [], 'Delete');
+    $alias = \Drupal::service('path.alias_storage')->load(['source' => '/contact/form_alias_2']);
+    $this->assertFalse($alias);
+  }
+
+  public function testMaximumSubmissionLimit() {
+    // Create a new contact form with a maximum submission limit of 2.
+    $this->addContactForm('test_id_3', 'test_label', 'simpletest@example.com', '', FALSE, ['contact_storage_maximum_submissions_user' => 2]);
+    $this->assertText(t('Contact form test_label has been added.'));
+
+    // Sends 2 messages with "Send yourself a copy" option activated, shouldn't
+    // reach the limit even if 2 messages are sent twice.
+    $this->drupalGet('contact/test_id_3');
+    $edit = [
+      'subject[0][value]' => 'Test subject',
+      'message[0][value]' => 'Test message',
+      'copy' => 'checked',
+    ];
+    $this->drupalPostForm(NULL, $edit, t('Send message'));
+    $this->assertText(t('Your message has been sent.'));
+    $this->drupalGet('contact/test_id_3');
+    $this->drupalPostForm(NULL, $edit, t('Send message'));
+    $this->assertText(t('Your message has been sent.'));
+
+    // Try accessing the form after the limit has been reached.
+    $this->drupalGet('contact/test_id_3');
+    $this->assertText(t('You have reached the maximum submission limit of 2 for this form.'));
   }
 
 }
