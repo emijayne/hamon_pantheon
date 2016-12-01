@@ -8,6 +8,7 @@ use Drupal\Component\Utility\Unicode;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\views\Plugin\views\style\StylePluginBase;
 use Drupal\blazy\BlazyManagerInterface;
+use Drupal\blazy\Blazy;
 
 /**
  * A base for blazy views integration to have re-usable methods in one place.
@@ -163,8 +164,9 @@ abstract class BlazyStylePluginBase extends StylePluginBase {
     $item_id  = empty($settings['item_id']) ? 'box' : $settings['item_id'];
 
     // Add main image fields if so configured.
-    if ($field_image = $settings['image']) {
+    if (!empty($settings['image'])) {
       // Supports individual grid/box image style either inline IMG, or CSS.
+      $field_image       = $settings['image'];
       $grid_style        = empty($grids) && !isset($grids[$index]['image_style']) ? '' : $grids[$index]['image_style'];
       $image             = $this->getImageRenderable($settings, $row, $index, $grid_style);
       $rendered          = empty($image['rendered']) ? [] : $image['rendered'];
@@ -233,11 +235,10 @@ abstract class BlazyStylePluginBase extends StylePluginBase {
       // Blazy modifiers, see GridStack multi-styled images for the boxes.
       $settings['_dimensions_reset'] = TRUE;
       $settings['image_style'] = $grid_style;
+      $settings['grid_style'] = $grid_style;
 
-      // $this->blazyManager->getImage($build);
       // Updates settings to contain image dimensions along with image URLs.
-      $this->blazyManager->getUrlDimensions($settings, $image['raw'], $grid_style);
-      $this->blazyManager->getUrlBreakpoints($settings);
+      Blazy::buildUrl($settings, $image['raw'], $grid_style);
     }
 
     return $image;
@@ -287,9 +288,9 @@ abstract class BlazyStylePluginBase extends StylePluginBase {
   public function getCaption($index, $settings = []) {
     $items = [];
     $keys  = array_keys($this->view->field);
-    if ($captions = $settings['caption']) {
+    if (!empty($settings['caption'])) {
       $caption_items = [];
-      foreach ($captions as $key => $caption) {
+      foreach ($settings['caption'] as $key => $caption) {
         $caption_rendered = $this->getField($index, $caption);
         if (empty($caption_rendered)) {
           continue;

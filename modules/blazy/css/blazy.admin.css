@@ -33,6 +33,11 @@ body.path-admin .form--slick *,
   clear: both;
 }
 
+.form--slick ~ .form-actions {
+  float: left;
+  width: 100%;
+}
+
 .form--half,
 .form--slick .vertical-tabs {
   border: 1px solid #dbe1e9;
@@ -1172,6 +1177,10 @@ td .form__title {
   margin: 30px auto;
 }
 
+.form--views.form--half {
+  margin-top: 60px;
+}
+
 .form--slick .form-item label {
   line-height: 16px;
 }
@@ -1267,6 +1276,26 @@ td .form__title {
     text-align: right;
     white-space: normal;
   }
+
+  .form--slick.form--half .form-checkboxes .form-item {
+    width: 33.3333%;
+  }
+
+  .field-plugin-settings-editing .form--slick {
+    margin-top: 62px;
+  }
+
+  .scroll .form--slick.form--style .form-item--style,
+  .field-plugin-settings-editing .form--slick .form-item--style {
+    background: none;
+    border: 0 ;
+    min-height: 32px;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: -42px;
+    z-index: 9;
+  }
 }
 
 @media screen and (min-width: 1280px) {
@@ -1302,5 +1331,20 @@ td .form__title {
     float: right;
     width: auto;
   }
+
+  .form--slick.form--half .form-checkboxes .form-item {
+    width: 24.9999%;
+  }
 }
 
+/** Declutter form when Vanilla is enabled coz table states are broken. */
+.form--vanilla-on .form__title--media-switch,
+.form--vanilla-on .form__title--fields,
+.form--vanilla-on .form__title--breakpoints,
+.form--vanilla-on .tableresponsive-toggle-columns,
+.form--vanilla-on .form-wrapper--table-breakpoints,
+.form--responsive-image-on .form__title--breakpoints,
+.form--responsive-image-on .tableresponsive-toggle-columns,
+.form--responsive-image-on .form-wrapper--table-breakpoints {
+  display: none !important;
+}

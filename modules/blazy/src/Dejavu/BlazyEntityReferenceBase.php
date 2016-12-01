@@ -9,6 +9,7 @@ use Drupal\Core\Field\Plugin\Field\FieldFormatter\EntityReferenceFormatterBase;
  * Base class for blazy entity reference formatters.
  */
 abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
+
   use BlazyEntityTrait;
 
   /**
@@ -56,7 +57,9 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
     }
 
     // Supports Blazy formatter multi-breakpoint images if available.
-    $this->formatter->isBlazy($settings, $build['items'][0]);
+    if (empty($settings['vanilla'])) {
+      $this->formatter->isBlazy($build['settings'], $build['items'][0]);
+    }
 
     return $build;
   }
@@ -65,34 +68,28 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
    * Returns slide contents.
    */
   public function buildElement(array &$build = [], $entity, $langcode) {
-    $settings    = &$build['settings'];
-    $delta       = $settings['delta'];
-    $item_id     = $settings['item_id'];
-    $view_mode   = $settings['view_mode'] ?: 'full';
-    $image       = [];
+    $settings  = &$build['settings'];
+    $delta     = $settings['delta'];
+    $item_id   = $settings['item_id'];
+    $view_mode = $settings['view_mode'] ?: 'full';
+    $element   = ['settings' => $settings];
 
-    // Built early before stage to allow custom highres video thumbnail.
-    $this->buildMedia($settings, $entity, $langcode);
+    // Built early before stage to allow custom highres video thumbnail later.
+    // Implementor must import: Drupal\blazy\Dejavu\BlazyVideoTrait
+    $this->getMediaItem($element, $entity);
 
     // Build the main stage.
-    $item = $this->buildStage($settings, $entity, $langcode);
-
-    // Build the element settings.
-    $element['settings'] = $settings;
-
-    if (!empty($item)) {
-      $element['item'] = $item;
-      $image = $this->formatter->getImage($element);
-    }
+    $this->buildStage($element, $entity, $langcode);
 
     // Optional image with responsive image, lazyLoad, and lightbox supports.
-    $element[$item_id] = $image;
+    $element[$item_id] = empty($element['item']) ? [] : $this->formatter->getImage($element);
 
     // Captions if so configured.
     $this->getCaption($element, $entity, $langcode);
 
     // Layouts can be builtin, or field, if so configured.
-    if ($layout = $settings['layout']) {
+    if (!empty($settings['layout'])) {
+      $layout = $settings['layout'];
       if (strpos($layout, 'field_') !== FALSE) {
         $settings['layout'] = $this->getFieldString($entity, $layout, $langcode);
       }
@@ -100,7 +97,9 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
     }
 
     // Classes, if so configured.
-    $element['settings']['class'] = $this->getFieldString($entity, $settings['class'], $langcode);
+    if (!empty($settings['class'])) {
+      $element['settings']['class'] = $this->getFieldString($entity, $settings['class'], $langcode);
+    }
 
     // Build the main item.
     $build['items'][$delta] = $element;
@@ -109,7 +108,7 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
     if (!empty($settings['nav'])) {
       // Thumbnail usages: asNavFor pagers, dot, arrows, photobox thumbnails.
       $element[$item_id]  = empty($settings['thumbnail_style']) ? [] : $this->formatter->getThumbnail($element['settings']);
-      $element['caption'] = $this->getFieldRenderable($entity, $settings['thumbnail_caption'], $view_mode);
+      $element['caption'] = empty($settings['thumbnail_caption']) ? [] : $this->getFieldRenderable($entity, $settings['thumbnail_caption'], $view_mode);
 
       $build['thumb']['items'][$delta] = $element;
     }
@@ -123,16 +122,25 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
     $view_mode = $settings['view_mode'];
 
     // Title can be plain text, or link field.
-    $field_title = $settings['title'];
-    $has_title = !empty($field_title) && isset($entity->{$field_title});
-    if ($has_title && $title = $entity->getTranslation($langcode)->get($field_title)->getValue()) {
-      if (!empty($title[0]['value']) && !isset($title[0]['uri'])) {
-        // Prevents HTML-filter-enabled text from having bad markups (h2 > p),
-        // except for a few reasonable tags acceptable within H2 tag.
-        $element['caption']['title']['#markup'] = strip_tags($title[0]['value'], '<a><strong><em><span><small>');
-      }
-      elseif (isset($title[0]['uri']) && !empty($title[0]['title'])) {
-        $element['caption']['title'] = $this->getFieldRenderable($entity, $field_title, $view_mode)[0];
+    if (!empty($settings['title'])) {
+      $field_title = $settings['title'];
+      if (isset($entity->{$field_title})) {
+        if ($entity->hasTranslation($langcode)) {
+          // If the entity has translation, fetch the translated value.
+          $title = $entity->getTranslation($langcode)->get($field_title)->getValue();
+        }
+        else {
+          // Entity doesn't have translation, fetch original value.
+          $title = $entity->get($field_title)->getValue();
+        }
+        if (!empty($title[0]['value']) && !isset($title[0]['uri'])) {
+          // Prevents HTML-filter-enabled text from having bad markups (h2 > p),
+          // except for a few reasonable tags acceptable within H2 tag.
+          $element['caption']['title']['#markup'] = strip_tags($title[0]['value'], '<a><strong><em><span><small>');
+        }
+        elseif (isset($title[0]['uri']) && !empty($title[0]['title'])) {
+          $element['caption']['title'] = $this->getFieldRenderable($entity, $field_title, $view_mode)[0];
+        }
       }
     }
 
@@ -151,18 +159,20 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
     }
 
     // Link, if so configured.
-    $field_link = isset($settings['link']) ? $settings['link'] : '';
-    if ($field_link && isset($entity->{$field_link})) {
-      $links = $this->getFieldRenderable($entity, $field_link, $view_mode);
+    if (!empty($settings['link'])) {
+      $field_link = $settings['link'];
+      if (isset($entity->{$field_link})) {
+        $links = $this->getFieldRenderable($entity, $field_link, $view_mode);
 
-      // Only simplify markups for known formatters registered by link.module.
-      if ($links && isset($links['#formatter']) && in_array($links['#formatter'], ['link'])) {
-        $links = [];
-        foreach ($entity->{$field_link} as $i => $link) {
-          $links[$i] = $link->view($view_mode);
+        // Only simplify markups for known formatters registered by link.module.
+        if ($links && isset($links['#formatter']) && in_array($links['#formatter'], ['link'])) {
+          $links = [];
+          foreach ($entity->{$field_link} as $i => $link) {
+            $links[$i] = $link->view($view_mode);
+          }
         }
+        $element['caption']['link'] = $links;
       }
-      $element['caption']['link'] = $links;
     }
 
     if (!empty($settings['overlay'])) {
@@ -178,40 +188,18 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
   }
 
   /**
-   * Collects media definitions.
-   */
-  public function buildMedia(array &$settings = [], $entity, $langcode) {
-    // Paragraphs return $type as a string bundle, Media entity object.
-    $type   = $entity->getType();
-    $bundle = $entity->bundle();
-
-    // @todo get 'type' independent from bundle names: image, video, audio.
-    $settings['type']           = in_array($bundle, ['image', 'video', 'audio']) ? $bundle : 'image';
-    $settings['bundle']         = $bundle;
-    $settings['target_bundles'] = $this->getFieldSetting('handler_settings')['target_bundles'];
-    $settings['plugin_id']      = is_string($type) ? $this->getPluginId() : $type->getPluginId();
-  }
-
-  /**
    * Build the main background/stage, image or video.
+   *
+   * Main image can be separate image item from video thumbnail for highres.
+   * Fallback to default thumbnail if any, which has no file API.
    */
-  public function buildStage(array &$settings = [], $entity, $langcode) {
-    $fields = $this->getPluginId() == 'slick_media' ? $entity->getFields() : [];
-    $item   = NULL;
-    $stage  = '';
+  public function buildStage(array &$element = [], $entity, $langcode) {
+    $settings = &$element['settings'];
+    $stage    = empty($settings['source_field']) ? '' : $settings['source_field'];
+    $stage    = empty($settings['image']) ? $stage : $settings['image'];
 
-    // Main image can be separate image item from video thumbnail for highres.
-    // Fallback to default thumbnail if any, which has no file API.
-    // If Media entity via slick_media has defined source_field.
-    if (isset($fields['thumbnail']) && !empty($settings['source_field'])) {
-      $stage = $settings['source_field'];
-      $item = $fields['thumbnail']->get(0);
-      $settings['file_tags'] = ['file:' . $item->target_id];
-    }
-
-    $stage = empty($settings['image']) ? $stage : $settings['image'];
-
-    // Fetches the highres image if provided and available.
+    // The actual video thumbnail has already been downloaded earlier.
+    // This fetches the highres image if provided and available.
     // With a mix of image and video, image is not always there.
     if ($stage && isset($entity->{$stage})) {
       /** @var \Drupal\file\Plugin\Field\FieldType\FileFieldItemList $file */
@@ -224,7 +212,7 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
         if (isset($value[0]['target_id']) && !empty($value[0]['target_id'])) {
           if (method_exists($file, 'referencedEntities') && isset($file->referencedEntities()[0])) {
             /** @var \Drupal\image\Plugin\Field\FieldType\ImageItem $item */
-            $item = $file->get(0);
+            $element['item'] = $file->get(0);
 
             // Collects cache tags to be added for each item in the field.
             $settings['file_tags'] = $file->referencedEntities()[0]->getCacheTags();
@@ -234,18 +222,14 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
         // If a VEF with a text, or link field.
         elseif (isset($value[0]['value']) || isset($value[0]['uri'])) {
           $external_url = $this->getFieldString($entity, $stage, $langcode);
-          $provider_manager = $this->providerManager;
 
-          /** @var \Drupal\video_embed_field\ProviderManagerInterface $provider */
-          if ($external_url && $provider_manager->loadProviderFromInput($external_url)) {
-            $this->buildVideo($settings, $external_url, $provider_manager);
-            $item = $value;
+          if ($external_url) {
+            $this->buildVideo($settings, $external_url);
+            $element['item'] = $value;
           }
         }
       }
     }
-
-    return $item;
   }
 
   /**
@@ -259,19 +243,24 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
 
     $this->admin()->buildSettingsForm($element, $definition);
 
-    $layout_description = $element['layout']['#description'];
-    $element['layout']['#description'] = $this->t('Create a dedicated List (text - max number 1) field related to the caption placement to have unique layout per slide with the following supported keys: top, right, bottom, left, center, center-top, etc. Be sure its formatter is Key.') . ' ' . $layout_description;
+    if (isset($element['layout'])) {
+      $layout_description = $element['layout']['#description'];
+      $element['layout']['#description'] = $this->t('Create a dedicated List (text - max number 1) field related to the caption placement to have unique layout per slide with the following supported keys: top, right, bottom, left, center, center-top, etc. Be sure its formatter is Key.') . ' ' . $layout_description;
+    }
 
-    $element['media_switch']['#options']['media'] = $this->t('Image to iframe');
-    $element['media_switch']['#description'] .= ' ' . $this->t('Be sure the enabled fields here are not hidden/disabled at its view mode.');
+    if (isset($element['media_switch']['#description'])) {
+      $element['media_switch']['#description'] .= ' ' . $this->t('Be sure the enabled fields here are not hidden/disabled at its view mode.');
+    }
 
-    $element['caption']['#description'] = $this->t('Check fields to be treated as captions, even if not caption texts.');
+    if (isset($element['caption'])) {
+      $element['caption']['#description'] = $this->t('Check fields to be treated as captions, even if not caption texts.');
+    }
 
-    if (isset($element['image'])) {
+    if (isset($element['image']['#description'])) {
       $element['image']['#description'] .= ' ' . $this->t('For video, this allows separate highres image, be sure the same field used for Image to have a mix of videos and images. Leave empty to fallback to the video provider thumbnails. The renderer is managed by <strong>@namespace</strong> formatter. <strong>Supported fields</strong>: Image, Video Embed Field.', ['@namespace' => $this->getPluginId()]);
     }
 
-    if (isset($element['overlay'])) {
+    if (isset($element['overlay']['#description'])) {
       $element['overlay']['#description'] .= ' ' . $this->t('The renderer is managed by the child formatter. <strong>Supported fields</strong>: Image, Video Embed Field, Media Entity.');
     }
 
@@ -299,6 +288,7 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
       'classes'           => $strings,
       'current_view_mode' => $this->viewMode,
       'entity_type'       => $entity_type,
+      'field_type'        => $field->getType(),
       'fieldable_form'    => TRUE,
       'field_name'        => $field->getName(),
       'images'            => $admin->getFieldOptions($bundles, ['image'], $target_type),
@@ -315,7 +305,15 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
       'nav'               => TRUE,
       'titles'            => $texts,
       'vanilla'           => TRUE,
+      'view_mode'         => $this->viewMode,
     ];
   }
+
+  /**
+   * Collects media definitions.
+   *
+   * @todo: Drop to re-use BlazyVideoTrait::getMediaItem() for everything else.
+   */
+  public function buildMedia(array &$settings = [], $entity, $langcode) {}
 
 }

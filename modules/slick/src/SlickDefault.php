@@ -13,11 +13,10 @@ use Drupal\blazy\Dejavu\BlazyDefault;
 class SlickDefault extends BlazyDefault {
 
   /**
-   * Returns basic plugin settings.
+   * {@inheritdoc}
    */
   public static function baseSettings() {
     return [
-      'display'             => 'main',
       'optionset_thumbnail' => '',
       'override'            => FALSE,
       'overridables'        => [],
@@ -29,27 +28,29 @@ class SlickDefault extends BlazyDefault {
   }
 
   /**
-   * Returns image-related field formatter and Views settings.
+   * {@inheritdoc}
+   *
+   * @todo: Use parent::gridSettings().
    */
   public static function imageSettings() {
     return [
+      'grid'               => 0,
+      'grid_header'        => '',
+      'grid_medium'        => 0,
+      'grid_small'         => 0,
+      'preserve_keys'      => FALSE,
       'thumbnail_effect'   => '',
       'thumbnail_position' => '',
+      'visible_items'      => 0,
     ] + self::baseSettings() + parent::imageSettings();
   }
 
   /**
-   * Returns fieldable entity formatter and Views settings.
+   * {@inheritdoc}
    */
   public static function extendedSettings() {
     return [
-      'grid'           => 0,
-      'grid_header'    => '',
-      'grid_medium'    => 0,
-      'grid_small'     => 0,
-      'preserve_keys'  => FALSE,
-      'thumbnail'      => '',
-      'visible_items'  => 0,
+      'thumbnail' => '',
     ] + self::imageSettings() + parent::extendedSettings();
   }
 

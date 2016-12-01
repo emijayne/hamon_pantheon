@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\system\Plugin\Block\SuperfishBlock.
- */
-
 namespace Drupal\superfish\Plugin\Block;
 
 use Drupal\system\Plugin\Block\SystemMenuBlock;
@@ -671,7 +666,7 @@ class SuperfishBlock extends SystemMenuBlock {
     $sfoptions['dropShadows'] = ($this->configuration['shadow'] == 0) ? FALSE : '';
 
     if ($this->configuration['hoverintent']) {
-      $build['#attached']['library'][] = 'superfish/hoverintent';
+      $build['#attached']['library'][] = 'superfish/superfish_hoverintent';
     }
     else {
       $sfoptions['disableHI'] = TRUE;
@@ -934,7 +929,12 @@ class SuperfishBlock extends SystemMenuBlock {
   /**
    * Loads the whole menu tree.
    */
-  public function expandAll($tree) {
+  public function expandAll($tree, $currentDepth = 1) {
+    $maxDepth = $this->configuration['depth'];
+    if ($maxDepth != 0 && $currentDepth >= $maxDepth) {
+      return $tree;
+    }
+
     // Sorts the tree based on link "weights".
     usort($tree, function($a, $b) {
       $link_a = $a->link->getPluginDefinition();
@@ -948,7 +948,8 @@ class SuperfishBlock extends SystemMenuBlock {
         $parameters->setRoot($element->link->getPluginId())->excludeRoot()->setMaxDepth(1)->onlyEnabledLinks();
         $subtree = $menu_tree->load(NULL, $parameters);
         if ($subtree) {
-          $tree[$key]->subtree = $this->expandAll($subtree);
+          $nextDepth = $currentDepth + 1;
+          $tree[$key]->subtree = $this->expandAll($subtree, $nextDepth);
         }
       }
     }

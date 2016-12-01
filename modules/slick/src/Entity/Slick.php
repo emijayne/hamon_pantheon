@@ -165,7 +165,7 @@ class Slick extends ConfigEntityBase implements SlickInterface {
   }
 
   /**
-   * Overrides Drupal\Core\Entity\Entity::create().
+   * Overrides \Drupal\Core\Entity\Entity::create().
    */
   public static function create(array $values = []) {
     $optionset = parent::create($values);
@@ -278,6 +278,8 @@ class Slick extends ConfigEntityBase implements SlickInterface {
 
   /**
    * Returns the trusted HTML ID of a single slick instance.
+   *
+   * @todo: Consider Blazy::getHtmlId() instead.
    */
   public static function getHtmlId($string = 'slick', $id = '') {
     $slick_id = &drupal_static('slick_id', 0);
@@ -287,14 +289,14 @@ class Slick extends ConfigEntityBase implements SlickInterface {
   }
 
   /**
-   * Returns HTML or layout related settings, none of JS to shutup notices.
+   * Returns HTML or layout related settings, none of JS, to shut up notices.
    */
   public static function htmlSettings() {
     return [
       'cache'             => 0,
       'current_view_mode' => '',
       'display'           => 'main',
-      'grid'              => '',
+      'grid'              => 0,
       'id'                => '',
       'nav'               => FALSE,
       'navpos'            => FALSE,

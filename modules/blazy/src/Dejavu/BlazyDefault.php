@@ -4,6 +4,8 @@ namespace Drupal\blazy\Dejavu;
 
 /**
  * Defines shared plugin default settings for field formatter and Views style.
+ *
+ * @todo: Consider moving this into Drupal\blazy namespace.
  */
 class BlazyDefault {
 
@@ -28,9 +30,9 @@ class BlazyDefault {
     return [
       'cache'             => 0,
       'current_view_mode' => '',
-      'item_id'           => '',
       'optionset'         => 'default',
       'skin'              => '',
+      'style'             => '',
     ];
   }
 
@@ -43,9 +45,11 @@ class BlazyDefault {
       'box_caption'            => '',
       'box_caption_custom'     => '',
       'box_style'              => '',
+      'box_media_style'        => '',
       'breakpoints'            => [],
       'caption'                => [],
-      'icon'                   => FALSE,
+      'iframe_lazy'            => TRUE,
+      'icon'                   => '',
       'image_style'            => '',
       'layout'                 => '',
       'media_switch'           => '',
@@ -53,6 +57,7 @@ class BlazyDefault {
       'responsive_image_style' => '',
       'sizes'                  => '',
       'thumbnail_style'        => '',
+      'view_mode'              => '',
     ] + self::baseSettings();
   }
 
@@ -62,16 +67,42 @@ class BlazyDefault {
   public static function extendedSettings() {
     return [
       'class'       => '',
-      'dimension'   => '',
       'id'          => '',
-      'iframe_lazy' => FALSE,
       'image'       => '',
       'link'        => '',
       'overlay'     => '',
       'title'       => '',
-      'view_mode'   => '',
       'vanilla'     => FALSE,
     ] + self::imageSettings();
+  }
+
+  /**
+   * Returns optional grid field formatter and Views settings.
+   */
+  public static function gridSettings() {
+    return [
+      'grid'        => 0,
+      'grid_header' => '',
+      'grid_medium' => 0,
+      'grid_small'  => 0,
+      'style'       => '',
+    ];
+  }
+
+  /**
+   * Returns sensible default options common for entities lacking of UI.
+   */
+  public static function entitySettings() {
+    return [
+      'blazy'        => TRUE,
+      'iframe_lazy'  => TRUE,
+      'lazy'         => 'blazy',
+      'media_switch' => 'media',
+      'ratio'        => 'fluid',
+      'rendered'     => FALSE,
+      'view_mode'    => 'default',
+      '_detached'    => TRUE,
+    ];
   }
 
 }

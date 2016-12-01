@@ -1,4 +1,18 @@
 
+Slick views 8.x-1.0-dev, 2016-11-29
+-----------------------------------
+- Marked it Beta5.
+- Updated .info file.
+
+Slick views 8.x-1.0-dev, 2016-11-09
+-----------------------------------
+- A few cleanups.
+
+Slick views 8.x-1.0-dev, 2016-10-25
+-----------------------------------
+- #2821085 by IngoVals: Help button in module admins window gives a warning.
+- Updated to latest Slick and Blazy.
+
 Slick views 8.x-1.0-dev, 2016-09-29
 -----------------------------------
 - #2807881 by chaitanya17: Unused Class added in SlickViews.php.

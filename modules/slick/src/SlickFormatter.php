@@ -26,26 +26,31 @@ class SlickFormatter extends BlazyFormatterManager implements SlickFormatterInte
     $optionset_name     = $settings['optionset'] ?: 'default';
     $build['optionset'] = Slick::load($optionset_name);
 
+    // Ensures deleted optionset while being used doesn't screw up.
+    if (empty($build['optionset'])) {
+      $build['optionset'] = Slick::load('default');
+    }
+
     if (!isset($settings['nav'])) {
       $settings['nav'] = !empty($settings['optionset_thumbnail']) && isset($items[1]);
     }
 
     // Do not bother for SlickTextFormatter, or when vanilla is on.
     if (empty($settings['vanilla'])) {
-      $resimage          = !empty($settings['responsive_image_style']);
       $lazy              = $build['optionset']->getSetting('lazyLoad');
-      $lazy              = ($this->configLoad('responsive_image') && $resimage) ? 'blazy' : $lazy;
       $settings['blazy'] = $lazy == 'blazy' || !empty($settings['blazy']);
       $settings['lazy']  = $settings['blazy'] ? 'blazy' : $lazy;
 
-      if (!$settings['blazy']) {
+      if (empty($settings['blazy'])) {
         $settings['lazy_class'] = $settings['lazy_attribute'] = 'lazy';
       }
     }
     else {
-      // Nothings to work with Vanilla on, disable the asnavfor.
+      // Nothing to work with Vanilla on, disable the asnavfor, else JS error.
       $settings['nav'] = FALSE;
     }
+
+    $settings['overridables'] = array_filter($settings['overridables']);
   }
 
   /**
@@ -56,7 +61,7 @@ class SlickFormatter extends BlazyFormatterManager implements SlickFormatterInte
     if (!empty($settings['uri'])) {
       $thumbnail = [
         '#theme'      => 'image_style',
-        '#style_name' => $settings['thumbnail_style'],
+        '#style_name' => isset($settings['thumbnail_style']) ? $settings['thumbnail_style'] : 'thumbnail',
         '#uri'        => $settings['uri'],
       ];
 
@@ -65,18 +70,6 @@ class SlickFormatter extends BlazyFormatterManager implements SlickFormatterInte
       }
     }
     return $thumbnail;
-  }
-
-  /**
-   * Overrides BlazyFormatterManager::getMediaSwitch().
-   */
-  public function getMediaSwitch(array &$element = [], $settings = []) {
-    parent::getMediaSwitch($element, $settings);
-    $switch = $settings['media_switch'];
-
-    if (isset($element['#url_attributes'])) {
-      $element['#url_attributes']['class'] = ['slick__' . $switch, 'litebox'];
-    }
   }
 
 }
