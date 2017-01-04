@@ -28,7 +28,8 @@ class StatisticsTokenReplaceTest extends StatisticsTestBase {
     $headers = array('Content-Type' => 'application/x-www-form-urlencoded');
     global $base_url;
     $stats_path = $base_url . '/' . drupal_get_path('module', 'statistics') . '/statistics.php';
-    $client = \Drupal::httpClient();
+    $client = \Drupal::service('http_client_factory')
+      ->fromOptions(['config/curl' => [CURLOPT_TIMEOUT => 10]]);
     $client->post($stats_path, array('headers' => $headers, 'body' => $post));
     $statistics = statistics_get($node->id());
 

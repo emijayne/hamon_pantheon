@@ -10,7 +10,6 @@ use GuzzleHttp\Cookie\CookieJar;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
-use Drupal\hal\Encoder\JsonEncoder as HALJsonEncoder;
 use Symfony\Component\Serializer\Serializer;
 
 /**
@@ -19,13 +18,6 @@ use Symfony\Component\Serializer\Serializer;
  * @group user
  */
 class UserLoginHttpTest extends BrowserTestBase {
-
-  /**
-   * Modules to install.
-   *
-   * @var array
-   */
-  public static $modules = ['hal'];
 
   /**
    * The cookie jar.
@@ -47,7 +39,7 @@ class UserLoginHttpTest extends BrowserTestBase {
   protected function setUp() {
     parent::setUp();
     $this->cookies = new CookieJar();
-    $encoders = [new JsonEncoder(), new XmlEncoder(), new HALJsonEncoder()];
+    $encoders = [new JsonEncoder(), new XmlEncoder()];
     $this->serializer = new Serializer([], $encoders);
   }
 
@@ -98,7 +90,7 @@ class UserLoginHttpTest extends BrowserTestBase {
         /** @var \Drupal\Core\Extension\ModuleInstaller $module_installer */
         $module_installer = $this->container->get('module_installer');
         $module_installer->install(['serialization']);
-        $formats = ['json', 'xml', 'hal_json'];
+        $formats = ['json', 'xml'];
       }
       else {
         // Without the serialization module only JSON is supported.

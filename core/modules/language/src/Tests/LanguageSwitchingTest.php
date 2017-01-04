@@ -118,9 +118,8 @@ class LanguageSwitchingTest extends WebTestBase {
   protected function doTestLanguageBlockAnonymous($block_label) {
     $this->drupalLogout();
 
-    // Assert that the language switching block is displayed on the frontpage
-    // and ensure that the active class is added when query params are present.
-    $this->drupalGet('', ['query' => ['foo' => 'bar']]);
+    // Assert that the language switching block is displayed on the frontpage.
+    $this->drupalGet('');
     $this->assertText($block_label, 'Language switcher block found.');
 
     // Assert that only the current language is marked as active.

@@ -419,13 +419,9 @@ class HtmlResponseAttachmentsProcessor implements AttachmentsResponseProcessorIn
 
       if ($should_add_header) {
         // Also add a HTTP header "Link:".
-        $href = '<' . Html::escape($attributes['href']) . '>';
+        $href = '<' . Html::escape($attributes['href'] . '>');
         unset($attributes['href']);
-        if ($param = drupal_http_header_attributes($attributes)) {
-          $href .= ';' . $param;
-        }
-
-        $attached['http_header'][] = ['Link', $href, FALSE];
+        $attached['http_header'][] = ['Link', $href . drupal_http_header_attributes($attributes), TRUE];
       }
     }
     return $attached;

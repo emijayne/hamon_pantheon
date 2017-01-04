@@ -43,14 +43,12 @@ class ModerationStateFieldItemList extends EntityReferenceFieldItemList {
           ->loadRevision($revision_to_load);
 
         // Return the correct translation.
-        if ($entity->getEntityType()->hasKey('langcode')) {
-          $langcode = $entity->language()->getId();
-          if (!$content_moderation_state->hasTranslation($langcode)) {
-            $content_moderation_state->addTranslation($langcode);
-          }
-          if ($content_moderation_state->language()->getId() !== $langcode) {
-            $content_moderation_state = $content_moderation_state->getTranslation($langcode);
-          }
+        $langcode = $entity->language()->getId();
+        if (!$content_moderation_state->hasTranslation($langcode)) {
+          $content_moderation_state->addTranslation($langcode);
+        }
+        if ($content_moderation_state->language()->getId() !== $langcode) {
+          $content_moderation_state = $content_moderation_state->getTranslation($langcode);
         }
 
         return $content_moderation_state->get('moderation_state')->entity;

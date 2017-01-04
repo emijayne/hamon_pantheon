@@ -21,6 +21,13 @@ use Drupal\migrate\Plugin\Discovery\ProviderFilterDecorator;
 class MigrateSourcePluginManager extends MigratePluginManager {
 
   /**
+   * The class loader.
+   *
+   * @var object
+   */
+  protected $classLoader;
+
+  /**
    * MigrateSourcePluginManager constructor.
    *
    * @param string $type

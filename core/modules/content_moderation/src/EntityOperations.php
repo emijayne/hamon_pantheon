@@ -152,6 +152,7 @@ class EntityOperations implements ContainerInjectionInterface {
     $entity_type_id = $entity->getEntityTypeId();
     $entity_id = $entity->id();
     $entity_revision_id = $entity->getRevisionId();
+    $entity_langcode = $entity->language()->getId();
 
     $storage = $this->entityTypeManager->getStorage('content_moderation_state');
     $entities = $storage->loadByProperties([
@@ -173,14 +174,11 @@ class EntityOperations implements ContainerInjectionInterface {
     }
 
     // Sync translations.
-    if ($entity->getEntityType()->hasKey('langcode')) {
-      $entity_langcode = $entity->language()->getId();
-      if (!$content_moderation_state->hasTranslation($entity_langcode)) {
-        $content_moderation_state->addTranslation($entity_langcode);
-      }
-      if ($content_moderation_state->language()->getId() !== $entity_langcode) {
-        $content_moderation_state = $content_moderation_state->getTranslation($entity_langcode);
-      }
+    if (!$content_moderation_state->hasTranslation($entity_langcode)) {
+      $content_moderation_state->addTranslation($entity_langcode);
+    }
+    if ($content_moderation_state->language()->getId() !== $entity_langcode) {
+      $content_moderation_state = $content_moderation_state->getTranslation($entity_langcode);
     }
 
     // Create the ContentModerationState entity for the inserted entity.

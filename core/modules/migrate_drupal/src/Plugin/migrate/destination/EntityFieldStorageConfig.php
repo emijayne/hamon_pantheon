@@ -9,17 +9,11 @@ use Drupal\migrate\Plugin\MigrationInterface;
 use Drupal\migrate\Plugin\migrate\destination\EntityFieldStorageConfig as BaseEntityFieldStorageConfig;
 
 /**
- * Deprecated. Destination with Drupal specific config dependencies.
+ * Destination with Drupal specific config dependencies.
  *
  * @MigrateDestination(
  *   id = "md_entity:field_storage_config"
  * )
- *
- * @deprecated in Drupal 8.2.x and will be removed in Drupal 9.0.x. Use
- *   \Drupal\migrate\Plugin\migrate\destination\EntityFieldStorageConfig
- *   instead.
- *
- * @see \Drupal\migrate\Plugin\migrate\destination\EntityFieldStorageConfig
  */
 class EntityFieldStorageConfig extends BaseEntityFieldStorageConfig {
 

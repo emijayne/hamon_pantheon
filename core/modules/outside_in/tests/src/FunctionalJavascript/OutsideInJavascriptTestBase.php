@@ -36,7 +36,8 @@ abstract class OutsideInJavascriptTestBase extends JavascriptTestBase {
    * Waits for Off-canvas tray to close.
    */
   protected function waitForOffCanvasToClose() {
-    $this->waitForNoElement('#drupal-offcanvas');
+    $condition = "(jQuery('#drupal-offcanvas').length == 0)";
+    $this->assertJsCondition($condition);
   }
 
   /**
@@ -45,9 +46,9 @@ abstract class OutsideInJavascriptTestBase extends JavascriptTestBase {
    * @param string $selector
    *   CSS selector.
    * @param int $timeout
-   *   (optional) Timeout in milliseconds, defaults to 10000.
+   *   (optional) Timeout in milliseconds, defaults to 1000.
    */
-  protected function waitForElement($selector, $timeout = 10000) {
+  protected function waitForElement($selector, $timeout = 1000) {
     $condition = "(jQuery('$selector').length > 0)";
     $this->assertJsCondition($condition, $timeout);
   }
@@ -61,19 +62,6 @@ abstract class OutsideInJavascriptTestBase extends JavascriptTestBase {
     $tray = $this->getSession()->getPage()->find('css', '.ui-dialog[aria-describedby="drupal-offcanvas"]');
     $this->assertEquals(FALSE, empty($tray), 'The tray was found.');
     return $tray;
-  }
-
-  /**
-   * Waits for an element to be removed from the page.
-   *
-   * @param string $selector
-   *   CSS selector.
-   * @param int $timeout
-   *   (optional) Timeout in milliseconds, defaults to 10000.
-   */
-  protected function waitForNoElement($selector, $timeout = 10000) {
-    $condition = "(jQuery('$selector').length == 0)";
-    $this->assertJsCondition($condition, $timeout);
   }
 
 }

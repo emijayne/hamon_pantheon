@@ -7,7 +7,7 @@ use Drupal\Core\Url;
 use Drupal\entity_test\Entity\EntityTest;
 
 /**
- * Tests HAL normalization edge cases for EntityResource.
+ * Tests that entities can be normalized in HAL.
  *
  * @group hal
  */

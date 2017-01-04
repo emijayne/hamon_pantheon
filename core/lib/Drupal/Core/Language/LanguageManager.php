@@ -318,7 +318,7 @@ class LanguageManager implements LanguageManagerInterface {
       'th' => array('Thai', 'ภาษาไทย'),
       'tr' => array('Turkish', 'Türkçe'),
       'tyv' => array('Tuvan', 'Тыва дыл'),
-      'ug' => array('Uyghur', /* Left-to-right marker "‭" */ 'ئۇيغۇرچە', LanguageInterface::DIRECTION_RTL),
+      'ug' => array('Uyghur', 'Уйғур'),
       'uk' => array('Ukrainian', 'Українська'),
       'ur' => array('Urdu', /* Left-to-right marker "‭" */ 'اردو', LanguageInterface::DIRECTION_RTL),
       'vi' => array('Vietnamese', 'Tiếng Việt'),

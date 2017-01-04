@@ -398,7 +398,7 @@ class MigrateExecutable implements MigrateExecutableInterface {
             $value = NULL;
             break;
           }
-          $multiple = $plugin->multiple();
+          $multiple = $multiple || $plugin->multiple();
         }
       }
       // No plugins or no value means do not set.

@@ -52,7 +52,8 @@ class StatisticsAdminTest extends WebTestBase {
     $this->privilegedUser = $this->drupalCreateUser(array('administer statistics', 'view post access counter', 'create page content'));
     $this->drupalLogin($this->privilegedUser);
     $this->testNode = $this->drupalCreateNode(array('type' => 'page', 'uid' => $this->privilegedUser->id()));
-    $this->client = \Drupal::httpClient();
+    $this->client = \Drupal::service('http_client_factory')
+      ->fromOptions(['config/curl' => [CURLOPT_TIMEOUT => 10]]);
   }
 
   /**

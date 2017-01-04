@@ -82,7 +82,9 @@ class StatisticsLoggingTest extends WebTestBase {
 
     // Clear the logs.
     db_truncate('node_counter');
-    $this->client = \Drupal::httpClient();
+
+    $this->client = \Drupal::service('http_client_factory')
+      ->fromOptions(['config/curl' => [CURLOPT_TIMEOUT => 10]]);
   }
 
   /**
