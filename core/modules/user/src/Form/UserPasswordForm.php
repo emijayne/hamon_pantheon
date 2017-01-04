@@ -99,7 +99,6 @@ class UserPasswordForm extends FormBase {
     }
     $form['actions'] = array('#type' => 'actions');
     $form['actions']['submit'] = array('#type' => 'submit', '#value' => $this->t('Submit'));
-    $form['#cache']['contexts'][] = 'url.query_args';
 
     return $form;
   }
