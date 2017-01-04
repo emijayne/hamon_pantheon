@@ -1,5 +1,7 @@
 <?php
 
+$settings['update_free_access'] = true;
+
 /**
  * Load services definition file.
  */
