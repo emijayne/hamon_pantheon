@@ -95,10 +95,9 @@
  #}
   <div{{ content_attributes }}>
     <div class="large callout lead">
-      {% if label %}
       <h3 class="align-right">{{ content.field_tags }}</h3>
       <h2 class="page-title">{{ label }}</h2>
-      {% endif %}
+      <h5>{{ content.field_location }}</h5>
       {{ content.body }}
       <a class="button primary" href="https://hamonusa-hr.com/onlineapp/default.aspx?position={{ node.field_code.value }}">Apply Now</a>
     </div>
