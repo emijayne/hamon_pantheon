@@ -1497,9 +1497,16 @@ a.button {
 li.tabs-title > a {
   font-size: 1rem; }
 
+.layout-triplet header {
+  border-bottom: 1px solid #cacaca;
+  text-align: center;
+  margin-bottom: 1rem;
+}
 .layout-triplet i {
   text-shadow: 2px 2px 1px #8a8a8a, 0 0 5px #8a8a8a;
-  color: #ffffff; }
+  color: #ffffff; 
+  font-size: 3rem;
+}
 
 h1, h2, h3 {
   text-shadow: 2px 2px 2px #cacaca; }
@@ -6007,3 +6014,12 @@ table.hover tr:nth-of-type(even):hover {
 .long-delay {
   -webkit-animation-delay: 700ms !important;
           animation-delay: 700ms !important; }
+
+body.node--type-event main div.layout-content img {
+  float: right;
+}
+body.node--type-event main div.layout-content div.quickedit-field {
+  margin: 1em 0;
+}
+
+.views-row { margin-bottom: 1em; }

@@ -71,7 +71,11 @@
 
     {% if page.sidebar %}
 
-    <div class="layout-content column medium-7 small-12">
+    <aside class="layout-sidebar column medium-7 small-12" role="complementary">
+      {{ page.sidebar }}
+    </aside>
+
+    <div class="layout-content column medium-5 small-12">
       {{ page.content }}
 
       {% if page.triplet %}
@@ -83,10 +87,6 @@
       {% endif %}
 
     </div>{# /.layout-content #}
-
-    <aside class="layout-sidebar column medium-5 small-12" role="complementary">
-      {{ page.sidebar }}
-    </aside>
 
     {% else %}
 
