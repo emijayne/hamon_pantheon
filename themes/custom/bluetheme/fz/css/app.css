@@ -6023,3 +6023,47 @@ body.node--type-event main div.layout-content div.quickedit-field {
 }
 
 .views-row { margin-bottom: 1em; }
+
+/* #frontslider */
+#frontslider {
+  margin-top: 0.5rem;
+  .slick-prev, .slick-next {
+    background-color: #009df9;
+    border-radius: 50%;
+    top: 115px;
+    
+  }
+}
+.clip {
+  div {
+    background: rgba(black, 0.5);
+    margin: 5px;
+    padding: 5px;
+    position: relative;
+    img {
+      height: 225px;
+    }
+    h4 {
+      position: absolute;
+      bottom: 0px;
+      background: rgba(#808080, .6);
+      color: #fefefe;
+      text-shadow: 1px 1px 0 #000;
+      margin: 0;
+      padding: .5rem;
+    }
+  }
+}
+.center .slick-active {
+  div, h4 {
+    opacity: 0.5;
+  }
+}
+.center .slick-center {
+  div, h4 {
+    opacity: 1;
+    img {
+      height: 250px;
+    }
+  }
+}

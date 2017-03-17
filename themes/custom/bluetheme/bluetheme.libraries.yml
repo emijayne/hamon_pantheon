@@ -1,13 +1,15 @@
 base:
   css:
     theme:
+      fz/css/slick.css: {}
+      fz/css/slick-theme.css: {}
       fz/css/app.css: {}
   js:
     fz/js/jquery-migrate-1.2.1.min.js: { minified: true }
-    fz/js/app.js: {}
     fz/js/foundation.min.js: { minified: true }
     fz/js/top_bar_active.js: {}
     fz/js/slick.min.js: { minified: true }
+    fz/js/app.js: {}
   dependencies:
     - core/jquery
 
