@@ -1,4 +1,79 @@
 
+Blazy 8.x-1.0-dev, 2017-01-24
+-----------------------------
+- Split BlazyDefault::imageSettings() into BlazyDefault::baseImageSettings().
+- Added media_attributes to position media container properly with aspect ratio.
+
+Blazy 8.x-1.0-dev, 2017-01-19
+-----------------------------
+- A couple of cosmetic fixes.
+
+Blazy 8.x-1.0-dev, 2017-01-16
+-----------------------------
+- #2841316 by gausarts, tjwelde: User error: "item" is an invalid render array
+  key.
+- #2843449 by gausarts, Jaesin: Consider adding `configure: blazy.settings` to
+  .info.yml on blazy_ui
+
+Blazy 8.x-1.0-dev, 2016-12-27
+-----------------------------
+- Fixed for broken grid when the theme has no CSS box-sizing rules.
+- Added blazy_settings_alter() to programtically alter settings prior to being
+  processed by field formatters.
+- Added Object.assign to use modern native extend before fallback to custom.
+- #2838213 by gausarts: Use vanilla JS.
+
+Blazy 8.x-1.0-dev, 2016-12-20
+-----------------------------
+- Decoupled Views stuffs from Blazy into BlazyViews.
+- Simplified media switch player JS.
+- Fixed for schema error with double and float insanity at sub-modules.
+- Simplified Blazy::buildUrl() to remove image_style $modifier assumption, and
+  let the actual extender use regular image_style override instead. GridStack
+  and Mason should update this accordingly.
+- Added Media switcher "Image rendered by its formatter" option to render images
+  as is for a special formatter with fieldable entities like Media, or
+  Paragraphs formatters such as with Image Link Formatter.
+- Refined select #options conditions.
+- Removed some complex form states to use custom JS with CSS visibility instead.
+- Allowed disabling Aspect ratio option which is not relevant for fixed grids
+  like Mason or GridStack. Alo image_style option such as with GridStack multi-
+  image-style grids field formatters.
+- Decoupled iframe related attributes into Blazy::buildIframeAttributes().
+
+Blazy 8.x-1.0-dev, 2016-12-12
+-----------------------------
+- #2834759 by DuneBL: Allow missing image.
+- Decoupled base entity reference formatter without field supports into
+  \Drupal\blazy\Dejavu\BlazyEntityBase to allow a simple ER formatter.
+- Added form--style- classes for easy decluterring of Blazy/ Slick form which is
+  not easy with form states.
+- Changed library weights.
+- Moved Colorbox mobile dimension check outside the loop.
+- Updated blazy.admin.js to declutter options which are not properly managed
+  by form states.
+
+Blazy 8.x-1.0-dev, 2016-12-09
+-----------------------------
+- Supported Media Entity to set dimensions once to reduce method calls.
+- Simplified BlazyManager::setDimensionsOnce() to support Media Entity, etc.
+- Cleaned out deprecated methods which were already merged into theme_blazy():
+  BlazyManager::getUrlBreakpoints()
+  BlazyManager::getUrlDimensions()
+  BlazyManager::getMediaSwitch()
+
+Blazy 8.x-1.0-dev, 2016-12-07
+-----------------------------
+- Improved settings lightbox to reduce method calls for View fields, and Entity
+  Browser plugins with tons of images.
+
+Blazy 8.x-1.0-dev, 2016-12-05
+-----------------------------
+- Fixed for coding standards.
+- Fixed for a few admin CSS for small device.
+- Fixed for settings lightbox due to old approach with boolean, not string.
+- Moved Grid settings from the first Grid item into theme_item_list() context.
+
 Blazy 8.x-1.0-dev, 2016-11-29
 -----------------------------
 - Marked it Beta5.

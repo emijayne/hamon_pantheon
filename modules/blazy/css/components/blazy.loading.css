@@ -27,7 +27,7 @@
   }
 }
 
-/* The lazyloaded element: IMG, IFRAME, DIV */
+/* The lazyloaded element: IMG, IFRAME, DIV. */
 .b-lazy,
 .b-responsive {
   display: block;
@@ -69,4 +69,5 @@
 .media--background {
   background-size: cover;
   background-position: center center;
+  background-repeat: no-repeat;
 }

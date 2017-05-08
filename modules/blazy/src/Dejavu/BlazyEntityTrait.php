@@ -15,7 +15,7 @@ trait BlazyEntityTrait {
   /**
    * Returns the string value of the fields: link, or text.
    */
-  public function getFieldString($entity, $field_name = '', $langcode) {
+  public function getFieldString($entity, $field_name = '', $langcode = NULL) {
     $value = '';
     if (empty($field_name)) {
       return $value;
@@ -41,7 +41,7 @@ trait BlazyEntityTrait {
    */
   public function getFieldRenderable($entity, $field_name = '', $view_mode = 'full') {
     $view = [];
-    $has_field = $field_name && isset($entity->{$field_name});
+    $has_field = !empty($field_name) && isset($entity->{$field_name});
     if ($has_field && !empty($entity->{$field_name}->view($view_mode)[0])) {
       $view = $entity->get($field_name)->view($view_mode);
 
@@ -57,6 +57,9 @@ trait BlazyEntityTrait {
   /**
    * Build image/video preview either using theme_blazy(), or view builder.
    *
+   * This is alternative to Drupal\blazy\BlazyFormatterManager used outside
+   * field formatters, such as Views field, or Entity Browser displays, etc.
+   *
    * @param array $data
    *   An array of data containing settings, and image item.
    * @param object $entity
@@ -67,7 +70,7 @@ trait BlazyEntityTrait {
    * @return array
    *   The renderable array of theme_blazy(), or view builder, else empty.
    */
-  public function buildPreview($data = [], $entity, $fallback = '') {
+  public function buildPreview(array $data, $entity, $fallback = '') {
     $build = [];
 
     if (!$entity instanceof EntityInterface) {
@@ -81,6 +84,10 @@ trait BlazyEntityTrait {
 
     $settings = &$data['settings'];
     if (!empty($data['item'])) {
+      if (!empty($settings['media_switch'])) {
+        $is_lightbox = $this->blazyManager()->getLightboxes() && in_array($settings['media_switch'], $this->blazyManager()->getLightboxes());
+        $settings['lightbox'] = $is_lightbox ? $settings['media_switch'] : FALSE;
+      }
       if (empty($settings['uri'])) {
         $settings['uri'] = ($file = $data['item']->entity) && empty($data['item']->uri) ? $file->getFileUri() : $data['item']->uri;
       }
@@ -116,6 +123,5 @@ trait BlazyEntityTrait {
 
     return $build;
   }
-
 
 }

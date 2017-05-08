@@ -12,7 +12,7 @@ class BlazyDefault {
   /**
    * The supported $breakpoints.
    *
-   * @const $breakpoints.
+   * @var array
    */
   private static $breakpoints = ['xs', 'sm', 'md', 'lg', 'xl'];
 
@@ -39,7 +39,7 @@ class BlazyDefault {
   /**
    * Returns image-related field formatter and Views settings.
    */
-  public static function imageSettings() {
+  public static function baseImageSettings() {
     return [
       'background'             => FALSE,
       'box_caption'            => '',
@@ -48,32 +48,47 @@ class BlazyDefault {
       'box_media_style'        => '',
       'breakpoints'            => [],
       'caption'                => [],
-      'iframe_lazy'            => TRUE,
-      'icon'                   => '',
       'image_style'            => '',
-      'layout'                 => '',
       'media_switch'           => '',
       'ratio'                  => '',
       'responsive_image_style' => '',
       'sizes'                  => '',
-      'thumbnail_style'        => '',
-      'view_mode'              => '',
-    ] + self::baseSettings();
+    ];
+  }
+
+  /**
+   * Returns image-related field formatter and Views settings.
+   */
+  public static function imageSettings() {
+    return [
+      'iframe_lazy'     => TRUE,
+      'icon'            => '',
+      'layout'          => '',
+      'thumbnail_style' => '',
+      'view_mode'       => '',
+    ] + self::baseSettings() + self::baseImageSettings();
+  }
+
+  /**
+   * Returns Views specific settings.
+   */
+  public static function viewsSettings() {
+    return [
+      'class'   => '',
+      'id'      => '',
+      'image'   => '',
+      'link'    => '',
+      'overlay' => '',
+      'title'   => '',
+      'vanilla' => FALSE,
+    ];
   }
 
   /**
    * Returns fieldable entity formatter and Views settings.
    */
   public static function extendedSettings() {
-    return [
-      'class'       => '',
-      'id'          => '',
-      'image'       => '',
-      'link'        => '',
-      'overlay'     => '',
-      'title'       => '',
-      'vanilla'     => FALSE,
-    ] + self::imageSettings();
+    return self::viewsSettings() + self::imageSettings();
   }
 
   /**

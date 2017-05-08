@@ -14,7 +14,15 @@ use Drupal\blazy\Dejavu\BlazyDefault;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Base class for blazy/slick image and file ER formatters.
+ * Base class for blazy/slick image, and file ER formatters.
+ *
+ * Defines one base class to extend for both image and file ER formatters as
+ * otherwise different base classes: ImageFormatterBase or FileFormatterBase.
+ *
+ * @see Drupal\blazy\Plugin\Field\FieldFormatter\BlazyFormatter.
+ * @see Drupal\blazy\Plugin\Field\FieldFormatter\BlazyFileFormatter.
+ * @see Drupal\slick\Plugin\Field\FieldFormatter\SlickImageFormatter.
+ * @see Drupal\slick\Plugin\Field\FieldFormatter\SlickFileFormatter.
  */
 abstract class BlazyFileFormatterBase extends FileFormatterBase implements ContainerFactoryPluginInterface {
 
@@ -64,6 +72,16 @@ abstract class BlazyFileFormatterBase extends FileFormatterBase implements Conta
   }
 
   /**
+   * Builds the settings.
+   */
+  public function buildSettings() {
+    $settings              = $this->getSettings();
+    $settings['plugin_id'] = $this->getPluginId();
+
+    return $settings;
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
@@ -71,6 +89,16 @@ abstract class BlazyFileFormatterBase extends FileFormatterBase implements Conta
     $definition = $this->getScopedFormElements();
 
     $definition['_views'] = isset($form['field_api_classes']);
+    if (!empty($definition['_views'])) {
+      $view = $form_state->get('view');
+      // Disables problematic options for GridStack plugin since GridStack
+      // will not work with Responsive image, and has its own breakpoints.
+      if ($view->getExecutable()->getStyle()->getPluginId() == 'gridstack') {
+        $definition['breakpoints'] = $definition['ratio'] = FALSE;
+        $definition['responsive_image'] = FALSE;
+        $definition['no_ratio'] = TRUE;
+      }
+    }
 
     $this->admin()->buildSettingsForm($element, $definition);
 
@@ -99,6 +127,7 @@ abstract class BlazyFileFormatterBase extends FileFormatterBase implements Conta
       'image_style_form'  => TRUE,
       'media_switch_form' => TRUE,
       'namespace'         => 'blazy',
+      'plugin_id'         => $this->getPluginId(),
       'settings'          => $this->getSettings(),
       'style'             => $multiple,
       'target_type'       => $target_type,
@@ -107,7 +136,7 @@ abstract class BlazyFileFormatterBase extends FileFormatterBase implements Conta
   }
 
   /**
-   * Overrides \Drupal\file\Plugin\Field\FieldFormatter\FileFormatterBase::needsEntityLoad().
+   * Overrides parent::needsEntityLoad().
    *
    * One step back to have both image and file ER plugins extend this, because
    * EntityReferenceItem::isDisplayed() doesn't exist, except for ImageItem
@@ -124,7 +153,7 @@ abstract class BlazyFileFormatterBase extends FileFormatterBase implements Conta
    * to have one base class to extend for both image and file ER formatters.
    */
   protected function getEntitiesToView(EntityReferenceFieldItemListInterface $items, $langcode) {
-    // Add the default image if hte type is image.
+    // Add the default image if the type is image.
     if ($items->isEmpty() && $this->fieldDefinition->getType() === 'image') {
       $default_image = $this->getFieldSetting('default_image');
       // If we are dealing with a configurable field, look in both

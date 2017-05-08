@@ -3,12 +3,11 @@
 namespace Drupal\blazy\Dejavu;
 
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Field\Plugin\Field\FieldFormatter\EntityReferenceFormatterBase;
 
 /**
- * Base class for blazy entity reference formatters.
+ * Base class for entity reference formatters with field details.
  */
-abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
+abstract class BlazyEntityReferenceBase extends BlazyEntityBase {
 
   use BlazyEntityTrait;
 
@@ -20,66 +19,31 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
   }
 
   /**
-   * Returns media contents.
+   * {@inheritdoc}
    */
-  public function buildElements(array &$build = [], $entities, $langcode) {
-    $settings  = &$build['settings'];
-    $view_mode = $settings['view_mode'] ?: 'full';
+  public function buildElement(array &$build, $entity, $langcode) {
+    $settings = &$build['settings'];
 
-    foreach ($entities as $delta => $entity) {
-      // Protect ourselves from recursive rendering.
-      static $depth = 0;
-      $depth++;
-      if ($depth > 20) {
-        $this->loggerFactory->get('entity')->error('Recursive rendering detected when rendering entity @entity_type @entity_id. Aborting rendering.', array('@entity_type' => $entity->getEntityTypeId(), '@entity_id' => $entity->id()));
-        return $build;
-      }
-
-      $settings['delta'] = $delta;
-      if ($entity->id()) {
-        if (!empty($settings['vanilla'])) {
-          $build['items'][$delta] = $this->manager()->getEntityTypeManager()->getViewBuilder($entity->getEntityTypeId())->view($entity, $view_mode, $langcode);
-        }
-        else {
-          $this->buildElement($build, $entity, $langcode);
-        }
-
-        // Add the entity to cache dependencies so to clear when it is updated.
-        $this->manager()->getRenderer()->addCacheableDependency($build['items'][$delta], $entity);
-      }
-      else {
-        $this->referencedEntities = NULL;
-        // This is an "auto_create" item.
-        $build[$delta] = array('#markup' => $entity->label());
-      }
-
-      $depth = 0;
+    if (!empty($settings['vanilla'])) {
+      return parent::buildElement($build, $entity, $langcode);
     }
 
-    // Supports Blazy formatter multi-breakpoint images if available.
-    if (empty($settings['vanilla'])) {
-      $this->formatter->isBlazy($build['settings'], $build['items'][0]);
-    }
-
-    return $build;
-  }
-
-  /**
-   * Returns slide contents.
-   */
-  public function buildElement(array &$build = [], $entity, $langcode) {
-    $settings  = &$build['settings'];
     $delta     = $settings['delta'];
     $item_id   = $settings['item_id'];
-    $view_mode = $settings['view_mode'] ?: 'full';
+    $view_mode = empty($settings['view_mode']) ? 'full' : $settings['view_mode'];
     $element   = ['settings' => $settings];
 
     // Built early before stage to allow custom highres video thumbnail later.
-    // Implementor must import: Drupal\blazy\Dejavu\BlazyVideoTrait
+    // Implementor must import: Drupal\blazy\Dejavu\BlazyVideoTrait.
     $this->getMediaItem($element, $entity);
 
     // Build the main stage.
     $this->buildStage($element, $entity, $langcode);
+
+    // If Image rendered is picked, render image as is.
+    if (!empty($settings['image']) && (!empty($settings['media_switch']) && $settings['media_switch'] == 'rendered')) {
+      $element['content'][] = $this->getFieldRenderable($entity, $settings['image'], $view_mode);
+    }
 
     // Optional image with responsive image, lazyLoad, and lightbox supports.
     $element[$item_id] = empty($element['item']) ? [] : $this->formatter->getImage($element);
@@ -117,7 +81,7 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
   /**
    * Builds slide captions with possible multi-value fields.
    */
-  public function getCaption(array &$element = [], $entity, $langcode) {
+  public function getCaption(array &$element, $entity, $langcode) {
     $settings  = $element['settings'];
     $view_mode = $settings['view_mode'];
 
@@ -183,7 +147,7 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
   /**
    * Builds overlay placed within the caption.
    */
-  public function getOverlay($settings = [], $entity, $langcode) {
+  public function getOverlay(array $settings, $entity, $langcode) {
     return $entity->get($settings['overlay'])->view($settings['view_mode']);
   }
 
@@ -193,7 +157,7 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
    * Main image can be separate image item from video thumbnail for highres.
    * Fallback to default thumbnail if any, which has no file API.
    */
-  public function buildStage(array &$element = [], $entity, $langcode) {
+  public function buildStage(array &$element, $entity, $langcode) {
     $settings = &$element['settings'];
     $stage    = empty($settings['source_field']) ? '' : $settings['source_field'];
     $stage    = empty($settings['image']) ? $stage : $settings['image'];
@@ -236,19 +200,15 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
    * {@inheritdoc}
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
-    $element    = [];
-    $definition = $this->getScopedFormElements();
-
-    $definition['_views'] = isset($form['field_api_classes']);
-
-    $this->admin()->buildSettingsForm($element, $definition);
+    $element = parent::settingsForm($form, $form_state);
 
     if (isset($element['layout'])) {
       $layout_description = $element['layout']['#description'];
       $element['layout']['#description'] = $this->t('Create a dedicated List (text - max number 1) field related to the caption placement to have unique layout per slide with the following supported keys: top, right, bottom, left, center, center-top, etc. Be sure its formatter is Key.') . ' ' . $layout_description;
     }
 
-    if (isset($element['media_switch']['#description'])) {
+    if (isset($element['media_switch'])) {
+      $element['media_switch']['#options']['rendered'] = $this->t('Image rendered by its formatter');
       $element['media_switch']['#description'] .= ' ' . $this->t('Be sure the enabled fields here are not hidden/disabled at its view mode.');
     }
 
@@ -257,28 +217,29 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
     }
 
     if (isset($element['image']['#description'])) {
-      $element['image']['#description'] .= ' ' . $this->t('For video, this allows separate highres image, be sure the same field used for Image to have a mix of videos and images. Leave empty to fallback to the video provider thumbnails. The renderer is managed by <strong>@namespace</strong> formatter. <strong>Supported fields</strong>: Image, Video Embed Field.', ['@namespace' => $this->getPluginId()]);
+      $element['image']['#description'] .= ' ' . $this->t('For video, this allows separate highres image, be sure the same field used for Image to have a mix of videos and images. Leave empty to fallback to the video provider thumbnails. The formatter/renderer is managed by <strong>@namespace</strong> formatter. Meaning original formatter ignored. If you want original formatters, check <strong>Vanilla</strong> option. Alternatively choose <strong>Media switcher &gt; Image rendered </strong>, other image-related settings here will be ignored. <strong>Supported fields</strong>: Image, Video Embed Field.', ['@namespace' => $this->getPluginId()]);
     }
 
     if (isset($element['overlay']['#description'])) {
-      $element['overlay']['#description'] .= ' ' . $this->t('The renderer is managed by the child formatter. <strong>Supported fields</strong>: Image, Video Embed Field, Media Entity.');
+      $element['overlay']['#description'] .= ' ' . $this->t('The formatter/renderer is managed by the child formatter. <strong>Supported fields</strong>: Image, Video Embed Field, Media Entity.');
     }
 
     return $element;
   }
 
   /**
-   * Defines the scope for the form elements.
+   * {@inheritdoc}
    */
   public function getScopedFormElements() {
     $admin       = $this->admin();
-    $field       = $this->fieldDefinition;
-    $entity_type = $field->getTargetEntityTypeId();
     $target_type = $this->getFieldSetting('target_type');
     $views_ui    = $this->getFieldSetting('handler') == 'default';
     $bundles     = $views_ui ? [] : $this->getFieldSetting('handler_settings')['target_bundles'];
-    $strings     = $admin->getFieldOptions($bundles, ['text', 'string', 'list_string'], $target_type);
-    $texts       = $admin->getFieldOptions($bundles, ['text', 'text_long', 'string', 'string_long', 'link'], $target_type);
+    $strings     = ['text', 'string', 'list_string'];
+    $strings     = $admin->getFieldOptions($bundles, $strings, $target_type);
+    $texts       = ['text', 'text_long', 'string', 'string_long', 'link'];
+    $texts       = $admin->getFieldOptions($bundles, $texts, $target_type);
+    $links       = ['text', 'string', 'link'];
 
     return [
       'background'        => TRUE,
@@ -286,34 +247,19 @@ abstract class BlazyEntityReferenceBase extends EntityReferenceFormatterBase {
       'breakpoints'       => BlazyDefault::getConstantBreakpoints(),
       'captions'          => $admin->getFieldOptions($bundles, [], $target_type),
       'classes'           => $strings,
-      'current_view_mode' => $this->viewMode,
-      'entity_type'       => $entity_type,
-      'field_type'        => $field->getType(),
       'fieldable_form'    => TRUE,
-      'field_name'        => $field->getName(),
       'images'            => $admin->getFieldOptions($bundles, ['image'], $target_type),
       'image_style_form'  => TRUE,
       'layouts'           => $strings,
-      'links'             => $admin->getFieldOptions($bundles, ['text', 'string', 'link'], $target_type),
+      'links'             => $admin->getFieldOptions($bundles, $links, $target_type),
       'media_switch_form' => TRUE,
       'multimedia'        => TRUE,
-      'settings'          => $this->getSettings(),
-      'target_bundles'    => $bundles,
-      'target_type'       => $target_type,
       'thumb_captions'    => $texts,
       'thumb_positions'   => TRUE,
       'nav'               => TRUE,
       'titles'            => $texts,
       'vanilla'           => TRUE,
-      'view_mode'         => $this->viewMode,
-    ];
+    ] + parent::getScopedFormElements();
   }
-
-  /**
-   * Collects media definitions.
-   *
-   * @todo: Drop to re-use BlazyVideoTrait::getMediaItem() for everything else.
-   */
-  public function buildMedia(array &$settings = [], $entity, $langcode) {}
 
 }

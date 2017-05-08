@@ -18,7 +18,9 @@ abstract class BlazyAdminFormatterBase extends BlazyAdminBase {
     $image_styles  = image_style_options(FALSE);
     $is_responsive = function_exists('responsive_image_get_image_dimensions');
 
-    $form['image_style'] = $this->baseForm($definition)['image_style'];
+    if (empty($definition['no_image_style'])) {
+      $form['image_style'] = $this->baseForm($definition)['image_style'];
+    }
 
     if (!empty($definition['thumbnail_style'])) {
       $form['thumbnail_style'] = $this->baseForm($definition)['thumbnail_style'];
@@ -33,25 +35,24 @@ abstract class BlazyAdminFormatterBase extends BlazyAdminBase {
         '#access'      => $this->getResponsiveImageOptions(),
         '#weight'      => -100,
       ];
+
+      if (!empty($definition['background'])) {
+        $form['background']['#states'] = $this->getState(static::STATE_RESPONSIVE_IMAGE_STYLE_DISABLED, $definition);
+      }
     }
 
-    if (isset($definition['thumbnail_effect'])) {
+    if (!empty($definition['thumbnail_effect'])) {
       $form['thumbnail_effect'] = [
-        '#type'        => 'select',
-        '#title'       => $this->t('Thumbnail effect'),
-        '#options'     => isset($definition['thumbnail_effect']) ? $definition['thumbnail_effect'] : [],
-        '#weight'      => -100,
-        // '#states'      => $this->getState(static::STATE_THUMBNAIL_STYLE_ENABLED, $definition),
+        '#type'    => 'select',
+        '#title'   => $this->t('Thumbnail effect'),
+        '#options' => isset($definition['thumbnail_effect']) ? $definition['thumbnail_effect'] : [],
+        '#weight'  => -100,
       ];
     }
 
     if ($is_responsive && isset($form['responsive_image_style'])) {
       $url = Url::fromRoute('entity.responsive_image_style.collection')->toString();
       $form['responsive_image_style']['#description'] .= ' ' . $this->t('<a href=":url" target="_blank">Manage responsive image styles</a>.', [':url' => $url]);
-    }
-
-    if (isset($form['background'])) {
-      $form['background']['#states'] = $this->getState(static::STATE_RESPONSIVE_IMAGE_STYLE_DISABLED, $definition);
     }
   }
 
@@ -70,6 +71,7 @@ abstract class BlazyAdminFormatterBase extends BlazyAdminBase {
 
     unset($image_styles['']);
 
+    $extras = ['details', 'fieldset', 'hidden', 'markup', 'item', 'table'];
     foreach ($settings as $key => $setting) {
       $type = isset($elements[$key]['#type']) ? $elements[$key]['#type'] : '';
 
@@ -77,7 +79,7 @@ abstract class BlazyAdminFormatterBase extends BlazyAdminBase {
         continue;
       }
 
-      if (in_array($type, ['button', 'container', 'details', 'fieldset', 'hidden', 'markup', 'item', 'submit', 'table']) || empty($type)) {
+      if (in_array($type, $extras) || empty($type)) {
         continue;
       }
 

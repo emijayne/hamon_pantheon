@@ -31,16 +31,41 @@
       }
     });
 
+    $('select[name$="[style]"]', t).on('change', function () {
+      var $select = $(this);
+
+      t.removeClass(function (index, css) {
+        return (css.match(/(^|\s)form--style-\S+/g) || []).join(' ');
+      });
+
+      if ($select.val() === '') {
+        t.addClass('form--style-off');
+      }
+      else {
+        t.addClass('form--style-on form--style-' + $select.val());
+      }
+    }).change();
+
     $('select[name$="[responsive_image_style]"]', t).on('change', function () {
       var $select = $(this);
       t[$select.val() === '' ? 'removeClass' : 'addClass']('form--responsive-image-on');
     }).change();
 
-    t.on('mouseenter', '.hint', function () {
+    $('select[name$="[media_switch]"]', t).on('change', function () {
+      var $select = $(this);
+
+      t.removeClass(function (index, css) {
+        return (css.match(/(^|\s)form--media-switch-\S+/g) || []).join(' ');
+      });
+
+      t[$select.val() === '' ? 'removeClass' : 'addClass']('form--media-switch-' + $select.val());
+    }).change();
+
+    t.on('mouseenter touchstart', '.hint', function () {
       $(this).closest('.form-item').addClass('is-hovered');
     });
 
-    t.on('mouseleave', '.hint', function () {
+    t.on('mouseleave touchend', '.hint', function () {
       $(this).closest('.form-item').removeClass('is-hovered');
     });
 

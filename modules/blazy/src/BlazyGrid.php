@@ -20,10 +20,13 @@ class BlazyGrid {
    * @return array
    *   The modified array of grid items.
    */
-  public static function build($items = [], $settings = []) {
+  public static function build(array $items = [], array $settings = []) {
+    $blazy = empty($settings['blazy_data']) ? '' : $settings['blazy_data'];
+    $settings['style'] = empty($settings['style']) ? 'grid' : $settings['style'];
+
     $grids = [];
     foreach ($items as $delta => $item) {
-      // @todo support non-Blazy which normally uses item_id.
+      // @todo: Support non-Blazy which normally uses item_id.
       $item_settings = isset($item['#build']['settings']) ? $item['#build']['settings'] : $settings;
       $item_settings['delta'] = $delta;
 
@@ -38,19 +41,20 @@ class BlazyGrid {
       self::buildGridItemAttributes($grid, $item_settings);
 
       $grids[] = $grid;
+      unset($grid);
     }
 
     $count = empty($settings['count']) ? count($grids) : $settings['count'];
-    $blazy = empty($settings['blazy_data']) ? '' : $settings['blazy_data'];
     $element = [
       '#theme' => 'item_list',
       '#items' => $grids,
+      '#context' => ['settings' => $settings],
       '#attributes' => [
-       'class' => [
-         'blazy',
-         'blazy--grid',
-         'block-' . $settings['style'],
-         'block-count-' . $count,
+        'class' => [
+          'blazy',
+          'blazy--grid',
+          'block-' . $settings['style'],
+          'block-count-' . $count,
         ],
         'data-blazy' => Json::encode($blazy),
       ],
@@ -82,7 +86,11 @@ class BlazyGrid {
    * @param array $settings
    *   The given settings.
    */
-  public static function buildGridItemAttributes(array &$grid = [], $settings = []) {
+  public static function buildGridItemAttributes(array &$grid = [], array $settings = []) {
+    if (!empty($settings['grid_item_class'])) {
+      $grid['#wrapper_attributes']['class'][] = $settings['grid_item_class'];
+    }
+
     $grid['#wrapper_attributes']['class'][] = 'grid';
 
     if (!empty($settings['type'])) {
@@ -94,11 +102,6 @@ class BlazyGrid {
     }
 
     $grid['#wrapper_attributes']['class'][] = 'grid--' . $settings['delta'];
-
-    // Adds settings accessible from the first item only.
-    if ($settings['delta'] == 0) {
-      $grid['#settings'] = array_filter($settings);
-    }
   }
 
 }

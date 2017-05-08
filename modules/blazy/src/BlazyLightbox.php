@@ -50,21 +50,19 @@ class BlazyLightbox {
       $settings['box_height'] = $dimensions['height'];
     }
 
-    $json = ['type' => $type, 'width' => $settings['box_width'], 'height' => $settings['box_height']];
-    if (!empty($settings['embed_url'])) {
-      $url = $settings['embed_url'];
+    $json = [
+      'type'   => $type,
+      'width'  => $settings['box_width'],
+      'height' => $settings['box_height'],
+    ];
 
+    if (!empty($settings['embed_url'])) {
       $json['scheme'] = $settings['scheme'];
       $json['width']  = 640;
       $json['height'] = 360;
 
       // Force autoplay for media URL on lightboxes, saving another click.
-      if (strpos($url, 'autoplay') === FALSE || strpos($url, 'autoplay=0') !== FALSE) {
-        $url = strpos($url, '?') === FALSE ? $url . '?autoplay=1' : $url . '&autoplay=1';
-      }
-      if ($settings['scheme'] == 'soundcloud') {
-        $url = strpos($url, '?') === FALSE ? $url . '?auto_play=true' : $url . '&auto_play=true';
-      }
+      $url = empty($settings['autoplay_url']) ? $settings['embed_url'] : $settings['autoplay_url'];
 
       // Provides custom lightbox media dimension, if so configured.
       // @todo: Remove for Lightbox media style.
@@ -113,17 +111,18 @@ class BlazyLightbox {
   /**
    * Builds lightbox captions.
    *
-   * @param \Drupal\image\Plugin\Field\FieldType\ImageItem $item
-   *   The image item.
+   * @param object|mixed $item
+   *   The \Drupal\image\Plugin\Field\FieldType\ImageItem item, or array when
+   *   dealing with Video Embed Field.
    * @param array $settings
    *   The settings to work with.
    *
    * @return array
    *   The renderable array of caption, or empty array.
    */
-  public static function buildCaptions($item, $settings = []) {
+  public static function buildCaptions($item, array $settings = []) {
     $title   = empty($item->title) ? '' : $item->title;
-    $alt     = empty($item->alt)   ? '' : $item->alt;
+    $alt     = empty($item->alt) ? '' : $item->alt;
     $delta   = empty($settings['delta']) ? 0 : $settings['delta'];
     $caption = '';
 

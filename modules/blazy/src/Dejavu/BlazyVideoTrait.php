@@ -68,7 +68,7 @@ trait BlazyVideoTrait {
     $embed_url = isset($render['#url']) ? $render['#url'] : $old_url;
     $query     = isset($render['#query']) ? $render['#query'] : [];
 
-    // Prevents complication by now.
+    // Prevents complication with multiple videos by now.
     unset($query['autoplay'], $query['auto_play']);
 
     $settings['video_id']  = $provider::getIdFromInput($external_url);
@@ -77,18 +77,29 @@ trait BlazyVideoTrait {
     $settings['uri']       = $provider->getLocalThumbnailUri();
     $settings['type']      = 'video';
 
+    // Adds autoplay for media URL on lightboxes, saving another click.
+    $url = $settings['embed_url'];
+    if (strpos($url, 'autoplay') === FALSE || strpos($url, 'autoplay=0') !== FALSE) {
+      $settings['autoplay_url'] = strpos($url, '?') === FALSE ? $url . '?autoplay=1' : $url . '&autoplay=1';
+    }
+    if ($settings['scheme'] == 'soundcloud') {
+      $settings['autoplay_url'] = strpos($url, '?') === FALSE ? $url . '?auto_play=true' : $url . '&auto_play=true';
+    }
+
     // Only applies when Image style is empty, no file API, no $item,
     // with unmanaged VEF image without image_style.
     // Prevents 404 warning when video thumbnail missing for a reason.
-    if (empty($settings['image_style']) && ($data = @getimagesize($settings['uri']))) {
-      list($settings['width'], $settings['height']) = $data;
+    if (empty($settings['image_style'])) {
+      if ($data = @getimagesize($settings['uri'])) {
+        list($settings['width'], $settings['height']) = $data;
+      }
     }
   }
 
   /**
    * Gets the faked image item out of file entity, or ER, if applicable.
    *
-   * @param \Drupal\file\Entity\FileInterface $file
+   * @param object $file
    *   The expected file entity, or ER, to get image item from.
    *
    * @return array
@@ -112,15 +123,15 @@ trait BlazyVideoTrait {
     $uri = $entity->getFileUri();
 
     if ($type == 'image' && ($image = $this->imageFactory()->get($uri)) && $image->isValid()) {
-      $item             = new \stdClass();
-      $item->target_id  = $entity->id();
-      $item->width      = $image->getWidth();
-      $item->height     = $image->getHeight();
-      $item->alt        = $entity->getFilename();
-      $item->title      = $entity->getFilename();
-      $item->uri        = $uri;
-      $settings         = (array) $item;
-      $item->entity     = $entity;
+      $item            = new \stdClass();
+      $item->target_id = $entity->id();
+      $item->width     = $image->getWidth();
+      $item->height    = $image->getHeight();
+      $item->alt       = $entity->getFilename();
+      $item->title     = $entity->getFilename();
+      $item->uri       = $uri;
+      $settings        = (array) $item;
+      $item->entity    = $entity;
 
       $settings['type'] = 'image';
 
@@ -195,9 +206,12 @@ trait BlazyVideoTrait {
         $settings['type'] = 'image';
       }
 
+      // Do not proceed if it has type, already managed by theme_blazy().
       // Supports other Media entities: Facebook, Instagram, Twitter, etc.
-      if ($build = BlazyMedia::build($media, $settings)) {
-        $data['content'] = $build;
+      if (empty($settings['type'])) {
+        if ($build = BlazyMedia::build($media, $settings)) {
+          $data['content'][] = $build;
+        }
       }
     }
 
